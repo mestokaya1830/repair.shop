@@ -21,6 +21,7 @@ export const repairStore = defineStore("repair", {
         model: "",
         serialNumber: "",
         purchaseDate: "",
+        images: [],
       },
 
       problem: {
@@ -43,9 +44,11 @@ export const repairStore = defineStore("repair", {
 
   actions: {
     updateForm(data) {
-      this.form = data;
+      this.form = {
+        ...this.form,
+        ...data,
+      };
     },
-
     createRequestInfo() {
       this.repairNumber = "REQ-" + Date.now();
       this.createdAt = new Date().toLocaleDateString();

@@ -7,7 +7,7 @@ const connectMongo = async () => {
     await mongoose.connect(env.MONGO, {
         serverSelectionTimeoutMS: 5000
     })
-    console.log('Mongo COnnected') //fur developer
+    console.log('Mongo Connected') //fur developer
     logger.info('Mongo Connected')
   } catch (error) {
     console.error(error) //fur developer

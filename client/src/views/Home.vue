@@ -8,7 +8,7 @@
         Send your damaged device to us and track your repair process online.
       </p>
 
-      <router-link to="/repair-request"> Send Your Device </router-link>
+      <router-link to="/repair"> Send Your Device </router-link>
     </section>
 
     <!-- How It Works -->

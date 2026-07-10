@@ -74,26 +74,30 @@ export default {
       this.errors = {};
       const result = repairSchema.safeParse(this.form);
 
-      // if (!result.success) {
-      //   result.error.issues.forEach((error) => {
-      //     this.errors[error.path.join(".")] = error.message;
-      //   });
+      if (!result.success) {
+        result.error.issues.forEach((error) => {
+          this.errors[error.path.join(".")] = error.message;
+        });
 
-      //   return;
-      // }
-
-      console.log(this.form);
-      const response = await api.post("/repair", this.form);
-
-      if (!response.success) {
-        console.error(response);
+        return;
       }
-      console.log("Created:", response.data);
 
-      this.store.updateForm(this.form);
-      this.$router.push({
-        name: "repair-review",
+      const formData = new FormData();
+      formData.append("data", JSON.stringify(this.form));
+
+      this.form.device.images.forEach((image) => {
+        formData.append("images", image);
       });
+
+      try {
+        this.isSubmitting = true;
+        const response = await api.post("/repair", formData);
+        this.submitted = true;
+      } catch (error) {
+        console.log(error);
+      } finally {
+        this.isSubmitting = false;
+      }
     },
   },
 };

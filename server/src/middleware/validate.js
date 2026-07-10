@@ -1,14 +1,25 @@
 const validate = (schema) => (req, res, next) => {
-  const result = schema.safeParse(req.body)
-  if(!result.success){
-    jes.status(500).json({
-      success: false,
-      errors: result.error.flatten()
-    })
+  try {
+    let data = req.body;
+
+    if (req.body.data) {
+      data = JSON.parse(req.body.data);
+    }
+
+    const result = schema.safeParse(data);
+
+    if (!result.success) {
+      return res.status(400).json({
+        success: false,
+        errors: result.error.flatten(),
+      });
+    }
+
+    req.body = result.data;
+    next();
+  } catch (error) {
+    next(error);
   }
+};
 
-  req.body = result.data
-  next()
-}
-
-export default validate
+export default validate;

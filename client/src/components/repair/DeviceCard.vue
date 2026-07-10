@@ -50,6 +50,11 @@
 
       <input v-model="form.device.purchaseDate" type="date" />
     </div>
+    <div>
+      <label> Device Photos (optional) </label>
+
+      <input type="file" multiple accept="image/*" @change="handleImages" />
+    </div>
   </section>
 </template>
 
@@ -68,5 +73,17 @@ export default {
       default: () => ({}),
     },
   },
+  data () {
+    return {
+
+    }
+  },
+  methods: {
+    handleImages(event) {
+      const files = Array.from(event.target.files);
+      this.form.device.images = files;
+      console.log(files)
+    },
+  }
 };
 </script>

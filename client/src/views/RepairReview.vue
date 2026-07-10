@@ -128,7 +128,11 @@
         Edit
       </button>
     </section>
-
+    <img
+      v-for="image in form.device.images"
+      :key="image.name"
+      :src="URL.createObjectURL(image)"
+    />
     <div class="actions no-print">
       <button @click="printDoc()">Print PDF</button>
 
@@ -164,7 +168,7 @@ export default {
     },
 
     async printDoc() {
-      window.print()
+      window.print();
     },
   },
 };
