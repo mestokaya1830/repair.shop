@@ -4,10 +4,12 @@ import helmet from "helmet";
 import cors from "cors";
 import AppError from "./utils/app.error.js";
 import processHandler from "./utils/process.handler.js";
-import logger from "./logger/logger.js";
+import logger from "./utils/logger.js";
 import httpLogger from "./middleware/http.logger.js";
 import repairRouter from "./routes/repair.router.js";
 import connectMongo from './infra/connect.mongo.js';
+import authRouter from './routes/auth.router.js'
+import userRouter from './routes/user.router.js'
 
 
 const app = express();
@@ -19,6 +21,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(httpLogger);
 
 
+app.use('/api/auth', authRouter)
+app.use('/api/users', userRouter)
 app.use('/api', repairRouter)
 
 app.use((req, res, next) => {

@@ -1,4 +1,4 @@
-import logger from "../logger/logger.js";
+import logger from "../utils/logger.js";
 import { randomUUID } from "crypto";
 
 const httpLogger = (req, res, next) => {

@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import logger from "../logger/logger.js";
+import logger from "./logger.js";
 
 const processHandler = (server) => {
   const shutDown = async (signal, err = null) => {

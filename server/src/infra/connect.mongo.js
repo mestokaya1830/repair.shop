@@ -1,11 +1,11 @@
 import mongoose from 'mongoose'
 import {env} from '../config/env.js'
-import logger from '../logger/logger.js';
+import logger from '../utils/logger.js';
 
 const connectMongo = async () => {
   try {
     await mongoose.connect(env.MONGO, {
-        serverSelectionTimeoutMS: 5000
+      serverSelectionTimeoutMS: 5000,
     })
     console.log('Mongo Connected') //fur developer
     logger.info('Mongo Connected')
