@@ -96,6 +96,10 @@ const router = createRouter({
           path: "users/:id/detail",
           component: () => import("@/views/admin/users/Detail.vue"),
         },
+        {
+          path: "users/profile",
+          component: () => import("@/views/admin/users/Profile.vue"),
+        },
 
         {
           path: "users/create",

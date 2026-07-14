@@ -45,6 +45,13 @@
 
 
       <router-link
+        to="/admin/users/profile"
+        class="nav-link"
+        active-class="active"
+      >
+        Profile
+      </router-link>
+      <router-link
         to="/admin/settings"
         class="nav-link"
         active-class="active"

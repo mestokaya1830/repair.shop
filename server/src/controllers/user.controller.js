@@ -60,7 +60,42 @@ export const updateUserController = catchAsync(async (req, res, next) => {
   });
 });
 
-export const addUserController = catchAsync(async (req, res, next) => {
+export const getProfileController = catchAsync(async (req, res, next) => {
+  const user = await userSC.findById(req.user.user._id).select("+password");
+  if (!user) {
+    return next(new AppError("User not found", 404, "USER_NOT_FOUND"));
+  }
+
+  res.json({
+    success: true,
+    user,
+  });
+});
+
+export const updateProfileController = catchAsync(async (req, res, next) => {
+  const user = await userSC.findById(req.user.user._id);
+
+  if (!user) {
+    return next(new AppError("User not found", 404, "USER_NOT_FOUND"));
+  }
+
+  if (req.body.profile?.phone !== undefined) {
+    user.profile.phone = req.body.profile.phone;
+  }
+
+  if (req.body.password) {
+    user.password = await bcrypt.hash(req.body.password, 10);
+  }
+
+  await user.save();
+
+  res.json({
+    success: true,
+    user
+  });
+});
+
+export const createUserController = catchAsync(async (req, res, next) => {
   let role;
   switch (req.user.user.role) {
     case "owner":
