@@ -100,7 +100,7 @@
 
 <script>
 import api from "@/api/axios.js";
-import {userSchema} from '@/validators/user.schema.js'
+import {userSchema} from '@/validators/schemas.js'
 export default {
   name: "AddUser",
   data() {

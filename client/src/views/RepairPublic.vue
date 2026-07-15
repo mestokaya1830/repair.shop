@@ -30,7 +30,7 @@ import DeviceCard from "@/components/repair/DeviceCard.vue";
 import ProblemCard from "@/components/repair/ProblemCard.vue";
 import ShippingCard from "@/components/repair/ShippingCard.vue";
 
-import { repairPublicSchema } from "@/validators/repairs.public.schema.js";
+import { repairPublicSchema } from "@/validators/schemas.js";
 import { repairStore } from "@/stores/repair.js";
 import api from "../api/axios.js";
 

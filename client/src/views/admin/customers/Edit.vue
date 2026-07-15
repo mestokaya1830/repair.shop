@@ -64,6 +64,7 @@
 
 <script>
 import api from "@/api/axios.js";
+import { updateCustomerSchema } from "@/validators/schemas.js";
 
 export default {
   name: "CustomerEdit",
@@ -99,6 +100,15 @@ export default {
       try {
         this.loading = true;
         this.error = "";
+        const result = createCustomerSchema.safeParse(this.form);
+
+        if (!result.success) {
+          result.error.issues.forEach((error) => {
+            this.errors[error.path.join(".")] = error.message;
+          });
+
+          return;
+        }
         const response = await api.patch(
           `/customers/${this.$route.params.id}/update`,
           this.form,

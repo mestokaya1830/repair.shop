@@ -78,7 +78,7 @@
 
 <script>
 import api from "@/api/axios.js";
-import {customerCreateSchema} from "@/validators/customers.schema.js";
+import {createCustomerSchema} from "@/validators/schemas.js";
 
 export default {
   name: "CustomerCreate",
@@ -110,7 +110,7 @@ export default {
   methods: {
     async createCustomer() {
       this.errors = {};
-      const result = customerCreateSchema.safeParse(this.form);
+      const result = createCustomerSchema.safeParse(this.form);
 
       if (!result.success) {
         result.error.issues.forEach((error) => {

@@ -70,7 +70,7 @@
 
 <script>
 import api from "@/api/axios.js";
-import {deviceUpdateSchema} from "@/validators/devices.schema.js";
+import {updateDeviceSchema} from "@/validators/schemas.js";
 
 export default {
   name: "DeviceEdit",
@@ -111,7 +111,7 @@ export default {
     async updateDevice() {
       this.errors = {};
 
-      const result = deviceUpdateSchema.safeParse(this.form);
+      const result = updateDeviceSchema.safeParse(this.form);
 
       if (!result.success) {
         result.error.issues.forEach((issue) => {

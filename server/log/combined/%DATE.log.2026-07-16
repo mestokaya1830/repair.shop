@@ -1,0 +1,24 @@
+{"env":"development","level":"info","message":"Mongo Connected","service":"mesfor repair shop","timestamp":"2026-07-16 00:06:34"}
+{"env":"development","level":"info","message":"Server is runnin on PORT', 4001","service":"mesfor repair shop","timestamp":"2026-07-16 00:06:34"}
+{"env":"development","level":"info","message":"Mongo Connected","service":"mesfor repair shop","timestamp":"2026-07-16 00:06:46"}
+{"env":"development","level":"info","message":"Server is runnin on PORT', 4001","service":"mesfor repair shop","timestamp":"2026-07-16 00:06:46"}
+{"env":"development","level":"info","message":"Mongo Connected","service":"mesfor repair shop","timestamp":"2026-07-16 00:07:29"}
+{"env":"development","level":"info","message":"Server is runnin on PORT', 4001","service":"mesfor repair shop","timestamp":"2026-07-16 00:07:29"}
+{"env":"development","level":"info","message":"Mongo Connected","service":"mesfor repair shop","timestamp":"2026-07-16 00:07:38"}
+{"env":"development","level":"info","message":"Server is runnin on PORT', 4001","service":"mesfor repair shop","timestamp":"2026-07-16 00:07:38"}
+{"env":"development","level":"info","message":"Mongo Connected","service":"mesfor repair shop","timestamp":"2026-07-16 00:07:43"}
+{"env":"development","level":"info","message":"Server is runnin on PORT', 4001","service":"mesfor repair shop","timestamp":"2026-07-16 00:07:43"}
+{"env":"development","level":"info","message":"Mongo Connected","service":"mesfor repair shop","timestamp":"2026-07-16 00:39:46"}
+{"env":"development","level":"info","message":"Server is runnin on PORT', 4001","service":"mesfor repair shop","timestamp":"2026-07-16 00:39:46"}
+{"env":"development","level":"info","message":"Mongo Connected","service":"mesfor repair shop","timestamp":"2026-07-16 00:39:49"}
+{"env":"development","level":"info","message":"Server is runnin on PORT', 4001","service":"mesfor repair shop","timestamp":"2026-07-16 00:39:49"}
+{"env":"development","level":"info","message":{"event":"LOGIN_SUCCESS","role":"owner","userId":"6a552021c5c56511adcac0c6"},"service":"mesfor repair shop","timestamp":"2026-07-16 00:40:27"}
+{"contentLength":"254","duration":79,"env":"development","ip":"::1","level":"info","message":"http_request","method":"POST","path":"/api/auth/login","requestId":"8451baf3-d6d5-41db-810e-b6a5fcc11d1c","service":"mesfor repair shop","status":200,"timestamp":"2026-07-16 00:40:27","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"}
+{"contentLength":0,"duration":5,"env":"development","ip":"::1","level":"info","message":"http_request","method":"GET","path":"/api/customers","requestId":"5c84b0fb-ea3e-4e60-af03-03e318b6db7f","service":"mesfor repair shop","status":304,"timestamp":"2026-07-16 00:40:30","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"}
+{"contentLength":0,"duration":9,"env":"development","ip":"::1","level":"info","message":"http_request","method":"GET","path":"/api/devices","requestId":"f8bdb69d-83f8-4efe-806b-ff9b1b127668","service":"mesfor repair shop","status":304,"timestamp":"2026-07-16 00:40:32","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"}
+{"contentLength":"1196","duration":6,"env":"development","ip":"::1","level":"info","message":"http_request","method":"GET","path":"/api/repairs","requestId":"ea45cb25-a1b5-40cf-b1f1-c7b5adcbea79","service":"mesfor repair shop","status":200,"timestamp":"2026-07-16 00:40:33","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"}
+{"contentLength":0,"duration":3,"env":"development","ip":"::1","level":"info","message":"http_request","method":"GET","path":"/api/users","requestId":"645f36be-74bf-4419-9e59-5b1d8292459b","service":"mesfor repair shop","status":304,"timestamp":"2026-07-16 00:40:35","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"}
+{"contentLength":0,"duration":3,"env":"development","ip":"::1","level":"info","message":"http_request","method":"GET","path":"/api/users/profile","requestId":"e0c99d89-7711-4662-9e4a-48a01b5bbce4","service":"mesfor repair shop","status":304,"timestamp":"2026-07-16 00:40:37","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"}
+{"env":"development","level":"info","message":"SIGINT - App shutting down gracefully","service":"mesfor repair shop","timestamp":"2026-07-16 00:40:45"}
+{"env":"development","level":"info","message":"HTTP server closed!","service":"mesfor repair shop","timestamp":"2026-07-16 00:40:45"}
+{"env":"development","level":"info","message":"MongoDB connection closed!","service":"mesfor repair shop","timestamp":"2026-07-16 00:40:45"}

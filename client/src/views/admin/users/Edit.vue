@@ -71,7 +71,7 @@
 
 <script>
 import api from "@/api/axios.js";
-import { updateUserSchema } from "@/validators/update.user.schema.js";
+import { updateUserSchema } from "@/validators/schemas.js";
 
 export default {
   name: "EditUser",

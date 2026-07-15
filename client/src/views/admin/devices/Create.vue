@@ -107,7 +107,7 @@
 
 <script>
 import api from "@/api/axios.js";
-import {deviceCreateSchema} from "@/validators/devices.schema.js";
+import {deviceCreateSchema} from "@/validators/schemas.js";
 
 export default {
   name: "DeviceCreate",

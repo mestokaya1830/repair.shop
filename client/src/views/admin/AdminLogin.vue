@@ -38,7 +38,7 @@
 
 <script>
 import api from "@/api/axios.js";
-import { loginSchema } from "@/validators/login.schemas.js";
+import { loginSchema } from "@/validators/schemas.js";
 
 export default {
   name: "AdminLogin",

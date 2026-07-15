@@ -95,7 +95,7 @@
 
 <script>
 import api from "@/api/axios.js";
-import { repairAdminSchema } from "@/validators/repairs.admin.schema.js";
+import { repairSchema } from "@/validators/schemas.js";
 
 export default {
   name: "RepairCreate",
@@ -175,7 +175,7 @@ export default {
     async createRepair() {
       this.errors = {};
       this.error = "";
-      const result = repairAdminSchema.safeParse(this.form);
+      const result = repairSchema.safeParse(this.form);
 
       if (!result.success) {
         result.error.issues.forEach((err) => {
