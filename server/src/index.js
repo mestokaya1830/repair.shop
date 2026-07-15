@@ -6,7 +6,7 @@ import AppError from "./utils/app.error.js";
 import processHandler from "./utils/process.handler.js";
 import logger from "./utils/logger.js";
 import httpLogger from "./middleware/http.logger.js";
-import repairRouter from "./routes/repair.router.js";
+import repairPublicRouter from "./routes/repair.public.router.js";
 import connectMongo from './infra/connect.mongo.js';
 import authRouter from './routes/auth.router.js'
 import usersRouter from './routes/users.router.js'
@@ -25,7 +25,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(httpLogger);
 
 
-app.use('/api', repairRouter)
+app.use('/api', repairPublicRouter)
 app.use('/api/auth', authRouter)
 app.use('/api/users', usersRouter)
 app.use('/api/customers', customersRouter)

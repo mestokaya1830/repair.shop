@@ -21,19 +21,19 @@ const router = createRouter({
         {
           path: "repair",
           name: "repair",
-          component: () => import("../views/CustomerRepair.vue"),
+          component: () => import("../views/RepairPublic.vue"),
         },
 
         {
           path: "repair-review",
           name: "repair-review",
-          component: () => import("../views/CustomerRepairReview.vue"),
+          component: () => import("../views/RepairPublicReview.vue"),
         },
 
         {
           path: "track",
           name: "track",
-          component: () => import("../views/CustomerTrackRepair.vue"),
+          component: () => import("../views/RepairTrack.vue"),
         },
 
         {

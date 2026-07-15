@@ -33,8 +33,7 @@ export const details = catchAsync(async (req, res, next) => {
     .findById(req.params.id)
     .populate("customer")
     .populate("device")
-    .populate("assignedTo")
-    .populate("createdBy")
+    .populate("statusHistory.changedBy")
     .lean();
 
   if (!repair) {
@@ -117,5 +116,55 @@ export const remove = catchAsync(async (req, res, next) => {
   res.json({
     success: true,
     message: "Repair deleted successfully",
+  });
+});
+
+export const updateStatus = catchAsync(async (req, res, next) => {
+  const { status, note } = req.body;
+
+  const repair = await repairsSC.findById(req.params.id);
+
+  if (!repair) {
+    return next(new AppError("Repair not found", 404, "REPAIR_NOT_FOUND"));
+  }
+
+  const allowedTransitions = {
+    Pending: ["Received"],
+    Received: ["Diagnosing"],
+    Diagnosing: ["WaitingApproval", "Repairing"],
+    WaitingApproval: ["Repairing", "Cancelled"],
+    Repairing: ["Testing"],
+    Testing: ["Ready"],
+    Ready: ["Delivered"],
+    Delivered: [],
+    Cancelled: [],
+  };
+
+  if (!allowedTransitions[repair.status]?.includes(status)) {
+    return next(
+      new AppError(
+        `Cannot change status from ${repair.status} to ${status}`,
+        400,
+        "INVALID_STATUS_TRANSITION",
+      ),
+    );
+  }
+
+  repair.status = status;
+
+  repair.statusHistory.push({
+    status,
+
+    note,
+
+    changedBy: req.user._id,
+  });
+
+  await repair.save();
+
+  res.json({
+    success: true,
+
+    repair,
   });
 });

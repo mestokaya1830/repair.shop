@@ -3,7 +3,7 @@ import repairSC from "../models/repairs.sc.js";
 import logger from "../utils/logger.js";
 import AppError from "../utils/app.error.js";
 
-export const repairController = catchAsync(async (req, res) => {
+export const repairPublicController = catchAsync(async (req, res) => {
   const images =
     req.files?.map((file) => ({
       filename: file.filename,

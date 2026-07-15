@@ -21,6 +21,52 @@
         {{ repair.status }}
       </p>
 
+      <!-- Status Actions -->
+
+      <div class="status-actions">
+        <button
+          v-if="repair.status === 'Pending'"
+          @click="changeStatus('Received')"
+        >
+          Receive
+        </button>
+
+        <button
+          v-if="repair.status === 'Received'"
+          @click="changeStatus('Diagnosing')"
+        >
+          Start Diagnosis
+        </button>
+
+        <button
+          v-if="repair.status === 'Diagnosing'"
+          @click="changeStatus('Repairing')"
+        >
+          Start Repair
+        </button>
+
+        <button
+          v-if="repair.status === 'Repairing'"
+          @click="changeStatus('Testing')"
+        >
+          Start Testing
+        </button>
+
+        <button
+          v-if="repair.status === 'Testing'"
+          @click="changeStatus('Ready')"
+        >
+          Mark Ready
+        </button>
+
+        <button
+          v-if="repair.status === 'Ready'"
+          @click="changeStatus('Delivered')"
+        >
+          Deliver
+        </button>
+      </div>
+
       <hr />
 
       <h3>Customer</h3>
@@ -83,13 +129,11 @@
       <ul>
         <li v-for="item in repair.statusHistory" :key="item._id">
           {{ item.status }}
-
           -
-
           {{ item.note }}
-
           -
-
+          {{ item.changedBy?.name }}
+          -
           {{ formatDate(item.createdAt) }}
         </li>
       </ul>
@@ -101,9 +145,7 @@
       <ul>
         <li v-for="log in repair.workLogs" :key="log._id">
           {{ log.message }}
-
           -
-
           {{ formatDate(log.createdAt) }}
         </li>
       </ul>
@@ -143,6 +185,19 @@ export default {
         this.error = error.response?.data?.message || "Failed to load repair";
       } finally {
         this.loading = false;
+      }
+    },
+
+    async changeStatus(status) {
+      try {
+        await api.patch(`/repairs/${this.repair._id}/status`, {
+          status,
+          note: `${status} status changed`,
+        });
+
+        this.getRepair();
+      } catch (error) {
+        this.error = error.response?.data?.message || "Status update failed";
       }
     },
 
