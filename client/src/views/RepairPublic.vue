@@ -30,7 +30,7 @@ import DeviceCard from "@/components/repair/DeviceCard.vue";
 import ProblemCard from "@/components/repair/ProblemCard.vue";
 import ShippingCard from "@/components/repair/ShippingCard.vue";
 
-import { repairSchema } from "@/validators/repair.schemas.js";
+import { repairPublicSchema } from "@/validators/repairs.public.schema.js";
 import { repairStore } from "@/stores/repair.js";
 import api from "../api/axios.js";
 
@@ -72,7 +72,7 @@ export default {
   methods: {
     async submitRequest() {
       this.errors = {};
-      const result = repairSchema.safeParse(this.form);
+      const result = repairPublicSchema.safeParse(this.form);
 
       if (!result.success) {
         result.error.issues.forEach((error) => {

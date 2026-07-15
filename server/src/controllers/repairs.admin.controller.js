@@ -68,9 +68,7 @@ export const edit = catchAsync(async (req, res, next) => {
 export const create = catchAsync(async (req, res, next) => {
   const repair = await repairsSC.create({
     ...req.body,
-
     repairNumber: generateRepairNumber(),
-
     createdBy: req.user._id,
   });
 

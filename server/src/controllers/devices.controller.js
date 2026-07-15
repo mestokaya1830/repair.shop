@@ -97,3 +97,20 @@ export const remove = catchAsync(async (req, res, next) => {
     message: "Device deleted successfully",
   });
 });
+
+export const customerDevices = catchAsync(
+  async (req, res, next) => {
+
+    const devices = await deviceSC
+      .find({
+        customer: req.params.customerId,
+      })
+      .lean();
+
+    res.json({
+      success: true,
+      devices,
+    });
+
+  }
+);

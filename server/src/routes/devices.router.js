@@ -1,11 +1,12 @@
 import express from 'express'
-import { index, edit, details, update, create, remove } from '../controllers/devices.controller.js'
+import { index, edit, details, update, create, remove, customerDevices } from '../controllers/devices.controller.js'
 import auth from '../middleware/auth.js'
 
 
 const router = express.Router()
 
 
+router.get("/customer/:customerId", auth, customerDevices);
 router.get('/', auth, index)
 router.post('/create', auth, create)
 

@@ -53,8 +53,15 @@
 
       <div>
         <label> Category </label>
-
-        <input v-model="form.problem.category" />
+        <select v-model="form.problem.category">
+          <option
+            v-for="category in categories"
+            :key="category"
+            :value="category"
+          >
+            {{ category }}
+          </option>
+        </select>
       </div>
 
       <div>
@@ -88,7 +95,7 @@
 
 <script>
 import api from "@/api/axios.js";
-import { repairSchema } from "@/validators/repairs.schema.js";
+import { repairAdminSchema } from "@/validators/repairs.admin.schema.js";
 
 export default {
   name: "RepairCreate",
@@ -97,9 +104,26 @@ export default {
     return {
       customers: [],
       devices: [],
+
+      categories: [
+        "Hardware",
+        "Software",
+        "Screen",
+        "Battery",
+        "Charging",
+        "Motherboard",
+        "Keyboard",
+        "Cooling",
+        "Network",
+        "Data Recovery",
+        "Virus",
+        "Other",
+      ],
+
       form: {
         customer: "",
         device: "",
+
         problem: {
           category: "",
           description: "",
@@ -133,8 +157,8 @@ export default {
     async getDevices() {
       if (!this.form.customer) {
         this.devices = [];
-
-        return;
+        this.form.device = "";
+        return; 
       }
 
       try {
@@ -150,8 +174,8 @@ export default {
 
     async createRepair() {
       this.errors = {};
-
-      const result = repairCreateSchema.safeParse(this.form);
+      this.error = "";
+      const result = repairAdminSchema.safeParse(this.form);
 
       if (!result.success) {
         result.error.issues.forEach((err) => {
@@ -163,10 +187,9 @@ export default {
 
       try {
         this.loading = true;
-
         const response = await api.post("/repairs/create", this.form);
 
-        this.$router.push(`/repairs/${response.data.data._id}/details`);
+        this.$router.push(`/admin/repairs/${response.data.data._id}/details`);
       } catch (error) {
         this.error = error.response?.data?.message || "Failed to create repair";
       } finally {
