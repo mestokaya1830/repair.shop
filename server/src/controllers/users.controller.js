@@ -17,7 +17,7 @@ export const index = catchAsync(async (req, res, next) => {
 });
 
 export const details = catchAsync(async (req, res, next) => {
-  const user = await userSC.findOne({ _id: req.params.id }).lean();
+  const user = await userSC.findByid(req.params.id).lean();
   if (!user) {
     return next(new AppError("User not found", 404, "USER_NOT_FOUND"));
   }
@@ -28,7 +28,7 @@ export const details = catchAsync(async (req, res, next) => {
 });
 
 export const edit = catchAsync(async (req, res, next) => {
-  const user = await userSC.findOne({ _id: req.params.id }).lean();
+  const user = await userSC.findById(req.params.id).lean();
   if (!user) {
     return next(new AppError("User not found", 404, "USER_NOT_FOUND"));
   }

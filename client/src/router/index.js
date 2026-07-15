@@ -65,16 +65,6 @@ const router = createRouter({
           component: () => import("@/views/admin/Dashboard.vue"),
         },
 
-        {
-          path: "repairs",
-          component: () => import("@/views/admin/Repairs.vue"),
-        },
-
-        {
-          path: "repair/:id",
-          component: () => import("@/views/admin/RepairDetails.vue"),
-        },
-
         //user
         {
           path: "users",
@@ -121,6 +111,50 @@ const router = createRouter({
             {
               path: ":id/details",
               component: () => import("@/views/admin/customers/Details.vue"),
+            },
+          ],
+        },
+        //devices
+        {
+          path: "devices",
+          children: [
+            {
+              path: "",
+              component: () => import("@/views/admin/devices/Index.vue"),
+            },
+            {
+              path: "create",
+              component: () => import("@/views/admin/devices/Create.vue"),
+            },
+            {
+              path: ":id/edit",
+              component: () => import("@/views/admin/devices/Edit.vue"),
+            },
+            {
+              path: ":id/details",
+              component: () => import("@/views/admin/devices/Details.vue"),
+            },
+          ],
+        },
+        //repair admin site
+        {
+          path: "repairs",
+          children: [
+            {
+              path: "",
+              component: () => import("@/views/admin/repairs/Index.vue"),
+            },
+            {
+              path: "create",
+              component: () => import("@/views/admin/repairs/Create.vue"),
+            },
+            {
+              path: ":id/edit",
+              component: () => import("@/views/admin/repairs/Edit.vue"),
+            },
+            {
+              path: ":id/details",
+              component: () => import("@/views/admin/repairs/Details.vue"),
             },
           ],
         },

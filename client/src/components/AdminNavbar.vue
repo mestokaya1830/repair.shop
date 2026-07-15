@@ -43,6 +43,22 @@
         Users
       </router-link>
 
+      <router-link
+        to="/admin/devices"
+        class="nav-link"
+        active-class="active"
+      >
+        Devices
+      </router-link>
+
+      <router-link
+        to="/admin/repairs"
+        class="nav-link"
+        active-class="active"
+      >
+        Repairs
+      </router-link>
+
 
       <router-link
         to="/admin/users/profile"

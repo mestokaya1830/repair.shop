@@ -1,12 +1,24 @@
 import mongoose from "mongoose";
 
-const repairSchema = new mongoose.Schema(
+const repairsSC = new mongoose.Schema(
   {
     repairNumber: {
       type: String,
       required: true,
       unique: true,
       index: true,
+    },
+
+    customer: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "customers",
+      required: true,
+    },
+
+    device: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "devices",
+      required: true,
     },
 
     status: {
@@ -33,14 +45,11 @@ const repairSchema = new mongoose.Schema(
           required: true,
         },
 
-        note: {
-          type: String,
-          trim: true,
-        },
+        note: String,
 
         changedBy: {
           type: mongoose.Schema.Types.ObjectId,
-          ref: "User",
+          ref: "users",
         },
 
         createdAt: {
@@ -50,68 +59,10 @@ const repairSchema = new mongoose.Schema(
       },
     ],
 
-    estimatedCompletionDate: {
-      type: Date,
-    },
+    assignedTo: {
+      type: mongoose.Schema.Types.ObjectId,
 
-    customer: {
-      firstName: {
-        type: String,
-        required: true,
-        trim: true,
-      },
-
-      lastName: {
-        type: String,
-        required: true,
-        trim: true,
-      },
-
-      email: {
-        type: String,
-        required: true,
-        lowercase: true,
-        trim: true,
-      },
-
-      phone: {
-        type: String,
-        required: true,
-        trim: true,
-      },
-
-      company: {
-        type: String,
-        trim: true,
-      },
-    },
-
-    device: {
-      type: {
-        type: String,
-        required: true,
-      },
-
-      brand: {
-        type: String,
-        required: true,
-        trim: true,
-      },
-
-      model: {
-        type: String,
-        required: true,
-        trim: true,
-      },
-
-      serialNumber: {
-        type: String,
-        trim: true,
-      },
-
-      purchaseDate: {
-        type: Date,
-      },
+      ref: "users",
     },
 
     problem: {
@@ -125,23 +76,26 @@ const repairSchema = new mongoose.Schema(
         required: true,
       },
 
-      startedAt: {
-        type: Date,
-      },
+      startedAt: Date,
 
-      deviceWorking: {
-        type: String,
-      },
+      deviceWorking: String,
 
-      notes: {
-        type: String,
-      },
+      notes: String,
     },
+
+    estimatedCompletionDate: Date,
+
+    diagnosis: String,
+
+    solution: String,
 
     shipping: {
       street: String,
+
       postalCode: String,
+
       city: String,
+
       country: String,
 
       contactMethod: {
@@ -175,7 +129,7 @@ const repairSchema = new mongoose.Schema(
 
         uploadedBy: {
           type: mongoose.Schema.Types.ObjectId,
-          ref: "User",
+          ref: "users",
         },
 
         createdAt: {
@@ -189,36 +143,32 @@ const repairSchema = new mongoose.Schema(
       received: {
         user: {
           type: mongoose.Schema.Types.ObjectId,
-          ref: "User",
+          ref: "users",
         },
-
         date: Date,
       },
 
       diagnosis: {
         user: {
           type: mongoose.Schema.Types.ObjectId,
-          ref: "User",
+          ref: "users",
         },
-
         date: Date,
       },
 
       repair: {
         user: {
           type: mongoose.Schema.Types.ObjectId,
-          ref: "User",
+          ref: "users",
         },
-
         date: Date,
       },
 
       delivery: {
         user: {
           type: mongoose.Schema.Types.ObjectId,
-          ref: "User",
+          ref: "users",
         },
-
         date: Date,
       },
     },
@@ -232,7 +182,7 @@ const repairSchema = new mongoose.Schema(
 
         createdBy: {
           type: mongoose.Schema.Types.ObjectId,
-          ref: "User",
+          ref: "users",
         },
 
         createdAt: {
@@ -241,6 +191,12 @@ const repairSchema = new mongoose.Schema(
         },
       },
     ],
+
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "users",
+      required: true,
+    },
   },
 
   {
@@ -248,4 +204,4 @@ const repairSchema = new mongoose.Schema(
   },
 );
 
-export default mongoose.model("Repair", repairSchema);
+export default mongoose.model("repairs", repairsSC);

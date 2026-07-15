@@ -11,6 +11,8 @@ import connectMongo from './infra/connect.mongo.js';
 import authRouter from './routes/auth.router.js'
 import usersRouter from './routes/users.router.js'
 import customersRouter from './routes/customers.router.js'
+import devicesRouter from './routes/devices.router.js'
+import repairsAdminRouter from './routes/repairs.admin.router.js'
 
 
 
@@ -27,6 +29,9 @@ app.use('/api', repairRouter)
 app.use('/api/auth', authRouter)
 app.use('/api/users', usersRouter)
 app.use('/api/customers', customersRouter)
+app.use('/api/devices', devicesRouter)
+app.use('/api/repairs', repairsAdminRouter)
+
 
 app.use((req, res, next) => {
   return next(new AppError("Page Not Found", 404, "PAGE_NOT_FOUND"));
