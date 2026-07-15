@@ -41,7 +41,7 @@ export const repairSchema = z.object({
     description: z
       .string()
       .trim()
-      .min(10, "Please describe the problem in more detail"),
+      .min(10, "Please describe the problem in more details"),
 
     startedAt: z.string().trim().optional(),
 

@@ -109,7 +109,7 @@ export default {
       try {
         this.loading = true;
         const id = this.$route.params.id;
-        const response = await api.get(`/users/${id}/detail`);
+        const response = await api.get(`/users/${id}/details`);
 
         this.user = response.data.user;
 
@@ -145,7 +145,7 @@ export default {
         this.saving = true;
         const id = this.$route.params.id;
         await api.patch(`/users/${id}/update`, this.form);
-        this.$router.push(`/admin/users/${id}/detail`);
+        this.$router.push(`/admin/users/${id}/details`);
       } catch (error) {
         console.log(error);
         this.error = error.response?.data?.message || "Update failed";

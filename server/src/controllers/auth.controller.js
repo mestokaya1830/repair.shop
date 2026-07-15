@@ -3,7 +3,7 @@ import catchAsync from "../middleware/catch.async.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { env } from "../config/env.js";
-import userSC from "../models/user.sc.js";
+import userSC from "../models/users.sc.js";
 import logger from "../utils/logger.js";
 
 export const loginController = catchAsync(async (req, res, next) => {
@@ -17,14 +17,28 @@ export const loginController = catchAsync(async (req, res, next) => {
       email: req.body.email,
       ip: req.ip,
     });
-    return next(new AppError("Invalid email or password", 401, "INVALID+EMAIL_OR+PASSOWRD"));
+    return next(
+      new AppError(
+        "Invalid email or password",
+        401,
+        "INVALID+EMAIL_OR+PASSOWRD",
+      ),
+    );
   }
   logger.info({
     event: "LOGIN_SUCCESS",
     userId: user._id,
     role: user.role,
   });
-  const token = jwt.sign({ user }, env.JWT_SECRET, { expiresIn: "1h" });
+  const token = jwt.sign(
+    {
+      _id: user._id,
+      email: user.email,
+      role: user.role,
+    },
+    env.JWT_SECRET,
+    {expiresIn: '1h'}
+  );
   res.json({
     success: true,
     token,

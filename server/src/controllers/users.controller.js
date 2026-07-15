@@ -2,10 +2,10 @@ import AppError from "../utils/app.error.js";
 import catchAsync from "../middleware/catch.async.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import userSC from "../models/user.sc.js";
+import userSC from "../models/users.sc.js";
 import logger from "../utils/logger.js";
 
-export const getUserController = catchAsync(async (req, res, next) => {
+export const index = catchAsync(async (req, res, next) => {
   const users = await userSC.find().lean();
   if (!users) {
     return next(new AppError("Users not found", 404, "USERS_NOT_FOUND"));
@@ -16,7 +16,7 @@ export const getUserController = catchAsync(async (req, res, next) => {
   });
 });
 
-export const detailUserController = catchAsync(async (req, res, next) => {
+export const details = catchAsync(async (req, res, next) => {
   const user = await userSC.findOne({ _id: req.params.id }).lean();
   if (!user) {
     return next(new AppError("User not found", 404, "USER_NOT_FOUND"));
@@ -27,7 +27,7 @@ export const detailUserController = catchAsync(async (req, res, next) => {
   });
 });
 
-export const editUserController = catchAsync(async (req, res, next) => {
+export const edit = catchAsync(async (req, res, next) => {
   const user = await userSC.findOne({ _id: req.params.id }).lean();
   if (!user) {
     return next(new AppError("User not found", 404, "USER_NOT_FOUND"));
@@ -38,7 +38,7 @@ export const editUserController = catchAsync(async (req, res, next) => {
   });
 });
 
-export const updateUserController = catchAsync(async (req, res, next) => {
+export const updateUser = catchAsync(async (req, res, next) => {
   const user = await userSC.findByIdAndUpdate(
     req.params.id,
     {
@@ -60,8 +60,8 @@ export const updateUserController = catchAsync(async (req, res, next) => {
   });
 });
 
-export const getProfileController = catchAsync(async (req, res, next) => {
-  const user = await userSC.findById(req.user.user._id).select("+password");
+export const profile = catchAsync(async (req, res, next) => {
+  const user = await userSC.findById(req.user._id).select("+password");
   if (!user) {
     return next(new AppError("User not found", 404, "USER_NOT_FOUND"));
   }
@@ -72,8 +72,8 @@ export const getProfileController = catchAsync(async (req, res, next) => {
   });
 });
 
-export const updateProfileController = catchAsync(async (req, res, next) => {
-  const user = await userSC.findById(req.user.user._id);
+export const updateProfile = catchAsync(async (req, res, next) => {
+  const user = await userSC.findById(req.user._id);
 
   if (!user) {
     return next(new AppError("User not found", 404, "USER_NOT_FOUND"));
@@ -95,9 +95,9 @@ export const updateProfileController = catchAsync(async (req, res, next) => {
   });
 });
 
-export const createUserController = catchAsync(async (req, res, next) => {
+export const create = catchAsync(async (req, res, next) => {
   let role;
-  switch (req.user.user.role) {
+  switch (req.user.role) {
     case "owner":
       role = "admin";
       break;

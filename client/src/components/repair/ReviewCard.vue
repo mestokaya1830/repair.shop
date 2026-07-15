@@ -48,7 +48,7 @@
     </div>
 
     <div class="review-section">
-      <h3>Repair Details</h3>
+      <h3>Repair detailss</h3>
 
       <p>
         Category:

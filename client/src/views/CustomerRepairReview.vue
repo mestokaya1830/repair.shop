@@ -85,7 +85,7 @@
     </section>
 
     <section class="review-card">
-      <h2>Problem Details</h2>
+      <h2>Problem detailss</h2>
 
       <p>
         Category:

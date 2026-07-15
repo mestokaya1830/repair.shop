@@ -1,0 +1,339 @@
+{
+  "code": "INVALID_TOKEN",
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Invalid Token",
+  "method": "GET",
+  "requestId": "911f70b1-ac8d-4487-8b14-30ec97812f56",
+  "service": "mesfor repair shop",
+  "stack": "Error: Invalid Token\n    at auth (file:///media/mesto/Store/my-projects/repair.shop/server/src/middleware/auth.js:19:17)\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/route.js:157:13)\n    at Route.dispatch (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/route.js:117:3)\n    at handle (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:435:11)\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at /media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:295:15\n    at processParams (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:582:12)\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:291:5)\n    at Function.handle (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:186:3)",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-15 01:37:46",
+  "url": "/api/customers"
+}
+{
+  "code": "INVALID_TOKEN",
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Invalid Token",
+  "method": "GET",
+  "requestId": "28a5cd8a-9485-46da-bd3b-9a398aa17737",
+  "service": "mesfor repair shop",
+  "stack": "Error: Invalid Token\n    at auth (file:///media/mesto/Store/my-projects/repair.shop/server/src/middleware/auth.js:19:17)\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/route.js:157:13)\n    at Route.dispatch (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/route.js:117:3)\n    at handle (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:435:11)\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at /media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:295:15\n    at processParams (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:582:12)\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:291:5)\n    at Function.handle (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:186:3)",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-15 01:37:48",
+  "url": "/api/customers"
+}
+{
+  "code": "CUSTOMERS_NOT_FOUND",
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Customers not found",
+  "method": "GET",
+  "requestId": "9d749b0b-4e9c-40fe-88f9-f244896ba562",
+  "service": "mesfor repair shop",
+  "stack": "Error: Customers not found\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/controllers/customers.controller.js:12:7\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-15 01:38:08",
+  "url": "/api/customers"
+}
+{
+  "code": "CUSTOMERS_NOT_FOUND",
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Customers not found",
+  "method": "GET",
+  "requestId": "6b404b56-b5a6-4f6e-87fa-71c5dfd7654b",
+  "service": "mesfor repair shop",
+  "stack": "Error: Customers not found\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/controllers/customers.controller.js:13:7\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-15 01:48:04",
+  "url": "/api/customers"
+}
+{
+  "code": "CUSTOMERS_NOT_FOUND",
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Customers not found",
+  "method": "GET",
+  "requestId": "c953c474-6979-4c83-9d69-0ea5e96f12ac",
+  "service": "mesfor repair shop",
+  "stack": "Error: Customers not found\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/controllers/customers.controller.js:13:7\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-15 01:48:06",
+  "url": "/api/customers"
+}
+{
+  "code": "CUSTOMERS_NOT_FOUND",
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Customers not found",
+  "method": "GET",
+  "requestId": "e130493d-9b36-49e6-8577-f2a355b93e62",
+  "service": "mesfor repair shop",
+  "stack": "Error: Customers not found\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/controllers/customers.controller.js:12:7\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-15 01:48:37",
+  "url": "/api/customers"
+}
+{
+  "code": "CUSTOMERS_NOT_FOUND",
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Customers not found",
+  "method": "GET",
+  "requestId": "b7cec422-e6f6-4b63-91a4-79dffaf9be25",
+  "service": "mesfor repair shop",
+  "stack": "Error: Customers not found\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/controllers/customers.controller.js:12:7\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-15 01:48:58",
+  "url": "/api/customers"
+}
+{
+  "code": "PAGE_NOT_FOUND",
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Page Not Found",
+  "method": "GET",
+  "requestId": "c47ee4bf-f848-4024-b66b-9b96a0b5185a",
+  "service": "mesfor repair shop",
+  "stack": "Error: Page Not Found\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/index.js:32:15\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at trimPrefix (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:342:13)\n    at /media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:297:9\n    at processParams (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:582:12)\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:291:5)\n    at /media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:688:15\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:276:14)\n    at Function.handle (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:186:3)\n    at router (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:60:12)",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-15 01:49:17",
+  "url": "/api/admin/customers"
+}
+{
+  "code": "PAGE_NOT_FOUND",
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Page Not Found",
+  "method": "GET",
+  "requestId": "5531c163-4eb5-4a5a-91ae-bd28009de47c",
+  "service": "mesfor repair shop",
+  "stack": "Error: Page Not Found\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/index.js:32:15\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at trimPrefix (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:342:13)\n    at /media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:297:9\n    at processParams (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:582:12)\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:291:5)\n    at /media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:688:15\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:276:14)\n    at Function.handle (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:186:3)\n    at router (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:60:12)",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-15 01:49:18",
+  "url": "/api/admin/customers"
+}
+{
+  "code": "CUSTOMERS_NOT_FOUND",
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Customers not found",
+  "method": "GET",
+  "requestId": "d7f07b0d-e628-499a-8814-da929f903e2e",
+  "service": "mesfor repair shop",
+  "stack": "Error: Customers not found\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/controllers/customers.controller.js:12:7\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-15 01:49:33",
+  "url": "/api/customers"
+}
+{
+  "code": "PAGE_NOT_FOUND",
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Page Not Found",
+  "method": "GET",
+  "requestId": "ca49c838-5d46-4664-bab2-7e3d8679478e",
+  "service": "mesfor repair shop",
+  "stack": "Error: Page Not Found\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/index.js:32:15\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at trimPrefix (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:342:13)\n    at /media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:297:9\n    at processParams (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:582:12)\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:291:5)\n    at /media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:688:15\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:276:14)\n    at Function.handle (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:186:3)\n    at router (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:60:12)",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-15 01:50:24",
+  "url": "/api/customers"
+}
+{
+  "code": "CUSTOMERS_NOT_FOUND",
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Customers not found",
+  "method": "GET",
+  "requestId": "bce7b914-19db-440b-bcc4-691f958faf91",
+  "service": "mesfor repair shop",
+  "stack": "Error: Customers not found\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/controllers/customers.controller.js:12:7\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-15 01:50:58",
+  "url": "/api/customers"
+}
+{
+  "code": "CUSTOMERS_NOT_FOUND",
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Customers not found",
+  "method": "GET",
+  "requestId": "dfce7afa-911b-4bb2-976d-447b43db010f",
+  "service": "mesfor repair shop",
+  "stack": "Error: Customers not found\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/controllers/customers.controller.js:12:7\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-15 01:51:14",
+  "url": "/api/customers"
+}
+{
+  "code": "CUSTOMERS_NOT_FOUND",
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Customers not found",
+  "method": "GET",
+  "requestId": "02324b66-3e64-4f39-ac1d-523940a9ae0b",
+  "service": "mesfor repair shop",
+  "stack": "Error: Customers not found\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/controllers/customers.controller.js:12:7\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-15 01:52:19",
+  "url": "/api/customers"
+}
+{
+  "code": "CUSTOMERS_NOT_FOUND",
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Customers not found",
+  "method": "GET",
+  "requestId": "f2cf531c-72d5-468e-9c33-d643d4bec460",
+  "service": "mesfor repair shop",
+  "stack": "Error: Customers not found\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/controllers/customers.controller.js:12:7\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-15 01:52:27",
+  "url": "/api/customers"
+}
+{
+  "code": "CUSTOMERS_NOT_FOUND",
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Customers not found",
+  "method": "GET",
+  "requestId": "3463e941-facc-4524-9f33-135563f418ee",
+  "service": "mesfor repair shop",
+  "stack": "Error: Customers not found\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/controllers/customers.controller.js:12:7\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-15 01:52:30",
+  "url": "/api/customers"
+}
+{
+  "code": "CUSTOMERS_NOT_FOUND",
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Customers not found",
+  "method": "GET",
+  "requestId": "68511fde-110d-4284-b70d-5b25c4937307",
+  "service": "mesfor repair shop",
+  "stack": "Error: Customers not found\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/controllers/customers.controller.js:12:7\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-15 01:53:43",
+  "url": "/api/customers"
+}
+{
+  "code": "PAGE_NOT_FOUND",
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Page Not Found",
+  "method": "POST",
+  "requestId": "c2024f3e-ecea-494d-b067-f8b951759b9a",
+  "service": "mesfor repair shop",
+  "stack": "Error: Page Not Found\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/index.js:32:15\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at trimPrefix (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:342:13)\n    at /media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:297:9\n    at processParams (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:582:12)\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:291:5)\n    at /media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:688:15\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:276:14)\n    at Function.handle (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:186:3)\n    at router (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:60:12)",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-15 01:55:39",
+  "url": "/api/create"
+}
+{
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Server Error",
+  "method": "POST",
+  "requestId": "79c7fb60-1edc-485d-8693-c8bc5bfd3d27",
+  "service": "mesfor repair shop",
+  "stack": "ValidationError: customers validation failed: createdBy: Path `createdBy` is required.\n    at model.validate (/media/mesto/Store/my-projects/repair.shop/server/node_modules/mongoose/lib/document.js:2864:36)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async model.$__save (/media/mesto/Store/my-projects/repair.shop/server/node_modules/mongoose/lib/model.js:399:7)\n    at async maybeTracedSave (/media/mesto/Store/my-projects/repair.shop/server/node_modules/mongoose/lib/model.js:675:7)\n    at async Function.create (/media/mesto/Store/my-projects/repair.shop/server/node_modules/mongoose/lib/model.js:2763:5)\n    at async file:///media/mesto/Store/my-projects/repair.shop/server/src/controllers/customers.controller.js:55:20",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-15 01:57:57",
+  "url": "/api/customers/create"
+}{
+  "code": "CUSTOMERS_NOT_FOUND",
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Customers not found",
+  "method": "GET",
+  "requestId": "7189d562-c6ce-474f-9211-3e5ca7c6073d",
+  "service": "mesfor repair shop",
+  "stack": "Error: Customers not found\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/controllers/customers.controller.js:12:7\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-15 02:02:53",
+  "url": "/api/customers"
+}
+{
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Server Error",
+  "method": "POST",
+  "requestId": "931c4e99-f81d-490c-ac63-ff589aa49450",
+  "service": "mesfor repair shop",
+  "stack": "ValidationError: customers validation failed: createdBy: Path `createdBy` is required.\n    at model.validate (/media/mesto/Store/my-projects/repair.shop/server/node_modules/mongoose/lib/document.js:2864:36)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async model.$__save (/media/mesto/Store/my-projects/repair.shop/server/node_modules/mongoose/lib/model.js:399:7)\n    at async maybeTracedSave (/media/mesto/Store/my-projects/repair.shop/server/node_modules/mongoose/lib/model.js:675:7)\n    at async Function.create (/media/mesto/Store/my-projects/repair.shop/server/node_modules/mongoose/lib/model.js:2763:5)\n    at async file:///media/mesto/Store/my-projects/repair.shop/server/src/controllers/customers.controller.js:55:20",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-15 02:03:06",
+  "url": "/api/customers/create"
+}{
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Server Error",
+  "method": "POST",
+  "requestId": "48eae004-1a85-4b6b-8523-31bda6e606ac",
+  "service": "mesfor repair shop",
+  "stack": "ValidationError: customers validation failed: createdBy: Path `createdBy` is required.\n    at model.validate (/media/mesto/Store/my-projects/repair.shop/server/node_modules/mongoose/lib/document.js:2864:36)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async model.$__save (/media/mesto/Store/my-projects/repair.shop/server/node_modules/mongoose/lib/model.js:399:7)\n    at async maybeTracedSave (/media/mesto/Store/my-projects/repair.shop/server/node_modules/mongoose/lib/model.js:675:7)\n    at async Function.create (/media/mesto/Store/my-projects/repair.shop/server/node_modules/mongoose/lib/model.js:2763:5)\n    at async file:///media/mesto/Store/my-projects/repair.shop/server/src/controllers/customers.controller.js:56:20",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-15 02:03:45",
+  "url": "/api/customers/create"
+}
+{
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Server Error",
+  "method": "GET",
+  "requestId": "cd1321d1-e078-44b3-98f9-e8602fc703be",
+  "service": "mesfor repair shop",
+  "stack": "ObjectParameterError: Parameter \"filter\" to findOne() must be an object, got \"6a56ce8cd233ab9d20db1625\" (type string)\n    at Query.findOne (/media/mesto/Store/my-projects/repair.shop/server/node_modules/mongoose/lib/query.js:2836:16)\n    at Function.findOne (/media/mesto/Store/my-projects/repair.shop/server/node_modules/mongoose/lib/model.js:2210:13)\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/controllers/customers.controller.js:33:37\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/middleware/catch.async.js:2:19\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/route.js:157:13)\n    at auth (file:///media/mesto/Store/my-projects/repair.shop/server/src/middleware/auth.js:16:5)\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/route.js:157:13)\n    at Route.dispatch (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/route.js:117:3)",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-15 02:05:59",
+  "url": "/api/customers/6a56ce8cd233ab9d20db1625/edit"
+}

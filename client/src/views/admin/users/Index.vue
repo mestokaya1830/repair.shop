@@ -51,10 +51,10 @@
 
           <td>
             <router-link
-              :to="`/admin/users/${user._id}/detail`"
+              :to="`/admin/users/${user._id}/details`"
               class="action-link"
             >
-              Details
+              detailss
             </router-link>
 
             <router-link
@@ -97,7 +97,6 @@ export default {
         this.error = "";
 
         const response = await api.get("/users");
-
         this.users = response.data.users;
       } catch (error) {
         this.error = error.response?.data?.message || "Failed to load users";

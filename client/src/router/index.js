@@ -59,6 +59,7 @@ const router = createRouter({
           redirect: "dashboard",
         },
 
+        //website
         {
           path: "dashboard",
           component: () => import("@/views/admin/Dashboard.vue"),
@@ -71,41 +72,58 @@ const router = createRouter({
 
         {
           path: "repair/:id",
-          component: () => import("@/views/admin/RepairDetail.vue"),
+          component: () => import("@/views/admin/RepairDetails.vue"),
         },
 
-        {
-          path: "customers",
-          component: () => import("@/views/admin/Customers.vue"),
-        },
-
-        {
-          path: "customer/:id",
-          component: () => import("@/views/admin/CustomerDetail.vue"),
-        },
-
+        //user
         {
           path: "users",
-          component: () => import("@/views/admin/users/Index.vue"),
-        },
-        {
-          path: "users/:id/edit",
-          component: () => import("@/views/admin/users/Edit.vue"),
-        },
-        {
-          path: "users/:id/detail",
-          component: () => import("@/views/admin/users/Detail.vue"),
-        },
-        {
-          path: "users/profile",
-          component: () => import("@/views/admin/users/Profile.vue"),
+          children: [
+            {
+              path: "",
+              component: () => import("@/views/admin/users/Index.vue"),
+            },
+            {
+              path: "profile",
+              component: () => import("@/views/admin/users/Profile.vue"),
+            },
+            {
+              path: "create",
+              component: () => import("@/views/admin/users/Create.vue"),
+            },
+            {
+              path: ":id/edit",
+              component: () => import("@/views/admin/users/Edit.vue"),
+            },
+            {
+              path: ":id/details",
+              component: () => import("@/views/admin/users/Details.vue"),
+            },
+          ],
         },
 
+        //customer
         {
-          path: "users/create",
-          component: () => import("@/views/admin/users/Create.vue"),
+          path: "customers",
+          children: [
+            {
+              path: "",
+              component: () => import("@/views/admin/customers/Index.vue"),
+            },
+            {
+              path: "create",
+              component: () => import("@/views/admin/customers/Create.vue"),
+            },
+            {
+              path: ":id/edit",
+              component: () => import("@/views/admin/customers/Edit.vue"),
+            },
+            {
+              path: ":id/details",
+              component: () => import("@/views/admin/customers/Details.vue"),
+            },
+          ],
         },
-
         {
           path: "settings",
           component: () => import("@/views/admin/Settings.vue"),

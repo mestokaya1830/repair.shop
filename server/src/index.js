@@ -9,7 +9,9 @@ import httpLogger from "./middleware/http.logger.js";
 import repairRouter from "./routes/repair.router.js";
 import connectMongo from './infra/connect.mongo.js';
 import authRouter from './routes/auth.router.js'
-import userRouter from './routes/user.router.js'
+import usersRouter from './routes/users.router.js'
+import customersRouter from './routes/customers.router.js'
+
 
 
 const app = express();
@@ -21,9 +23,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(httpLogger);
 
 
-app.use('/api/auth', authRouter)
-app.use('/api/users', userRouter)
 app.use('/api', repairRouter)
+app.use('/api/auth', authRouter)
+app.use('/api/users', usersRouter)
+app.use('/api/customers', customersRouter)
 
 app.use((req, res, next) => {
   return next(new AppError("Page Not Found", 404, "PAGE_NOT_FOUND"));

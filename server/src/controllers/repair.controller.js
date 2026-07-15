@@ -1,5 +1,5 @@
 import catchAsync from "../middleware/catch.async.js";
-import repairSC from "../models/repair.sc.js";
+import repairSC from "../models/repairs.sc.js";
 import logger from "../utils/logger.js";
 import AppError from "../utils/app.error.js";
 

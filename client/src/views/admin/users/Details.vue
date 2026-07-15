@@ -1,6 +1,6 @@
 <template>
-  <div class="user-detail-page">
-    <h2>User Detail</h2>
+  <div class="user-details-page">
+    <h2>User details</h2>
 
     <p v-if="loading">Loading user...</p>
 
@@ -64,7 +64,7 @@
 import api from "@/api/axios.js";
 
 export default {
-  name: "UserDetail",
+  name: "Userdetails",
 
   data() {
     return {
@@ -83,7 +83,7 @@ export default {
       try {
         this.loading = true;
         const id = this.$route.params.id;
-        const response = await api.get(`/users/${id}/detail`);
+        const response = await api.get(`/users/${id}/details`);
         this.user = response.data.user;
         console.log(response)
       } catch (error) {
