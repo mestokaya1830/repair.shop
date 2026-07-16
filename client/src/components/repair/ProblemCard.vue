@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h2>Repair detailss</h2>
+    <h2>Repair details</h2>
 
     <div>
       <label> Problem Category </label>

@@ -17,7 +17,8 @@ export const index = catchAsync(async (req, res, next) => {
 });
 
 export const details = catchAsync(async (req, res, next) => {
-  const user = await userSC.findByid(req.params.id).lean();
+  console.log('test')
+  const user = await userSC.findById(req.params.id).lean();
   if (!user) {
     return next(new AppError("User not found", 404, "USER_NOT_FOUND"));
   }

@@ -80,6 +80,8 @@ export const create = catchAsync(async (req, res, next) => {
 
 // UPDATE
 export const update = catchAsync(async (req, res, next) => {
+  console.log("UPDATE BODY:", req.body);
+
   const repair = await repairsSC.findByIdAndUpdate(
     req.params.id,
 
@@ -119,8 +121,9 @@ export const remove = catchAsync(async (req, res, next) => {
 
 export const updateStatus = catchAsync(async (req, res, next) => {
   const { status, note } = req.body;
-
-  const repair = await repairsSC.findById(req.params.id);
+console.log(req.body.status);
+const repair = await repairsSC.findById(req.params.id);
+console.log(repair.status);
 
   if (!repair) {
     return next(new AppError("Repair not found", 404, "REPAIR_NOT_FOUND"));

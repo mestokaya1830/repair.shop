@@ -54,7 +54,7 @@
               :to="`/admin/users/${user._id}/details`"
               class="action-link"
             >
-              detailss
+              details
             </router-link>
 
             <router-link

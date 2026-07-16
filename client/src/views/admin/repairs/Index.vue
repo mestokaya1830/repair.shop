@@ -50,7 +50,7 @@
 
           <td>
             <router-link :to="`/admin/repairs/${repair._id}/details`">
-              Detail
+              Details
             </router-link>
 
             |

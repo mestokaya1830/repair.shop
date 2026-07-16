@@ -1,6 +1,5 @@
 import { z } from "zod";
 
-
 //login
 export const loginSchema = z.object({
   email: z.string().email("Invalid email address").trim().toLowerCase(),
@@ -134,7 +133,23 @@ export const repairSchema = z.object({
 });
 
 //admin update repairs
+
 export const repairUpdateSchema = z.object({
+  status: z
+    .enum([
+      "Pending",
+      "Received",
+      "Diagnosing",
+      "WaitingApproval",
+      "Repairing",
+      "Testing",
+      "Ready",
+      "Delivered",
+      "Cancelled",
+    ])
+    .optional(),
+
+  estimatedCompletionDate: z.string().optional().or(z.literal("")),
   customer: z.string().min(1, "Customer is required").optional(),
   device: z.string().min(1, "Device is required").optional(),
   problem: z

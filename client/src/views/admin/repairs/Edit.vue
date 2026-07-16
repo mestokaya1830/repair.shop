@@ -10,30 +10,6 @@
 
     <form v-if="form" @submit.prevent="updateRepair">
       <div>
-        <label> Status </label>
-
-        <select v-model="form.status">
-          <option value="Pending">Pending</option>
-
-          <option value="Received">Received</option>
-
-          <option value="Diagnosing">Diagnosing</option>
-
-          <option value="WaitingApproval">Waiting Approval</option>
-
-          <option value="Repairing">Repairing</option>
-
-          <option value="Testing">Testing</option>
-
-          <option value="Ready">Ready</option>
-
-          <option value="Delivered">Delivered</option>
-
-          <option value="Cancelled">Cancelled</option>
-        </select>
-      </div>
-
-      <div>
         <label> Estimated Completion Date </label>
 
         <input type="date" v-model="form.estimatedCompletionDate" />
@@ -49,6 +25,18 @@
         <label> Description </label>
 
         <textarea v-model="form.problem.description" />
+      </div>
+
+      <div>
+        <label> Device Working </label>
+
+        <select v-model="form.problem.deviceWorking">
+          <option value="">Select</option>
+
+          <option value="yes">Yes</option>
+
+          <option value="no">No</option>
+        </select>
       </div>
 
       <div>
@@ -71,7 +59,9 @@ export default {
   data() {
     return {
       form: null,
+
       loading: false,
+
       error: "",
     };
   },
@@ -100,21 +90,20 @@ export default {
     async updateRepair() {
       try {
         this.loading = true;
+
         this.error = "";
 
         await api.patch(
           `/repairs/${this.$route.params.id}/update`,
 
           {
-            status: this.form.status,
-
             estimatedCompletionDate: this.form.estimatedCompletionDate,
 
             problem: this.form.problem,
           },
         );
 
-        this.$router.push(`/repairs/${this.$route.params.id}/details`);
+        this.$router.push(`/admin/repairs/${this.$route.params.id}/details`);
       } catch (error) {
         this.error = error.response?.data?.message || "Failed to update repair";
       } finally {

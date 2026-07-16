@@ -10,10 +10,7 @@
 
     <div v-if="repair">
       <h3>Repair Number</h3>
-
-      <p>
-        {{ repair.repairNumber }}
-      </p>
+      <p>{{ repair.repairNumber }}</p>
 
       <h3>Status</h3>
 
@@ -129,11 +126,17 @@
       <ul>
         <li v-for="item in repair.statusHistory" :key="item._id">
           {{ item.status }}
+
           -
+
           {{ item.note }}
+
           -
+
           {{ item.changedBy?.name }}
+
           -
+
           {{ formatDate(item.createdAt) }}
         </li>
       </ul>
@@ -145,7 +148,9 @@
       <ul>
         <li v-for="log in repair.workLogs" :key="log._id">
           {{ log.message }}
+
           -
+
           {{ formatDate(log.createdAt) }}
         </li>
       </ul>
@@ -162,7 +167,9 @@ export default {
   data() {
     return {
       repair: null,
+
       loading: false,
+
       error: "",
     };
   },
@@ -192,6 +199,7 @@ export default {
       try {
         await api.patch(`/repairs/${this.repair._id}/status`, {
           status,
+
           note: `${status} status changed`,
         });
 
