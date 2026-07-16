@@ -14,6 +14,11 @@
             "date": 1784153194733,
             "name": "log/rejection/%DATE.log.2026-07-16",
             "hash": "a0bf16062bbcafe9f5956707c5972b71ce01d7803a7d571f19d0ace053600f90"
+        },
+        {
+            "date": 1784239201816,
+            "name": "log/rejection/%DATE.log.2026-07-17",
+            "hash": "47706685e96c32bef9bdf9fd4f39244b3b78cc9690f29ed2af3a95fe9065f12d"
         }
     ],
     "hashType": "sha256"

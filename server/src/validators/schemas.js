@@ -14,8 +14,6 @@ export const userSchema = z.object({
     firstName: z.string().min(2, "First name minimum 2 characters").trim(),
     lastName: z.string().min(2, "Last name minimum 2 characters").trim(),
     phone: z.string().optional().or(z.literal("")),
-    position: z.string().optional().or(z.literal("")),
-
     address: z.object({
       street: z.string().optional().or(z.literal("")),
       city: z.string().optional().or(z.literal("")),
@@ -42,7 +40,6 @@ export const updateUserSchema = z.object({
         .optional(),
 
       phone: z.string().optional(),
-      position: z.string().optional(),
       address: z
         .object({
           street: z.string().optional(),

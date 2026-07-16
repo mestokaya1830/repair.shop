@@ -3,13 +3,17 @@ import catchAsync from "../middleware/catch.async.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import userSC from "../models/users.sc.js";
+import repairsSC from '../models/repairs.sc.js'
 import logger from "../utils/logger.js";
+
 
 export const index = catchAsync(async (req, res, next) => {
   const users = await userSC.find().lean();
-  if (!users) {
+
+  if (users.length === 0) {
     return next(new AppError("Users not found", 404, "USERS_NOT_FOUND"));
   }
+
   res.json({
     success: true,
     users,
@@ -17,14 +21,26 @@ export const index = catchAsync(async (req, res, next) => {
 });
 
 export const details = catchAsync(async (req, res, next) => {
-  console.log('test')
   const user = await userSC.findById(req.params.id).lean();
+
   if (!user) {
     return next(new AppError("User not found", 404, "USER_NOT_FOUND"));
   }
+
+  const repairs = await repairsSC
+    .find({
+      assignedTo: req.params.id,
+    })
+    .populate("customer")
+    .populate("device")
+    .lean();
+
   res.json({
     success: true,
+
     user,
+
+    repairs,
   });
 });
 
@@ -92,7 +108,7 @@ export const updateProfile = catchAsync(async (req, res, next) => {
 
   res.json({
     success: true,
-    user
+    user,
   });
 });
 

@@ -50,11 +50,17 @@
       <div>
         <label> Position </label>
 
-        <input
-          v-model="form.profile.position"
-          type="text"
-          placeholder="Technician"
-        />
+        <select v-model="form.profile.position">
+          <option value="">Select Position</option>
+
+          <option
+            v-for="position in form.profile.positions"
+            :key="position"
+            :value="position"
+          >
+            {{ position }}
+          </option>
+        </select>
       </div>
 
       <h3>Address</h3>
@@ -100,7 +106,7 @@
 
 <script>
 import api from "@/api/axios.js";
-import {userSchema} from '@/validators/schemas.js'
+import { userSchema } from "@/validators/schemas.js";
 export default {
   name: "AddUser",
   data() {
@@ -114,7 +120,7 @@ export default {
           firstName: "",
           lastName: "",
           phone: "",
-          position: "",
+          positions: ["Technician", "Reception", "Manager", "Accountant"],
           address: {
             street: "",
             city: "",
@@ -130,8 +136,8 @@ export default {
   methods: {
     async submitUser() {
       this.errors = {};
-      const result = userSchema.safeParse(this.form)
-       if (!result.success) {
+      const result = userSchema.safeParse(this.form);
+      if (!result.success) {
         result.error.issues.forEach((error) => {
           this.errors[error.path.join(".")] = error.message;
         });
@@ -140,7 +146,7 @@ export default {
       }
       try {
         this.loading = true;
-        console.log(this.form)
+        console.log(this.form);
         await api.post("/users/create", this.form);
         this.$router.push("/admin/users");
       } catch (error) {

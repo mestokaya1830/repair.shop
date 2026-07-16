@@ -18,10 +18,17 @@
       <thead>
         <tr>
           <th>Name</th>
+
           <th>Email</th>
+
           <th>Phone</th>
+
           <th>Role</th>
+
+          <th>Position</th>
+
           <th>Status</th>
+
           <th>Actions</th>
         </tr>
       </thead>
@@ -29,8 +36,8 @@
       <tbody>
         <tr v-for="user in users" :key="user._id">
           <td>
-            {{ user.profile.firstName }}
-            {{ user.profile.lastName }}
+            {{ user.profile?.firstName }}
+            {{ user.profile?.lastName }}
           </td>
 
           <td>
@@ -38,11 +45,15 @@
           </td>
 
           <td>
-            {{ user.profile.phone || "-" }}
+            {{ user.profile?.phone || "-" }}
           </td>
 
           <td>
             {{ user.role }}
+          </td>
+
+          <td>
+            {{ user.profile?.position || "-" }}
           </td>
 
           <td>
@@ -54,7 +65,7 @@
               :to="`/admin/users/${user._id}/details`"
               class="action-link"
             >
-              details
+              Details
             </router-link>
 
             <router-link
@@ -81,7 +92,9 @@ export default {
   data() {
     return {
       users: [],
+
       loading: false,
+
       error: "",
     };
   },
@@ -94,9 +107,11 @@ export default {
     async getUsers() {
       try {
         this.loading = true;
+
         this.error = "";
 
         const response = await api.get("/users");
+
         this.users = response.data.users;
       } catch (error) {
         this.error = error.response?.data?.message || "Failed to load users";

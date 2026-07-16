@@ -56,29 +56,23 @@ export default {
 
   methods: {
     async login() {
-      this.errors = {};
-
-      const result = loginSchema.safeParse(this.form);
-      if (!result.success) {
-        result.error.issues.forEach((error) => {
-          this.errors[error.path.join(".")] = error.message;
-        });
-
-        return;
-      }
-
       try {
-        this.loading = true;
-        const response = await api.post("/auth/login", result.data);
-        const token = response.data.token;
+        const response = await api.post("/auth/login", this.form)
+
+        const { token, user } = response.data;
+
         localStorage.setItem("token", token);
-        this.$router.push("/admin/dashboard");
+        localStorage.setItem("user", JSON.stringify(user));
+
+        if (user.role === "owner" || user.role === "admin") {
+          this.$router.push("/admin");
+        } else if (user.role === "user") {
+          this.$router.push("/technician");
+        }
       } catch (error) {
-        console.log(error.response?.data);
-      } finally {
-        this.loading = false;
+        this.error = error.response?.data?.message || "Login failed";
       }
-    }
+    },
   },
 };
 </script>

@@ -2,7 +2,7 @@
 
   <div class="layout">
 
-    <Navbar />
+    <PublicNavbar />
 
     <main>
       <router-view />
@@ -16,15 +16,15 @@
 
 
 <script>
-import Navbar from "@/components/Navbar.vue";
+import PublicNavbar from "@/components/navigation/PublicNavbar.vue";
 import Footer from "@/components/Footer.vue";
 
 
 export default {
-  name: "DefaultLayout",
+  name: "PublicLayout",
 
   components: {
-    Navbar,
+    PublicNavbar,
     Footer,
   },
 };

@@ -1,6 +1,6 @@
 <template>
   <div class="user-details-page">
-    <h2>User details</h2>
+    <h2>User Details</h2>
 
     <p v-if="loading">Loading user...</p>
 
@@ -13,41 +13,111 @@
 
       <p>
         <strong>Name:</strong>
-        {{ user.profile.firstName }}
-        {{ user.profile.lastName }}
+
+        {{ user.profile?.firstName }}
+
+        {{ user.profile?.lastName }}
       </p>
 
       <p>
         <strong>Email:</strong>
+
         {{ user.email }}
       </p>
 
       <p>
         <strong>Phone:</strong>
-        {{ user.profile.phone || "-" }}
+
+        {{ user.profile?.phone || "-" }}
       </p>
 
       <p>
         <strong>Position:</strong>
-        {{ user.profile.position || "-" }}
+
+        {{ user.profile?.position || "-" }}
+      </p>
+
+      <h3>Address</h3>
+
+      <p>
+        {{ user.profile?.address?.street || "-" }}
+      </p>
+
+      <p>
+        {{ user.profile?.address?.postalCode || "-" }}
+
+        {{ user.profile?.address?.city || "-" }}
+      </p>
+
+      <p>
+        {{ user.profile?.address?.country || "-" }}
       </p>
 
       <h3>Account</h3>
 
       <p>
         <strong>Role:</strong>
+
         {{ user.role }}
       </p>
 
       <p>
         <strong>Status:</strong>
+
         {{ user.active ? "Active" : "Inactive" }}
       </p>
 
       <p>
         <strong>Created:</strong>
+
         {{ formatDate(user.createdAt) }}
       </p>
+
+      <!-- Assigned Repairs -->
+
+      <h3>Assigned Repairs</h3>
+
+      <table v-if="repairs.length">
+        <thead>
+          <tr>
+            <th>Repair No</th>
+            <th>Customer</th>
+            <th>Device</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr v-for="repair in repairs" :key="repair._id">
+            <td>
+              {{ repair.repairNumber }}
+            </td>
+
+            <td>
+              {{ repair.customer?.profile?.firstName }}
+              {{ repair.customer?.profile?.lastName }}
+            </td>
+
+            <td>
+              {{ repair.device?.brand }}
+              {{ repair.device?.model }}
+            </td>
+
+            <td>
+              {{ repair.status }}
+            </td>
+
+            <td>
+              <router-link :to="`/admin/repairs/${repair._id}/details`">
+                View
+              </router-link>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p v-else>No assigned repairs</p>
 
       <div class="actions">
         <router-link :to="`/admin/users/${user._id}/edit`">
@@ -64,12 +134,16 @@
 import api from "@/api/axios.js";
 
 export default {
-  name: "Userdetails",
+  name: "UserDetails",
 
   data() {
     return {
       user: null,
+
+      repairs: [],
+
       loading: false,
+
       error: "",
     };
   },
@@ -82,10 +156,13 @@ export default {
     async getUser() {
       try {
         this.loading = true;
+
         const id = this.$route.params.id;
+
         const response = await api.get(`/users/${id}/details`);
+
         this.user = response.data.user;
-        console.log(response)
+        this.repairs = response.data.repairs;
       } catch (error) {
         this.error = error.response?.data?.message || "User not found";
       } finally {

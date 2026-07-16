@@ -17,7 +17,7 @@
       <router-link to="/contact" class="nav-link" active-class="active">
         Contact
       </router-link>
-      <router-link to="/admin/login" class="nav-link" active-class="active">
+      <router-link to="/login" class="nav-link" active-class="active">
         Admin
       </router-link>
     </div>

@@ -33,7 +33,9 @@ export const details = catchAsync(async (req, res, next) => {
     .findById(req.params.id)
     .populate("customer")
     .populate("device")
+    .populate("assignedTo")
     .populate("statusHistory.changedBy")
+    .populate("workLogs.createdBy")
     .lean();
 
   if (!repair) {
@@ -119,11 +121,12 @@ export const remove = catchAsync(async (req, res, next) => {
   });
 });
 
+//update status
 export const updateStatus = catchAsync(async (req, res, next) => {
   const { status, note } = req.body;
-console.log(req.body.status);
-const repair = await repairsSC.findById(req.params.id);
-console.log(repair.status);
+  console.log(req.body.status);
+  const repair = await repairsSC.findById(req.params.id);
+  console.log(repair.status);
 
   if (!repair) {
     return next(new AppError("Repair not found", 404, "REPAIR_NOT_FOUND"));
@@ -167,5 +170,84 @@ console.log(repair.status);
     success: true,
 
     repair,
+  });
+});
+
+//assign repair
+export const assignRepair = catchAsync(async (req, res, next) => {
+  const { assignedTo } = req.body;
+
+  const repair = await repairsSC.findById(req.params.id);
+
+  if (!repair) {
+    return next(new AppError("Repair not found", 404, "REPAIR_NOT_FOUND"));
+  }
+
+  repair.assignedTo = assignedTo;
+
+  await repair.save();
+
+  res.json({
+    success: true,
+    repair,
+  });
+});
+
+//add worklog
+export const addWorkLog = catchAsync(async (req, res, next) => {
+  const { message } = req.body;
+
+  const repair = await repairsSC.findById(req.params.id);
+
+  if (!repair) {
+    return next(new AppError("Repair not found", 404, "REPAIR_NOT_FOUND"));
+  }
+
+  repair.workLogs.push({
+    message,
+    createdBy: req.user._id,
+  });
+
+  await repair.save();
+
+  res.json({
+    success: true,
+
+    repair,
+  });
+});
+
+
+//reapoen
+export const reopenRepair = catchAsync(async (req, res, next) => {
+  const repair = await repairsSC.findById(req.params.id);
+
+  if (!repair) {
+    return next(new AppError("Repair not found", 404, "REPAIR_NOT_FOUND"));
+  }
+
+  if (repair.status !== "Delivered") {
+    return next(
+      new AppError(
+        "Only delivered repairs can be reopened",
+        400,
+        "INVALID_STATUS",
+      ),
+    );
+  }
+
+  repair.status = "Received";
+
+  repair.statusHistory.push({
+    status: "Received",
+    note: "Repair reopened by admin",
+    changedBy: req.user._id,
+  });
+
+  await repair.save();
+
+  res.json({
+    success: true,
+    repair
   });
 });

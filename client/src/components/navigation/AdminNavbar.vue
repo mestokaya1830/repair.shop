@@ -3,7 +3,7 @@
     <div class="logo">RepairService Admin</div>
 
     <div class="nav-links">
-      <router-link to="/admin/dashboard" class="nav-link" active-class="active">
+      <router-link to="/admin" class="nav-link" active-class="active">
         Dashboard
       </router-link>
 
@@ -34,8 +34,7 @@
       >
         Profile
       </router-link>
-
-      <button class="logout-btn" type="button">Logout</button>
+      <button @click="logout" class="logout-btn" type="button">Logout</button>
     </div>
   </nav>
 </template>
@@ -43,5 +42,14 @@
 <script>
 export default {
   name: "AdminNavbar",
+
+  methods: {
+    logout() {
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+
+      this.$router.push("/login");
+    },
+  },
 };
 </script>

@@ -11,44 +11,54 @@ export const loginController = catchAsync(async (req, res, next) => {
 
   const user = await userSC.findOne({ email }).select("+password");
   const isMatch = user && (await bcrypt.compare(password, user.password));
+
   if (!isMatch) {
     logger.warn({
       event: "LOGIN_FAILED",
       email: req.body.email,
       ip: req.ip,
     });
+
     return next(
       new AppError(
         "Invalid email or password",
         401,
-        "INVALID+EMAIL_OR+PASSOWRD",
+        "INVALID_EMAIL_OR_PASSWORD",
       ),
     );
   }
+
   logger.info({
     event: "LOGIN_SUCCESS",
     userId: user._id,
     role: user.role,
   });
+
   const token = jwt.sign(
-    {
-      _id: user._id,
-      email: user.email,
-      role: user.role,
-    },
+    { _id: user._id, email: user.email, role: user.role },
     env.JWT_SECRET,
-    {expiresIn: '1h'}
+    { expiresIn: "1h" },
   );
+
   res.json({
     success: true,
     token,
+    user: {
+      _id: user._id,
+      email: user.email,
+      role: user.role,
+      profile: {
+        firstName: user.profile.firstName,
+        lastName: user.profile.lastName,
+      },
+    },
   });
 });
 
-//first userSC
+// //first userSC
 // const createFirstUser = async () => {
 //   await userSC.create({
-//     email: "mesfor@test.com",
+//     email: "mesfor100@outlook.com",
 //     password: await bcrypt.hash("12121212", 10),
 //     role: "owner",
 //     active: true,

@@ -18,6 +18,31 @@
         {{ repair.status }}
       </p>
 
+      <h3>Assigned Technician</h3>
+
+      <p v-if="repair.assignedTo">
+        Current:
+
+        {{ repair.assignedTo?.profile?.firstName }}
+        {{ repair.assignedTo?.profile?.lastName }}
+      </p>
+
+      <select v-model="selectedTechnician">
+        <option value="">Select Technician</option>
+
+        <option v-for="user in technicians" :key="user._id" :value="user._id">
+          {{ user.profile?.firstName }}
+          {{ user.profile?.lastName }}
+
+          -
+          {{ user.profile?.position || user.role }}
+        </option>
+      </select>
+
+      <button @click="assignRepair" :disabled="!selectedTechnician">
+        Assign
+      </button>
+
       <!-- Status Actions -->
 
       <div class="status-actions">
@@ -145,15 +170,29 @@
 
       <h3>Work Logs</h3>
 
+      <div>
+        <textarea
+          v-model="workMessage"
+          placeholder="Add work note..."
+        ></textarea>
+
+        <button @click="addWorkLog">Add Log</button>
+      </div>
+
       <ul>
         <li v-for="log in repair.workLogs" :key="log._id">
           {{ log.message }}
-
           -
+          {{ log.createdBy?.profile?.firstName }}
 
+          {{ log.createdBy?.profile?.lastName }}
+          -
           {{ formatDate(log.createdAt) }}
         </li>
       </ul>
+      <button v-if="repair.status === 'Delivered'" @click="reopenRepair">
+        Reopen Repair
+      </button>
     </div>
   </div>
 </template>
@@ -167,15 +206,17 @@ export default {
   data() {
     return {
       repair: null,
-
+      technicians: [],
+      selectedTechnician: "",
+      workMessage: "",
       loading: false,
-
       error: "",
     };
   },
 
   mounted() {
     this.getRepair();
+    this.getTechnicians();
   },
 
   methods: {
@@ -213,6 +254,55 @@ export default {
       if (!date) return "";
 
       return new Date(date).toLocaleDateString();
+    },
+    async getTechnicians() {
+      try {
+        const response = await api.get("/users");
+
+        this.technicians = response.data.users.filter(
+          (user) => user.role === "user",
+        );
+      } catch (error) {
+        this.error =
+          error.response?.data?.message || "Failed to load technicians";
+      }
+    },
+    async assignRepair() {
+      try {
+        await api.patch(`/repairs/${this.repair._id}/assign`, {
+          assignedTo: this.selectedTechnician,
+        });
+
+        this.getRepair();
+      } catch (error) {
+        this.error = error.response?.data?.message || "Assignment failed";
+      }
+    },
+    async addWorkLog() {
+      if (!this.workMessage) {
+        return;
+      }
+
+      try {
+        await api.patch(`/repairs/${this.repair._id}/work-log`, {
+          message: this.workMessage,
+        });
+
+        this.workMessage = "";
+
+        this.getRepair();
+      } catch (error) {
+        this.error = error.response?.data?.message || "Failed to add work log";
+      }
+    },
+    async reopenRepair() {
+      try {
+        await api.patch(`/repairs/${this.repair._id}/reopen`);
+
+        this.getRepair();
+      } catch (error) {
+        this.error = error.response?.data?.message || "Reopen failed";
+      }
     },
   },
 };

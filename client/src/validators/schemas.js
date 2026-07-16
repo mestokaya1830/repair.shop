@@ -29,8 +29,6 @@ export const userSchema = z.object({
       .optional()
       .or(z.literal("")),
 
-    position: z.string().trim().optional().or(z.literal("")),
-
     address: z.object({
       street: z.string().trim().optional().or(z.literal("")),
       city: z.string().trim().optional().or(z.literal("")),
@@ -57,7 +55,6 @@ export const updateUserSchema = z.object({
         .optional(),
 
       phone: z.string().optional(),
-      position: z.string().optional(),
       address: z
         .object({
           street: z.string().optional(),

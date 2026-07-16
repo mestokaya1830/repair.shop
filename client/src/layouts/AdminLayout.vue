@@ -16,12 +16,12 @@
 
 
 <script>
-import AdminNavbar from "@/components/AdminNavbar.vue";
+import AdminNavbar from "@/components/navigation/AdminNavbar.vue";
 import Footer from "@/components/Footer.vue";
 
 
 export default {
-  name: "DefaultLayout",
+  name: "PublicLayout",
 
   components: {
     AdminNavbar,

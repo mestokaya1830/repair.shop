@@ -13,7 +13,7 @@ import usersRouter from './routes/users.router.js'
 import customersRouter from './routes/customers.router.js'
 import devicesRouter from './routes/devices.router.js'
 import repairsAdminRouter from './routes/repairs.admin.router.js'
-
+import technicianRouter from './routes/technician.router.js'
 
 
 const app = express();
@@ -31,6 +31,7 @@ app.use('/api/users', usersRouter)
 app.use('/api/customers', customersRouter)
 app.use('/api/devices', devicesRouter)
 app.use('/api/repairs', repairsAdminRouter)
+app.use('/api/technician', technicianRouter)
 
 
 app.use((req, res, next) => {
