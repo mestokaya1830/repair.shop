@@ -1,5 +1,5 @@
 <template>
   <div>
-    <router-view />
+    <h2>Device Tracking</h2>
   </div>
 </template>

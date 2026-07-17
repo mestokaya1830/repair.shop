@@ -1,5 +1,5 @@
 <template>
   <div>
-    <router-view />
+    <h2>Send Your Device</h2>
   </div>
 </template>

@@ -3,22 +3,19 @@ import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
-// https://vitejs.dev/config/
+// https://vite.dev/config/
 export default defineConfig({
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
-    }
+      "@": fileURLToPath(new URL("./src", import.meta.url)),
+    },
   },
-  server:{//for development short url (http://localhost:4000)
-    proxy:{
-      '/api':{
-        target:'http://localhost:4000',
-        changeOrigin: true,
-      }
-    }
+  server: {
+    proxy: {
+      "/api": {
+        target: "http://localhost:4001",
+      },
+    },
   },
-  plugins: [
-    vue(),
-  ]
-})
+  plugins: [vue()],
+});

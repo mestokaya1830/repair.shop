@@ -1,5 +1,5 @@
 <template>
   <div>
-    <router-view />
+    <h2>Conatct</h2>
   </div>
 </template>

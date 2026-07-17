@@ -1,0 +1,40 @@
+✅ POST /auth/login
+   → IP bazlı
+   → rateLimiter(5, 900, "ip")
+   // 15 dakika içinde 5 deneme
+
+
+✅ POST /repairs
+   → IP bazlı
+   → rateLimiter(10, 60, "ip")
+   // 1 dakika içinde 10 repair request
+
+
+✅ GET /track/:repairNumber
+   → IP bazlı
+   → rateLimiter(30, 60, "ip")
+   // 1 dakika içinde 30 takip sorgusu
+
+
+✅ PATCH /admin/repairs/:id/status
+   → User bazlı
+   → rateLimiter(30, 60, "user")
+   // 1 dakika içinde 30 status değişikliği
+
+
+✅ PATCH /admin/repairs/:id/assign
+   → User bazlı
+   → rateLimiter(30, 60, "user")
+   // 1 dakika içinde 30 technician atama
+
+
+✅ POST /admin/repairs/:id/worklog
+   → User bazlı
+   → rateLimiter(50, 60, "user")
+   // 1 dakika içinde 50 worklog ekleme
+
+
+✅ PATCH /admin/repairs/:id/reopen
+   → User bazlı
+   → rateLimiter(10, 60, "user")
+   // 1 dakika içinde 10 reopen işlemi

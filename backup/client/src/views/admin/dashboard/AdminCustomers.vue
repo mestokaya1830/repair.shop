@@ -1,5 +1,5 @@
 <template>
   <div>
-    <router-view />
+   <h2> Admin Customers</h2>
   </div>
 </template>
