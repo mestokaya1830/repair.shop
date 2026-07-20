@@ -1,56 +1,83 @@
 import catchAsync from "../middleware/catch.async.js";
+import customerSC from "../models/customers.sc.js";
 import repairSC from "../models/repairs.sc.js";
+import deviceSC from "../models/devices.sc.js";
 import logger from "../utils/logger.js";
 import AppError from "../utils/app.error.js";
 
-export const repairsController = catchAsync(async (req, res) => {
+export const create = catchAsync(async (req, res, next) => {
+  const data = req.body
+  console.log(data)
+
+  const source = req.user ? "admin" : "web";
+  const createdBy = req.user?._id || null;
+
+  // Images
+
   const images =
     req.files?.map((file) => ({
       filename: file.filename,
       path: file.path,
       category: "incoming",
-      uploadedByType: "customer",
+      uploadedByType: req.user ? "employee" : "customer",
+      uploadedBy: createdBy,
     })) || [];
 
-  // 1. Customer
+  // 1. CUSTOMER
 
   let customer = await customerSC.findOne({
-    email: req.body.customer.email,
+    email: data.customer.email,
   });
 
   if (!customer) {
     customer = await customerSC.create({
-      ...req.body.customer,
+      source,
+
+      profile: {
+        firstName: data.customer.firstName,
+        lastName: data.customer.lastName,
+        phone: data.customer.phone,
+        company: data.customer.company || "",
+      },
+      email: data.customer.email,
+      createdBy,
     });
   }
 
-  // 2. Device
-
+  // 2. DEVICE
   const device = await deviceSC.create({
-    ...req.body.device,
-
+    type: data.device.type,
+    brand: data.device.brand,
+    model: data.device.model,
+    serialNumber: data.device.serialNumber || "",
+    purchaseDate: data.device.purchaseDate || null,
     customer: customer._id,
+    source,
+    createdBy,
   });
 
-  // 3. Repair
-
+  // 3. REPAIR
   const repair = await repairSC.create({
     repairNumber: req.repairNumber,
+    source,
+    createdBy,
     customer: customer._id,
     device: device._id,
     status: "Pending",
     statusHistory: [
       {
         status: "Pending",
+        changedBy: createdBy,
       },
     ],
-    problem: req.body.problem,
-    shipping: req.body.shipping,
+    problem: data.problem,
+    shipping: data.shipping,
     images,
   });
 
   res.status(201).json({
     success: true,
+
     data: repair,
   });
 });
@@ -75,7 +102,7 @@ const generateRepairNumber = () => {
   return `REP-${date}-${random}`;
 };
 
-// GET ALL
+// get all
 export const index = catchAsync(async (req, res, next) => {
   const repairs = await repairsSC
     .find()
@@ -97,7 +124,7 @@ export const index = catchAsync(async (req, res, next) => {
   });
 });
 
-// GET DETAIL
+// details
 export const details = catchAsync(async (req, res, next) => {
   const repair = await repairsSC
     .findById(req.params.id)
@@ -118,7 +145,7 @@ export const details = catchAsync(async (req, res, next) => {
   });
 });
 
-// EDIT PAGE
+// edit
 export const edit = catchAsync(async (req, res, next) => {
   const repair = await repairsSC
     .findById(req.params.id)
@@ -136,21 +163,7 @@ export const edit = catchAsync(async (req, res, next) => {
   });
 });
 
-// CREATE
-export const create = catchAsync(async (req, res, next) => {
-  const repair = await repairsSC.create({
-    ...req.body,
-    repairNumber: generateRepairNumber(),
-    createdBy: req.user._id,
-  });
-
-  res.status(201).json({
-    success: true,
-    data: repair,
-  });
-});
-
-// UPDATE
+// update
 export const update = catchAsync(async (req, res, next) => {
   console.log("UPDATE BODY:", req.body);
 
@@ -177,7 +190,7 @@ export const update = catchAsync(async (req, res, next) => {
   });
 });
 
-// DELETE
+// delete
 export const remove = catchAsync(async (req, res, next) => {
   const repair = await repairsSC.findByIdAndDelete(req.params.id);
 

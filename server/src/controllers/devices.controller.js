@@ -73,9 +73,11 @@ export const update = catchAsync(async (req, res, next) => {
 });
 
 export const create = catchAsync(async (req, res, next) => {
-  const newDevice = await deviceSC.create({
-    ...req.body,
-    createdBy: req.user._id,
+  const device = await deviceSC.create({
+    ...data.device,
+    customer: customer._id,
+    source: "web",
+    createdBy: null,
   });
 
   res.status(201).json({
@@ -98,19 +100,15 @@ export const remove = catchAsync(async (req, res, next) => {
   });
 });
 
-export const customerDevices = catchAsync(
-  async (req, res, next) => {
+export const customerDevices = catchAsync(async (req, res, next) => {
+  const devices = await deviceSC
+    .find({
+      customer: req.params.customerId,
+    })
+    .lean();
 
-    const devices = await deviceSC
-      .find({
-        customer: req.params.customerId,
-      })
-      .lean();
-
-    res.json({
-      success: true,
-      devices,
-    });
-
-  }
-);
+  res.json({
+    success: true,
+    devices,
+  });
+});

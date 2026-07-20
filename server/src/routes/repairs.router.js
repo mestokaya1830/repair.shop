@@ -5,26 +5,23 @@ import auth from "../middleware/auth.js";
 import upload from '../middleware/upload.images.js';
 import createRepairNumber from '../middleware/reapir.number..middleware.js';
 import {
-  repairsController,
+  create,
   repairTrackController,
   index,
   edit,
   details,
   update,
   updateStatus,
-  create,
   remove,
   assignRepair,
   addWorkLog,
   reopenRepair
 } from "../controllers/repairs.controller.js";
 
-
 const router = express.Router()
 
 router.post('/create', createRepairNumber, upload.array('images', 5), validate(repairSchema), create)
 router.get('/repair/track/:repairNumber', repairTrackController);
-
 
 router.get("/", auth, index);
 router.get("/:id/details", auth, details);

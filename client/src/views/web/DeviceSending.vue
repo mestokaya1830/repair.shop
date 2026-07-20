@@ -239,7 +239,7 @@
 </template>
 
 <script>
-import { repairPublicSchema } from "@/validators/schemas.js";
+import { repairSchema } from "@/validators/schemas.js";
 import { repairStore } from "@/stores/repair.js";
 import api from "../../api/axios.js";
 
@@ -305,14 +305,13 @@ export default {
 
     removeImage(index) {
       URL.revokeObjectURL(this.imagePreviews[index].url);
-
       this.form.device.images.splice(index, 1);
 
       this.imagePreviews.splice(index, 1);
     },
     async submitRequest() {
       this.errors = {};
-      const result = repairPublicSchema.safeParse(this.form);
+      const result = repairSchema.safeParse(this.form);
 
       if (!result.success) {
         result.error.issues.forEach((error) => {
@@ -331,8 +330,9 @@ export default {
 
       try {
         this.isSubmitting = true;
-        const response = await api.post("/create", formData);
+        const response = await api.post("/repairs/create", formData);
         this.submitted = true;
+        console.log('test')
       } catch (error) {
         console.log(error);
       } finally {

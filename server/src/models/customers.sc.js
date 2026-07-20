@@ -2,69 +2,63 @@ import mongoose from "mongoose";
 
 const customerSC = new mongoose.Schema(
   {
+    source: {
+      type: String,
+      enum: [
+        "web",
+        "admin",
+      ],
+      required: true,
+      index: true,
+    },
     profile: {
       firstName: {
         type: String,
         required: true,
-        trim: true,
       },
-
       lastName: {
         type: String,
         required: true,
-        trim: true,
       },
-
       phone: {
         type: String,
         required: true,
-        trim: true,
       },
-
-      email: {
+      company: {
         type: String,
-        trim: true,
-        lowercase: true,
-      },
-
-      address: {
-        street: {
-          type: String,
-          trim: true,
-        },
-
-        postalCode: {
-          type: String,
-          trim: true,
-        },
-
-        city: {
-          type: String,
-          trim: true,
-        },
-
-        country: {
-          type: String,
-          default: "Germany",
-        },
+        default: "",
       },
     },
 
+
+    email: {
+      type: String,
+      required: true,
+      lowercase: true,
+      trim: true,
+      index: true,
+    },
+
+
+    address: {
+      street: String,
+      postalCode: String,
+      city: String,
+      country: String,
+    },
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "users",
-      required: true,
-    },
-
-    active: {
-      type: Boolean,
-      default: true,
+      default: null,
     },
   },
+
   {
     timestamps: true,
-  },
+  }
+
 );
+
 
 export default mongoose.model("customers", customerSC);
 
