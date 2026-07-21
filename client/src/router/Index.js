@@ -72,15 +72,49 @@ const router = createRouter({
               name: "customers-index",
               component: () => import("../views/admin/customers/Index.vue"),
             },
+
             {
-              path: ":/detail",
+              path: ":id/details",
               name: "customers-details",
               component: () => import("../views/admin/customers/Details.vue"),
             },
+
             {
-              path: ":/edit",
+              path: ":id/edit",
               name: "customers-edit",
               component: () => import("../views/admin/customers/Edit.vue"),
+            },
+
+            // Customer Devices
+
+            {
+              path: ":id/devices",
+              name: "customers-devices",
+              component: () =>
+                import("../views/admin/customers/devices/Index.vue"),
+            },
+
+            {
+              path: ":id/devices/:deviceId/details",
+              name: "customers-device-details",
+              component: () =>
+                import("../views/admin/customers/devices/Details.vue"),
+            },
+
+            // Customer Repairs
+
+            {
+              path: ":id/repairs",
+              name: "customers-repairs",
+              component: () =>
+                import("../views/admin/customers/repairs/Index.vue"),
+            },
+
+            {
+              path: ":id/repairs/:repairId/details",
+              name: "customers-repair-details",
+              component: () =>
+                import("../views/admin/customers/repairs/Details.vue"),
             },
           ],
         },
@@ -93,12 +127,12 @@ const router = createRouter({
               component: () => import("../views/admin/devices/Index.vue"),
             },
             {
-              path: ":/detail",
+              path: ":id/details",
               name: "devices-details",
               component: () => import("../views/admin/devices/Details.vue"),
             },
             {
-              path: ":/edit",
+              path: ":id/edit",
               name: "devices-edit",
               component: () => import("../views/admin/devices/Edit.vue"),
             },
@@ -113,12 +147,12 @@ const router = createRouter({
               component: () => import("../views/admin/repairs/Index.vue"),
             },
             {
-              path: ":/detail",
+              path: ":id/details",
               name: "repairs-details",
               component: () => import("../views/admin/repairs/Details.vue"),
             },
             {
-              path: ":/edit",
+              path: ":id/edit",
               name: "repairs-edit",
               component: () => import("../views/admin/repairs/Edit.vue"),
             },
@@ -133,12 +167,12 @@ const router = createRouter({
               component: () => import("../views/admin/users/Index.vue"),
             },
             {
-              path: ":/detail",
+              path: ":id/detail",
               name: "users-details",
               component: () => import("../views/admin/users/Details.vue"),
             },
             {
-              path: ":/edit",
+              path: ":id/edit",
               name: "users-edit",
               component: () => import("../views/admin/users/Edit.vue"),
             },

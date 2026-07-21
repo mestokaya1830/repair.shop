@@ -24,11 +24,11 @@ app.use(httpLogger);
 
 
 app.use('/api/repairs', repairsRouter)
-app.use('/api/dashboard', dashboardRouter)
 app.use('/api/auth', authRouter)
-app.use('/api/users', usersRouter)
+app.use('/api/dashboard', dashboardRouter)
 app.use('/api/customers', customersRouter)
 app.use('/api/devices', devicesRouter)
+app.use('/api/users', usersRouter)
 
 
 app.use((req, res, next) => {

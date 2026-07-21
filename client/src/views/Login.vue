@@ -27,7 +27,9 @@
             {{ errors.password }}
           </p>
         </div>
-
+        <p v-if="credentials" class="form-error">
+          {{ credentials }}
+        </p>
         <button type="submit" :disabled="loading">
           {{ loading ? "Logging in..." : "Login" }}
         </button>
@@ -47,6 +49,7 @@ export default {
     return {
       loading: false,
       errors: {},
+      credentials: "",
       form: {
         email: "",
         password: "",
@@ -68,7 +71,6 @@ export default {
           return;
         }
 
-        console.log(this.form);
         const response = await api.post("/auth/login", this.form);
 
         const { token, user } = response.data;
@@ -77,7 +79,7 @@ export default {
         localStorage.setItem("user", JSON.stringify(user));
         this.$router.push("/admin");
       } catch (error) {
-        this.error = error.response?.data?.message || "Login failed";
+        this.credentials = error.response?.data?.message || "Login failed";
       }
     },
   },

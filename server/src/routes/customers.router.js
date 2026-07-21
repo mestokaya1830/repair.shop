@@ -1,20 +1,31 @@
-import express from 'express'
-import { index, edit, details, update, create, remove } from '../controllers/customers.controller.js'
-import auth from '../middleware/auth.js'
-import validate from '../middleware/validate.js'
-import {customerSchema, updateCustomerSchema} from '../validators/schemas.js'
+import express from "express";
+import {
+  index,
+  edit,
+  details,
+  update,
+  remove,
+  customerDevices,
+  customerRepairs,
+  deviceDetails,
+  repairDetails
+} from "../controllers/customers.controller.js";
+import auth from "../middleware/auth.js";
+import validate from "../middleware/validate.js";
+import { customerSchema, updateCustomerSchema } from "../validators/schemas.js";
 
-const router = express.Router()
+const router = express.Router();
 
+router.get("/", auth, index);
 
-router.get('/', auth, index)
-router.post('/create', auth, validate(customerSchema), create)
+router.get("/:id/details", auth, details);
+router.get("/:id/devices", auth, customerDevices);
+router.get("/:id/repairs", auth, customerRepairs);
+router.get("/:id/devices/:deviceId/details", auth, deviceDetails) 
+router.get("/:id/repairs/:repairId/details", auth, repairDetails)
 
-router.get('/:id/details', auth, details)
-router.get('/:id/edit', auth, edit)
-router.patch('/:id/update', auth, validate(updateCustomerSchema), update)
-router.delete('/:id/remove', auth, remove)
+router.get("/:id/edit", auth, edit);
+router.patch("/:id/update", auth, validate(updateCustomerSchema), update);
+router.delete("/:id/remove", auth, remove);
 
-
-
-export default router
+export default router;
