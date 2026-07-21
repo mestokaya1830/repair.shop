@@ -167,7 +167,12 @@ const router = createRouter({
               component: () => import("../views/admin/users/Index.vue"),
             },
             {
-              path: ":id/detail",
+              path: "create",
+              name: "users-create",
+              component: () => import("../views/admin/users/Create.vue"),
+            },
+            {
+              path: ":id/details",
               name: "users-details",
               component: () => import("../views/admin/users/Details.vue"),
             },

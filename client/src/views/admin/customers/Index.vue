@@ -6,6 +6,39 @@
     <p v-if="error" class="form-error">
       {{ error }}
     </p>
+    <div class="search-box">
+      <input
+        v-model="search"
+        @keyup.enter="getCustomers"
+        type="text"
+        placeholder="Search customers..."
+      />
+
+      <button v-if="search" @click="clearSearch" type="button">×</button>
+
+      <select v-model="source" @change="getCustomers">
+        <option value="">All Sources</option>
+        <option value="web">Web</option>
+        <option value="admin">Admin</option>
+      </select>
+
+      <select v-model="active" @change="getCustomers">
+        <option value="">All Status</option>
+
+        <option value="true">Active</option>
+
+        <option value="false">Inactive</option>
+      </select>
+      <div>
+        <label>From</label>
+        <input v-model="dateFrom" type="date" />
+
+        <label>To</label>
+        <input v-model="dateTo" type="date" />
+
+        <button @click="getCustomers">Filter</button>
+      </div>
+    </div>
 
     <table v-if="customers.length">
       <thead>
@@ -20,16 +53,16 @@
       <tbody>
         <tr v-for="customer in customers" :key="customer._id">
           <td>
-            {{ customer.profile.firstName }}
-            {{ customer.profile.lastName }}
+            {{ customer.firstName }}
+            {{ customer.lastName }}
           </td>
 
           <td>
-            {{ customer.profile.email || "-" }}
+            {{ customer.email || "-" }}
           </td>
 
           <td>
-            {{ customer.profile.phone }}
+            {{ customer.phone }}
           </td>
 
           <td>
@@ -61,6 +94,11 @@ export default {
   data() {
     return {
       customers: [],
+      search: "",
+      source: "",
+      dateFrom: "",
+      dateTo: "",
+      active: "",
       loading: false,
       error: "",
     };
@@ -75,15 +113,31 @@ export default {
       try {
         this.loading = true;
         this.error = "";
-        const response = await api.get("/customers");
+
+        const response = await api.get("/customers", {
+          params: {
+            search: this.search || undefined,
+            source: this.source || undefined,
+            active: this.active || undefined,
+            dateFrom: this.dateFrom || undefined,
+            dateTo: this.dateTo || undefined,
+          },
+        });
+
         this.customers = response.data.data;
+        console.log(this.customers)
       } catch (error) {
-        console.error('error', error.response)
+        console.error("error", error.response);
+
         this.error =
           error.response?.data?.message || "Failed to load customers";
       } finally {
         this.loading = false;
       }
+    },
+    clearSearch() {
+      this.search = ""
+      this.getCustomers()
     },
     async deleteCustomer(id) {
       const confirmDelete = confirm(
@@ -96,9 +150,7 @@ export default {
 
       try {
         this.error = "";
-
         await api.delete(`/customers/${id}/delete`);
-
         await this.getCustomers();
       } catch (error) {
         this.error =

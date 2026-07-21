@@ -14,23 +14,23 @@
 
         <p>
           <strong>Name:</strong>
-          {{ customer.profile.firstName }}
-          {{ customer.profile.lastName }}
+          {{ customer.firstName }}
+          {{ customer.lastName }}
         </p>
 
         <p>
           <strong>Email:</strong>
-          {{ customer.profile.email || "-" }}
+          {{ customer.email || "-" }}
         </p>
 
         <p>
           <strong>Phone:</strong>
-          {{ customer.profile.phone || "-" }}
+          {{ customer.phone || "-" }}
         </p>
 
         <p>
           <strong>Company:</strong>
-          {{ customer.profile.company || "-" }}
+          {{ customer.company || "-" }}
         </p>
       </section>
 
@@ -38,16 +38,16 @@
         <h3>Address</h3>
 
         <p>
-          {{ customer.profile.address?.street || "-" }}
+          {{ customer.address?.street || "-" }}
         </p>
 
         <p>
-          {{ customer.profile.address?.postalCode || "" }}
-          {{ customer.profile.address?.city || "" }}
+          {{ customer.address?.postalCode || "" }}
+          {{ customer.address?.city || "" }}
         </p>
 
         <p>
-          {{ customer.profile.address?.country || "-" }}
+          {{ customer.address?.country || "-" }}
         </p>
       </section>
 
@@ -104,7 +104,7 @@ export default {
           `/customers/${this.$route.params.id}/details`,
         );
 
-        this.customer = response.data.customer;
+        this.customer = response.data.data;
       } catch (error) {
         this.error = error.response?.data?.message || "Failed to load customer";
       } finally {

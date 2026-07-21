@@ -23,8 +23,8 @@
       <tbody>
         <tr v-for="device in devices" :key="device._id">
           <td>
-            {{ device.customer?.profile?.firstName }}
-            {{ device.customer?.profile?.lastName }}
+            {{ device.customer?.firstName }}
+            {{ device.customer?.lastName }}
           </td>
 
           <td>

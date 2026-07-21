@@ -12,8 +12,8 @@
       <div>
         <strong>Customer:</strong>
 
-        {{ device.customer?.profile?.firstName }}
-        {{ device.customer?.profile?.lastName }}
+        {{ device.customer?.firstName }}
+        {{ device.customer?.lastName }}
       </div>
 
       <div>

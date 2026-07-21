@@ -1,16 +1,100 @@
 import AppError from "../utils/app.error.js";
 import catchAsync from "../middleware/catch.async.js";
-import customerSC from "../models/customers.sc.js";
+import customersSC from "../models/customers.sc.js";
 import devicesSC from "../models/devices.sc.js";
 import repairsSC from "../models/repairs.sc.js";
 
 export const index = catchAsync(async (req, res, next) => {
-  const data = await customerSC.find().lean();
-  if (data.length === 0) {
-    return next(
-      new AppError("Customers not found", 402, "CUSTOMERS_NOT_FOUND"),
-    );
+  const filter = {};
+
+  const { search, source, active, dateFrom, dateTo } = req.query;
+
+  // Search
+  if (search) {
+    filter.$or = [
+      {
+        "firstName": {
+          $regex: search,
+          $options: "i",
+        },
+      },
+      {
+        "lastName": {
+          $regex: search,
+          $options: "i",
+        },
+      },
+      {
+        email: {
+          $regex: search,
+          $options: "i",
+        },
+      },
+      {
+        "phone": {
+          $regex: search,
+          $options: "i",
+        },
+      },
+      {
+        "company": {
+          $regex: search,
+          $options: "i",
+        },
+      },
+    ];
   }
+
+  // Source filter
+  if (source) {
+    filter.source = source;
+  }
+
+  // Active filter
+  if (active !== undefined && active !== "") {
+    filter.active = active === "true";
+  }
+
+  // Date range validation
+  if (dateFrom && dateTo) {
+    const startDate = new Date(dateFrom);
+    const endDate = new Date(dateTo);
+
+    if (endDate < startDate) {
+      return next(
+        new AppError(
+          "End date cannot be earlier than start date",
+          400,
+          "INVALID_DATE_RANGE",
+        ),
+      );
+    }
+  }
+
+  // Created date filter
+  if (dateFrom || dateTo) {
+    filter.createdAt = {};
+
+    if (dateFrom) {
+      filter.createdAt.$gte = new Date(dateFrom);
+    }
+
+    if (dateTo) {
+      const endDate = new Date(dateTo);
+
+      endDate.setHours(23, 59, 59, 999);
+
+      filter.createdAt.$lte = endDate;
+    }
+  }
+
+  const data = await customersSC
+    .find(filter)
+    .sort({
+      createdAt: -1,
+    })
+    .lean();
+
   res.json({
     success: true,
     data,
@@ -18,13 +102,10 @@ export const index = catchAsync(async (req, res, next) => {
 });
 
 export const details = catchAsync(async (req, res, next) => {
-  const customer = await customerSC.findById(req.params.id);
-  if (!customer) {
-    return next(new AppError("Customer not found", 404, "CUSTOMER_NOT_FOUND"));
-  }
+  const data = await customersSC.findById(req.params.id);
   res.json({
     success: true,
-    customer,
+    data,
   });
 });
 
@@ -76,8 +157,7 @@ export const deviceDetails = catchAsync(async (req, res, next) => {
 });
 
 export const repairDetails = catchAsync(async (req, res, next) => {
-
-  const repair = await repairsSC
+  const data = await repairsSC
     .findOne({
       _id: req.params.repairId,
       customer: req.params.id,
@@ -87,22 +167,10 @@ export const repairDetails = catchAsync(async (req, res, next) => {
     .populate("assignedTo")
     .lean();
 
-  if (!repair) {
-    return next(
-      new AppError(
-        "Repair not found",
-        404,
-        "REPAIR_NOT_FOUND",
-      ),
-    );
-  }
-
-
   res.json({
     success: true,
-    data: repair,
+    data,
   });
-
 });
 
 export const customerRepairs = catchAsync(async (req, res, next) => {
@@ -124,18 +192,15 @@ export const customerRepairs = catchAsync(async (req, res, next) => {
 });
 
 export const edit = catchAsync(async (req, res, next) => {
-  const customer = await customerSC.findById(req.params.id);
-  if (!customer) {
-    return next(new AppError("Customer not found", 404, "CUSTOMER_NOT_FOUND"));
-  }
+  const data = await customersSC.findById(req.params.id);
   res.json({
     success: true,
-    customer,
+    data,
   });
 });
 
 export const update = catchAsync(async (req, res, next) => {
-  const customer = await customerSC.findByIdAndUpdate(
+  const data = await customersSC.findByIdAndUpdate(
     req.params.id,
     {
       $set: req.body,
@@ -146,22 +211,14 @@ export const update = catchAsync(async (req, res, next) => {
     },
   );
 
-  if (!customer) {
-    return next(new AppError("Customer not found", 404, "CUSTOMER_NOT_FOUND"));
-  }
-
   res.json({
     success: true,
-    data: customer,
+    data,
   });
 });
 
 export const remove = catchAsync(async (req, res, next) => {
-  const customer = await customerSC.findByIdAndDelete(req.params.id);
-
-  if (!customer) {
-    return next(new AppError("Customer not found", 404, "CUSTOMER_NOT_FOUND"));
-  }
+  const data = await customersSC.findByIdAndDelete(req.params.id);
 
   res.json({
     success: true,

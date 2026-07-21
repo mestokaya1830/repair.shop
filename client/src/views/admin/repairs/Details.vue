@@ -23,19 +23,19 @@
       <p v-if="repair.assignedTo">
         Current:
 
-        {{ repair.assignedTo?.profile?.firstName }}
-        {{ repair.assignedTo?.profile?.lastName }}
+        {{ repair.assignedTo?.firstName }}
+        {{ repair.assignedTo?.lastName }}
       </p>
 
       <select v-model="selectedTechnician">
         <option value="">Select Technician</option>
 
         <option v-for="user in technicians" :key="user._id" :value="user._id">
-          {{ user.profile?.firstName }}
-          {{ user.profile?.lastName }}
+          {{ use?.firstName }}
+          {{ use?.lastName }}
 
           -
-          {{ user.profile?.position || user.role }}
+          {{ use?.position || user.role }}
         </option>
       </select>
 
@@ -94,16 +94,16 @@
       <h3>Customer</h3>
 
       <p>
-        {{ repair.customer?.profile?.firstName }}
-        {{ repair.customer?.profile?.lastName }}
+        {{ repair.customer?.firstName }}
+        {{ repair.customer?.lastName }}
       </p>
 
       <p>
-        {{ repair.customer?.profile?.phone }}
+        {{ repair.customer?.phone }}
       </p>
 
       <p>
-        {{ repair.customer?.profile?.email }}
+        {{ repair.customer?.email }}
       </p>
 
       <hr />
@@ -183,9 +183,9 @@
         <li v-for="log in repair.workLogs" :key="log._id">
           {{ log.message }}
           -
-          {{ log.createdBy?.profile?.firstName }}
+          {{ log.createdBy?.firstName }}
 
-          {{ log.createdBy?.profile?.lastName }}
+          {{ log.createdBy?.lastName }}
           -
           {{ formatDate(log.createdAt) }}
         </li>

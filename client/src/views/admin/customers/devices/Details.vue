@@ -83,21 +83,21 @@
         <p>
           <strong>Name:</strong>
 
-          {{ customer.profile.firstName }}
+          {{ customer.firstName }}
 
-          {{ customer.profile.lastName }}
+          {{ customer.lastName }}
         </p>
 
         <p>
           <strong>Email:</strong>
 
-          {{ customer.profile.email || "-" }}
+          {{ customer.email || "-" }}
         </p>
 
         <p>
           <strong>Phone:</strong>
 
-          {{ customer.profile.phone || "-" }}
+          {{ customer.phone || "-" }}
         </p>
       </section>
 
@@ -137,13 +137,9 @@ export default {
   data() {
     return {
       device: null,
-
       customer: null,
-
       repairs: [],
-
       loading: false,
-
       error: "",
     };
   },
@@ -162,11 +158,8 @@ export default {
         );
 
         const data = response.data.data;
-
         this.device = data.device;
-
         this.customer = data.customer;
-
         this.repairs = data.repairs || [];
       } catch (error) {
         this.error = error.response?.data?.message || "Failed to load device";

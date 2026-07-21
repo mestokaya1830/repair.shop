@@ -162,7 +162,7 @@ export const deviceCreateSchema = z.object({
 export const updateDeviceSchema = deviceCreateSchema.partial();
 
 //customer
-export const customerSchema = z.object({
+export const customersSChema = z.object({
   firstName: z.string().min(2).trim(),
   lastName: z.string().min(2).trim(),
   email: z.string().email(),
@@ -171,7 +171,7 @@ export const customerSchema = z.object({
 });
 
 //update customer
-export const updateCustomerSchema = z.object({
+export const updatecustomersSChema = z.object({
   profile: z
     .object({
       firstName: z.string().optional(),

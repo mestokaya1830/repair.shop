@@ -20,30 +20,29 @@ const userSC = new mongoose.Schema(
       enum: ["owner", "admin", "user"],
       required: true,
     },
-
-    profile: {
-      firstName: {
-        type: String,
-        required: true,
-      },
-
-      lastName: {
-        type: String,
-        required: true,
-      },
-
-      phone: {
-        type: String,
-      },
-
-      address: {
-        street: String,
-        city: String,
-        postalCode: String,
-        country: String,
-      },
-      position: String,
+    firstName: {
+      type: String,
+      required: true,
     },
+
+    lastName: {
+      type: String,
+      required: true,
+    },
+
+    phone: {
+      type: String,
+    },
+
+    address: {
+      street: String,
+      city: String,
+      postalCode: String,
+      country: String,
+    },
+    position: String,
+
+   
 
     active: {
       type: Boolean,

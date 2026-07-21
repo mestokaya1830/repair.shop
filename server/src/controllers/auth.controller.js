@@ -47,10 +47,8 @@ export const loginController = catchAsync(async (req, res, next) => {
       _id: user._id,
       email: user.email,
       role: user.role,
-      profile: {
-        firstName: user.profile.firstName,
-        lastName: user.profile.lastName,
-      },
+      firstName: user.firstName,
+      lastName: user.lastName,
     },
   });
 });

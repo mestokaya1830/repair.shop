@@ -58,12 +58,12 @@
         <h3>Customer</h3>
 
         <p>
-          {{ customer.profile.firstName }}
-          {{ customer.profile.lastName }}
+          {{ customer.firstName }}
+          {{ customer.lastName }}
         </p>
 
         <p>
-          {{ customer.profile.email }}
+          {{ customer.email }}
         </p>
       </section>
 

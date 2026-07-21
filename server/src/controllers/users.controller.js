@@ -8,15 +8,15 @@ import logger from "../utils/logger.js";
 
 
 export const index = catchAsync(async (req, res, next) => {
-  const users = await userSC.find().lean();
+  const data = await userSC.find().lean();
 
-  if (users.length === 0) {
+  if (data.length === 0) {
     return next(new AppError("Users not found", 404, "USERS_NOT_FOUND"));
   }
 
   res.json({
     success: true,
-    users,
+    data,
   });
 });
 
@@ -37,9 +37,7 @@ export const details = catchAsync(async (req, res, next) => {
 
   res.json({
     success: true,
-
     user,
-
     repairs,
   });
 });
@@ -96,8 +94,8 @@ export const updateProfile = catchAsync(async (req, res, next) => {
     return next(new AppError("User not found", 404, "USER_NOT_FOUND"));
   }
 
-  if (req.body.profile?.phone !== undefined) {
-    user.profile.phone = req.body.profile.phone;
+  if (req.body.phone !== undefined) {
+    user.phone = req.body.phone;
   }
 
   if (req.body.password) {

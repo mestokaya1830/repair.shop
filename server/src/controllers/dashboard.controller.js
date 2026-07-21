@@ -64,7 +64,7 @@ export const index = catchAsync(async (req, res) => {
     customersSC.countDocuments(),
 
     userSC.countDocuments({
-      "profile.position": "technician",
+      "position": "technician",
       active: true,
     }),
 
@@ -166,7 +166,7 @@ export const repairs = catchAsync(async (req, res) => {
 // Dashboard Customers
 
 export const customers = catchAsync(async (req, res) => {
-  const customers = await customersSC
+  const data = await customersSC
 
     .find()
 
@@ -178,36 +178,12 @@ export const customers = catchAsync(async (req, res) => {
 
   res.json({
     success: true,
-
-    customers,
-  });
-});
-
-// Dashboard Technicians
-
-export const technicians = catchAsync(async (req, res) => {
-  const technicians = await userSC
-
-    .find({
-      "profile.position": "technician",
-
-      active: true,
-    })
-
-    .select("profile.firstName profile.lastName email")
-
-    .lean();
-
-  res.json({
-    success: true,
-
-    technicians,
+    data,
   });
 });
 
 export const details = catchAsync(async (req, res, next) => {
-  console.log(req.params)
-  const repair = await repairsSC
+  const data = await repairsSC
     .findById(req.params.id)
     .populate("customer")
     .populate("device")
@@ -216,12 +192,8 @@ export const details = catchAsync(async (req, res, next) => {
     .populate("workLogs.createdBy")
     .lean();
 
-  if (!repair) {
-    return next(new AppError("Repair not found", 404, "REPAIR_NOT_FOUND"));
-  }
-
   res.json({
     success: true,
-    repair,
+    data,
   });
 });

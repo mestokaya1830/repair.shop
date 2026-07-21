@@ -25,12 +25,12 @@ export const create = catchAsync(async (req, res, next) => {
 
   // 1. CUSTOMER
 
-  let customer = await customerSC.findOne({
+  let customer = await customersSC.findOne({
     email: data.customer.email,
   });
 
   if (!customer) {
-    customer = await customerSC.create({
+    customer = await customersSC.create({
       source,
 
       profile: {

@@ -29,8 +29,8 @@
           </td>
 
           <td>
-            {{ repair.customer?.profile?.firstName }}
-            {{ repair.customer?.profile?.lastName }}
+            {{ repair.customer?.firstName }}
+            {{ repair.customer?.lastName }}
           </td>
 
           <td>
