@@ -68,25 +68,25 @@
       <div>
         <label> Street </label>
 
-        <input v-model="form.address.street" type="text" />
+        <input v-model="form.street" type="text" />
       </div>
 
       <div>
         <label> City </label>
 
-        <input v-model="form.address.city" type="text" />
+        <input v-model="form.city" type="text" />
       </div>
 
       <div>
         <label> Postal Code </label>
 
-        <input v-model="form.address.postalCode" type="text" />
+        <input v-model="form.postalCode" type="text" />
       </div>
 
       <div>
         <label> Country </label>
 
-        <input v-model="form.address.country" type="text" />
+        <input v-model="form.country" type="text" />
       </div>
 
       <div>
@@ -106,7 +106,7 @@
 
 <script>
 import api from "@/api/axios.js";
-import { userSchema } from "@/validators/schemas.js";
+import { usersSChema } from "@/validators/schemas.js";
 export default {
   name: "AddUser",
   data() {
@@ -132,7 +132,7 @@ export default {
   methods: {
     async submitUser() {
       this.errors = {};
-      const result = userSchema.safeParse(this.form);
+      const result = usersSChema.safeParse(this.form);
       if (!result.success) {
         result.error.issues.forEach((error) => {
           this.errors[error.path.join(".")] = error.message;

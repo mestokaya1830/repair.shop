@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-//repairs
+// repairs
 export const repairSchema = z.object({
   customer: z.object({
     firstName: z.string().min(2, "First name is required"),
@@ -41,70 +41,62 @@ export const repairSchema = z.object({
     .optional(),
 });
 
-//login
+// login
 export const loginSchema = z.object({
   email: z.string().email("Invalid email address").trim().toLowerCase(),
   password: z.string().min(8, "Password must be at least 8 characters"),
 });
 
-//user
-export const userSchema = z.object({
+// user
+export const usersSChema = z.object({
   email: z.string().email("Invalid email address").toLowerCase().trim(),
   password: z.string().min(8, "Password must be at least 8 characters"),
+  role: z.enum(["owner", "admin", "user"]),
   firstName: z
     .string()
     .min(2, "First name must be at least 2 characters")
     .trim(),
-
   lastName: z
     .string()
     .min(2, "Last name must be at least 2 characters")
     .trim(),
-
   phone: z
     .string()
     .min(6, "Phone number is too short")
     .trim()
     .optional()
     .or(z.literal("")),
-
-  address: z.object({
-    street: z.string().trim().optional().or(z.literal("")),
-    city: z.string().trim().optional().or(z.literal("")),
-    postalCode: z.string().trim().optional().or(z.literal("")),
-    country: z.string().trim().optional().or(z.literal("")),
-  }),
-
+  street: z.string().trim().optional().or(z.literal("")),
+  city: z.string().trim().optional().or(z.literal("")),
+  postalCode: z.string().trim().optional().or(z.literal("")),
+  country: z.string().trim().optional().or(z.literal("")),
+  position: z.string().optional().or(z.literal("")),
   active: z.boolean().default(true),
 });
 
-//update user
-export const updateUserSchema = z.object({
+// update user
+export const usersUpdateSChema = z.object({
+  role: z.enum(["owner", "admin", "user"]).optional(),
   firstName: z
     .string()
     .min(2, "First name must be at least 2 characters")
     .optional(),
-
   lastName: z
     .string()
     .min(2, "Last name must be at least 2 characters")
     .optional(),
-
   phone: z.string().optional(),
-  address: z
-    .object({
-      street: z.string().optional(),
-      city: z.string().optional(),
-      postalCode: z.string().optional(),
-      country: z.string().optional(),
-    })
-    .optional(),
-
+  street: z.string().optional(),
+  city: z.string().optional(),
+  postalCode: z.string().optional(),
+  country: z.string().optional(),
+  position: z.string().optional(),
   active: z.boolean().optional(),
 });
 
-//customer
-export const createcustomersSChema = z.object({
+// customer
+export const customersSchema = z.object({
+  source: z.enum(["web", "office"]),
   firstName: z
     .string()
     .min(2, "First name must be at least 2 characters")
@@ -113,48 +105,45 @@ export const createcustomersSChema = z.object({
     .string()
     .min(2, "Last name must be at least 2 characters")
     .trim(),
-  phone: z.string().min(6, "Phone must be at least 6 characters").trim(),
-  email: z.string().email("Invalid email").optional().or(z.literal("")),
-  address: z.object({
-    street: z.string().optional(),
-    postalCode: z.string().optional(),
-    city: z.string().optional(),
-    country: z.string().optional(),
-  }),
+  phone: z
+    .string()
+    .min(6, "Phone must be at least 6 characters")
+    .trim(),
+  company: z.string().optional().or(z.literal("")),
+  email: z.string().email("Invalid email"),
+  street: z.string().optional().or(z.literal("")),
+  postalCode: z.string().optional().or(z.literal("")),
+  city: z.string().optional().or(z.literal("")),
+  country: z.string().optional().or(z.literal("")),
+  active: z.boolean().optional(),
 });
 
-//update customer
-export const updatecustomersSChema = z.object({
+// update customer
+export const customersUpdateSChema = z.object({
+  source: z.enum(["web", "office"]).optional(),
   firstName: z
     .string()
     .min(2, "First name must be at least 2 characters")
     .optional(),
-
   lastName: z
     .string()
     .min(2, "Last name must be at least 2 characters")
     .optional(),
-
   phone: z
     .string()
     .min(6, "Phone must be at least 6 characters")
     .optional(),
-
+  company: z.string().optional(),
   email: z.string().email("Invalid email").optional().or(z.literal("")),
-
-  address: z
-    .object({
-      street: z.string().optional(),
-      postalCode: z.string().optional(),
-      city: z.string().optional(),
-      country: z.string().optional(),
-    })
-    .optional(),
- 
+  street: z.string().optional(),
+  postalCode: z.string().optional(),
+  city: z.string().optional(),
+  country: z.string().optional(),
+  active: z.boolean().optional(),
 });
 
-//device
-export const deviceCreateSchema = z.object({
+// device
+export const devicesSchema = z.object({
   customer: z.string().min(1, "Customer is required"),
   type: z.string().min(2, "Device type is required"),
   brand: z.string().min(2, "Brand is required"),
@@ -166,16 +155,21 @@ export const deviceCreateSchema = z.object({
   notes: z.string().optional(),
 });
 
-//update device
-export const updateDeviceSchema = z.object({
+// update device
+export const devicesUpdateSchema = z.object({
   customer: z.string().optional(),
-
   type: z
     .string()
     .min(2, "Device type must be at least 2 characters")
     .optional(),
-  brand: z.string().min(2, "Brand must be at least 2 characters").optional(),
-  model: z.string().min(2, "Model must be at least 2 characters").optional(),
+  brand: z
+    .string()
+    .min(2, "Brand must be at least 2 characters")
+    .optional(),
+  model: z
+    .string()
+    .min(2, "Model must be at least 2 characters")
+    .optional(),
   serialNumber: z.string().optional(),
   purchaseDate: z.string().optional(),
   warrantyUntil: z.string().optional(),

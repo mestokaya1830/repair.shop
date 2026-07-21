@@ -3,13 +3,14 @@ import catchAsync from "../middleware/catch.async.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { env } from "../config/env.js";
-import userSC from "../models/users.sc.js";
+import usersSC from "../models/users.sc.js";
 import logger from "../utils/logger.js";
+
 
 export const loginController = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
 
-  const user = await userSC.findOne({ email }).select("+password");
+  const user = await usersSC.findOne({ email }).select("+password");
   const isMatch = user && (await bcrypt.compare(password, user.password));
 
   if (!isMatch) {
@@ -53,26 +54,21 @@ export const loginController = catchAsync(async (req, res, next) => {
   });
 });
 
-// //first userSC
+// //first usersSC
 // const createFirstUser = async () => {
-//   await userSC.create({
+//   await usersSC.create({
 //     email: "mesfor100@outlook.com",
 //     password: await bcrypt.hash("12121212", 10),
 //     role: "owner",
 //     active: true,
-
-//     profile: {
-//       firstName: "mesto",
-//       lastName: "kaya",
-//       phone: "",
-//       position: "owner",
-//       address: {
-//         street: "",
-//         city: "",
-//         postalCode: "",
-//         country: "Germany",
-//       },
-//     },
+//     firstName: "mesto",
+//     lastName: "kaya",
+//     phone: "",
+//     position: "owner",
+//     street: "",
+//     city: "",
+//     postalCode: "",
+//     country: "Germany"
 //   });
 // };
 

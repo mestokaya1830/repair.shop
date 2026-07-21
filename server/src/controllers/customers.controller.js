@@ -4,6 +4,7 @@ import customersSC from "../models/customers.sc.js";
 import devicesSC from "../models/devices.sc.js";
 import repairsSC from "../models/repairs.sc.js";
 
+
 export const index = catchAsync(async (req, res, next) => {
   const filter = {};
 

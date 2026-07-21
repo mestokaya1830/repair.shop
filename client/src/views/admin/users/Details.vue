@@ -22,7 +22,7 @@
       <p>
         <strong>Email:</strong>
 
-        {{ user.email }}
+        {{ user?.email }}
       </p>
 
       <p>

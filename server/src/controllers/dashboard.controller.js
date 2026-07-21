@@ -2,7 +2,7 @@ import catchAsync from "../middleware/catch.async.js";
 
 import repairsSC from "../models/repairs.sc.js";
 import customersSC from "../models/customers.sc.js";
-import userSC from "../models/users.sc.js";
+import usersSC from "../models/users.sc.js";
 
 // Dashboard main
 export const index = catchAsync(async (req, res) => {
@@ -63,17 +63,17 @@ export const index = catchAsync(async (req, res) => {
 
     customersSC.countDocuments(),
 
-    userSC.countDocuments({
+    usersSC.countDocuments({
       "position": "technician",
       active: true,
     }),
 
-    userSC.countDocuments({
+    usersSC.countDocuments({
       role: "admin",
       active: true,
     }),
 
-    userSC.countDocuments({
+    usersSC.countDocuments({
       role: "owner",
       active: true,
     }),

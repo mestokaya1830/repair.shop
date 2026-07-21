@@ -7,8 +7,6 @@ import AppError from "../utils/app.error.js";
 
 export const create = catchAsync(async (req, res, next) => {
   const data = req.body
-  console.log(data)
-
   const source = req.user ? "admin" : "web";
   const createdBy = req.user?._id || null;
 
@@ -32,13 +30,10 @@ export const create = catchAsync(async (req, res, next) => {
   if (!customer) {
     customer = await customersSC.create({
       source,
-
-      profile: {
-        firstName: data.customer.firstName,
-        lastName: data.customer.lastName,
-        phone: data.customer.phone,
-        company: data.customer.company || "",
-      },
+      firstName: data.customer.firstName,
+      lastName: data.customer.lastName,
+      phone: data.customer.phone,
+      company: data.customer.company || "",
       email: data.customer.email,
       createdBy,
     });

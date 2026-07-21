@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 //repairs
-export const repairSchema = z.object({
+export const repairsSchema = z.object({
   customer: z.object({
     firstName: z.string().min(2, "First name is required"),
     lastName: z.string().min(2, "Last name is required"),
@@ -53,7 +53,7 @@ export const repairSchema = z.object({
 });
 
 //repairs update
-export const repairUpdateSchema = z.object({
+export const repairsUpdateSchema = z.object({
   status: z
     .enum([
       "Pending",
@@ -99,7 +99,7 @@ export const loginSchema = z.object({
 });
 
 //user
-export const userSchema = z.object({
+export const usersSChema = z.object({
   email: z.string().email("Invalid email address").trim().toLowerCase(),
   password: z.string().min(8, "Password must be at least 8 characters"),
   profile: z.object({
@@ -118,7 +118,7 @@ export const userSchema = z.object({
 });
 
 //update user
-export const updateUserSchema = z.object({
+export const usersUpdateSchema = z.object({
   profile: z
     .object({
       firstName: z
@@ -147,7 +147,7 @@ export const updateUserSchema = z.object({
 });
 
 //device
-export const deviceCreateSchema = z.object({
+export const devicesSchema = z.object({
   type: z.string().min(2, "Device type is required"),
   brand: z.string().min(2, "Brand is required"),
   model: z.string().min(2, "Model is required"),
@@ -159,7 +159,7 @@ export const deviceCreateSchema = z.object({
 });
 
 //update device
-export const updateDeviceSchema = deviceCreateSchema.partial();
+export const deviceUpdateSchema = devicesSchema.partial();
 
 //customer
 export const customersSChema = z.object({
@@ -171,7 +171,7 @@ export const customersSChema = z.object({
 });
 
 //update customer
-export const updatecustomersSChema = z.object({
+export const customersUpdateSChema = z.object({
   profile: z
     .object({
       firstName: z.string().optional(),

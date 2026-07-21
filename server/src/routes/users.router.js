@@ -2,7 +2,7 @@ import express from 'express'
 import { index, edit, details, updateUser, profile, updateProfile, create } from '../controllers/users.controller.js'
 import auth from '../middleware/auth.js'
 import validate from '../middleware/validate.js'
-import {updateUserSchema, userSchema} from '../validators/schemas.js'
+import {usersSChema, usersUpdateSchema} from '../validators/schemas.js'
 
 
 const router = express.Router()
@@ -11,11 +11,11 @@ const router = express.Router()
 router.get('/', auth, index)
 router.get('/profile', auth, profile)
 router.patch('/profile/update', auth, updateProfile)
-router.post('/create', auth, validate(userSchema), create)
+router.post('/create', auth, validate(usersSChema), create)
 
 router.get('/:id/details', auth, details)
 router.get('/:id/edit', auth, edit)
-router.patch('/:id/update', auth, validate(updateUserSchema), updateUser)
+router.patch('/:id/update', auth, validate(usersUpdateSchema), updateUser)
 
 
 

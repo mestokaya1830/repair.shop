@@ -1,6 +1,6 @@
 <template>
   <div class="repair-request">
-    <h1>Create Repair Request</h1>
+    <h1>Create Customer</h1>
 
     <!-- Customer -->
     <section class="repair-card">
@@ -241,7 +241,7 @@
 <script>
 import { repairSchema } from "@/validators/schemas.js";
 import { repairStore } from "@/stores/repair.js";
-import api from "../../api/axios.js";
+import api from "@/api/axios.js";
 
 export default {
   name: "RepairView",

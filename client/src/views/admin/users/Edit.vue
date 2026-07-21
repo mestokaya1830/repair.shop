@@ -71,7 +71,7 @@
 
 <script>
 import api from "@/api/axios.js";
-import { updateUserSchema } from "@/validators/schemas.js";
+import { updateusersSChema } from "@/validators/schemas.js";
 
 export default {
   name: "EditUser",
@@ -118,7 +118,7 @@ export default {
     async updateUser() {
       console.log(this.form);
       try {
-        const result = updateUserSchema.safeParse(this.form);
+        const result = updateusersSChema.safeParse(this.form);
         if (!result.success) {
           result.error.issues.forEach((error) => {
             this.errors[error.path.join(".")] = error.message;
