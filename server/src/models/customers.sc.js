@@ -17,25 +17,31 @@ const customersSC = new mongoose.Schema(
       default: true,
       index: true,
     },
+
     firstName: {
       type: String,
       required: true,
+      trim: true,
     },
 
     lastName: {
       type: String,
       required: true,
+      trim: true,
     },
 
     phone: {
       type: String,
       required: true,
+      trim: true,
     },
 
     company: {
       type: String,
       default: "",
+      trim: true,
     },
+
     email: {
       type: String,
       required: true,
@@ -44,11 +50,24 @@ const customersSC = new mongoose.Schema(
       index: true,
     },
 
-    address: {
-      street: String,
-      postalCode: String,
-      city: String,
-      country: String,
+    street: {
+      type: String,
+      default: "",
+    },
+
+    postalCode: {
+      type: String,
+      default: "",
+    },
+
+    city: {
+      type: String,
+      default: "",
+    },
+
+    country: {
+      type: String,
+      default: "Germany",
     },
 
     createdBy: {
@@ -62,6 +81,4 @@ const customersSC = new mongoose.Schema(
   }
 );
 
-
 export default mongoose.model("customers", customersSC);
-

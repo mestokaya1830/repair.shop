@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+import mongoose from "mongoose";
 
 const userSC = new mongoose.Schema(
   {
@@ -7,6 +7,8 @@ const userSC = new mongoose.Schema(
       required: true,
       unique: true,
       lowercase: true,
+      trim: true,
+      index: true,
     },
 
     password: {
@@ -17,36 +19,63 @@ const userSC = new mongoose.Schema(
 
     role: {
       type: String,
-      enum: ["owner", "admin", "user"],
+      enum: [
+        "owner",
+        "admin",
+        "user",
+      ],
       required: true,
+      index: true,
     },
+
     firstName: {
       type: String,
       required: true,
+      trim: true,
     },
 
     lastName: {
       type: String,
       required: true,
+      trim: true,
     },
 
     phone: {
       type: String,
+      default: "",
+      trim: true,
     },
 
-    address: {
-      street: String,
-      city: String,
-      postalCode: String,
-      country: String,
+    street: {
+      type: String,
+      default: "",
     },
-    position: String,
 
-   
+    city: {
+      type: String,
+      default: "",
+      index: true,
+    },
+
+    postalCode: {
+      type: String,
+      default: "",
+    },
+
+    country: {
+      type: String,
+      default: "Germany",
+    },
+
+    position: {
+      type: String,
+      default: "",
+    },
 
     active: {
       type: Boolean,
       default: true,
+      index: true,
     },
   },
   {
@@ -54,5 +83,4 @@ const userSC = new mongoose.Schema(
   },
 );
 
-
-export default mongoose.model('users', userSC)
+export default mongoose.model("users", userSC);
