@@ -3,9 +3,7 @@
     <h2>Customers</h2>
     <p v-if="loading">Loading...</p>
 
-    <router-link to="/admin/customers/create" class="nav-link">
-        Add New Customer
-      </router-link>
+    
 
     <p v-if="error" class="form-error">
       {{ error }}

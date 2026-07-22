@@ -3,7 +3,9 @@
     <div class="page-header">
       <h2>Repairs</h2>
     </div>
-
+    <router-link to="/admin/repairs/create" class="nav-link">
+      Add New Repair
+    </router-link>
     <p v-if="loading">Loading...</p>
 
     <p v-if="error" class="form-error">
@@ -18,6 +20,8 @@
           <th>Device</th>
           <th>Status</th>
           <th>Date</th>
+          <th>Source</th>
+          <th>Created By</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -45,6 +49,21 @@
           <td>
             {{ formatDate(repair.createdAt) }}
           </td>
+          <td>
+            {{ repair.source }}
+          </td>
+          <td>
+           <span
+             v-if="repair.createdBy"
+             class="user-link">
+             {{ repair.createdBy.firstName }}
+             {{ repair.createdBy.lastName }}
+           </span>
+
+           <span v-else>
+             Web
+           </span>
+         </td>
 
           <td>
             <router-link :to="`/admin/repairs/${repair._id}/details`">
@@ -101,7 +120,6 @@ export default {
         this.loading = false;
       }
     },
-
     async deleteRepair(id) {
       if (!confirm("Delete this repair?")) {
         return;

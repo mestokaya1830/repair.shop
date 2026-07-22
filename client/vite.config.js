@@ -8,14 +8,14 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),
-    },
+    }
   },
   server: {
-    proxy: {
-      "/api": {
-        target: "http://localhost:4001",
-      },
-    },
+    proxy:{
+      '/api': {
+        target: 'http://localhost:4001'
+      }
+    }
   },
   plugins: [vue()],
-});
+})

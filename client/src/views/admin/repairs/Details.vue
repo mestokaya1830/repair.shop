@@ -17,6 +17,12 @@
       <p>
         {{ repair.status }}
       </p>
+      <p>
+        {{ repair.source }}
+      </p>
+      <p>
+        {{ repair.createdBy }}
+      </p>
 
       <h3>Assigned Technician</h3>
 
@@ -229,6 +235,7 @@ export default {
         );
 
         this.repair = response.data.repair;
+        console.log(this.repair)
       } catch (error) {
         this.error = error.response?.data?.message || "Failed to load repair";
       } finally {
@@ -257,11 +264,9 @@ export default {
     },
     async getTechnicians() {
       try {
-        const response = await api.get("/users");
+        const response = await api.get("/users?position=technician");
 
-        this.technicians = response.data.users.filter(
-          (user) => user.role === "user",
-        );
+        this.technicians = response.data.data;
       } catch (error) {
         this.error =
           error.response?.data?.message || "Failed to load technicians";

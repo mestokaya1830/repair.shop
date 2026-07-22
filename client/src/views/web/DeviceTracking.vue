@@ -88,6 +88,12 @@
         </li>
       </ul>
     </section>
+
+    <section>
+      <template v-for="item in repair?.images">
+        <img :src="`http://localhost:4001/${item.path}`" alt="" class="image-preview ">
+      </template>
+    </section>
   </div>
 </template>
 
@@ -118,7 +124,7 @@ export default {
         this.loading = true;
         this.error = "";
         this.repair = null;
-        const response = await api.get(`/repair/track/${this.repairNumber}`);
+        const response = await api.get(`/web/repair/track/${this.repairNumber}`);
         this.repair = response.data.data;
       } catch (error) {
         this.error = error.response?.data?.message || "Repair not found";

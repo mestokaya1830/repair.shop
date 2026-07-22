@@ -12,7 +12,7 @@ const repairsSC = new mongoose.Schema(
     // Kaynak
     source: {
       type: String,
-      enum: ["web", "admin"],
+      enum: ["web", "office"],
       required: true,
       index: true,
     },
@@ -161,8 +161,7 @@ const repairsSC = new mongoose.Schema(
 
         uploadedByType: {
           type: String,
-          enum: ["customer", "employee"],
-          required: true,
+          enum: ["customer", "user"],
         },
 
         category: {

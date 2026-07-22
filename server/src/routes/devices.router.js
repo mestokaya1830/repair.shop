@@ -2,7 +2,7 @@ import express from 'express'
 import { index, edit, details, update, create, remove, customerDevices } from '../controllers/devices.controller.js'
 import auth from '../middleware/auth.js'
 import validate from '../middleware/validate.js'
-import { devicesSchema, deviceUpdateSchema } from '../validators/schemas.js'
+import { devicesSchema, deviceUpdateSchema } from '../validations/devices.schema.js'
 
 const router = express.Router()
 

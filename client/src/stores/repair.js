@@ -2,17 +2,13 @@ import { defineStore } from "pinia";
 
 export const repairStore = defineStore("repair", {
   state: () => ({
-    repairNumber: null,
-    status: "Pending",
-    createdAt: null,
-
     form: {
       customer: {
         firstName: "",
         lastName: "",
         email: "",
         phone: "",
-        company: "",
+        company: ""
       },
 
       device: {
@@ -21,7 +17,7 @@ export const repairStore = defineStore("repair", {
         model: "",
         serialNumber: "",
         purchaseDate: "",
-        images: [],
+        images: []
       },
 
       problem: {
@@ -29,7 +25,7 @@ export const repairStore = defineStore("repair", {
         description: "",
         startedAt: "",
         deviceWorking: "",
-        notes: "",
+        notes: ""
       },
 
       shipping: {
@@ -37,7 +33,7 @@ export const repairStore = defineStore("repair", {
         postalCode: "",
         city: "",
         country: "",
-        contactMethod: "",
+        contactMethod: ""
       },
     },
   }),

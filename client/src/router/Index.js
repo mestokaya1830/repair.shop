@@ -72,11 +72,6 @@ const router = createRouter({
               name: "customers-index",
               component: () => import("../views/admin/customers/Index.vue"),
             },
-            {
-              path: "create",
-              name: "customers-create",
-              component: () => import("../views/admin/customers/Create.vue"),
-            },
 
             {
               path: ":id/details",
@@ -151,6 +146,12 @@ const router = createRouter({
               name: "repairs-index",
               component: () => import("../views/admin/repairs/Index.vue"),
             },
+            {
+              path: "create",
+              name: "repairs-create",
+              component: () => import("../views/admin/repairs/Create.vue"),
+            },
+
             {
               path: ":id/details",
               name: "repairs-details",

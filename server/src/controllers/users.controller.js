@@ -3,20 +3,53 @@ import catchAsync from "../middleware/catch.async.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import usersSC from "../models/users.sc.js";
-import repairsSC from '../models/repairs.sc.js'
+import repairsSC from "../models/repairs.sc.js";
 import logger from "../utils/logger.js";
 
 
-export const index = catchAsync(async (req, res, next) => {
-  const data = await usersSC.find().lean();
+export const create = catchAsync(async (req, res, next) => {
+  console.log(req.body)
+  let role;
+  switch (req.user.role) {
+    case "owner":
+      role = "admin";
+      break;
 
-  if (data.length === 0) {
-    return next(new AppError("Users not found", 404, "USERS_NOT_FOUND"));
+    case "admin":
+      role = "user";
+      break;
+
+    default:
+      return next(new AppError("You are not allowed to create users", 403));
   }
+
+  const newUser = await usersSC.create({
+    ...req.body,
+    password: await bcrypt.hash(req.body.password, 12),
+    role,
+  });
+
+  logger.info(`User created ${newUser.email}`);
+
+  res.status(201).json({
+    success: true,
+    data: newUser,
+  });
+});
+
+
+export const index = catchAsync(async (req, res, next) => {
+  const filter = {};
+
+  if (req.query.position) {
+    filter.position = req.query.position;
+  }
+
+  const data = await usersSC.find(filter).select("-password").lean();
 
   res.json({
     success: true,
-    data,
+    data
   });
 });
 
@@ -110,31 +143,4 @@ export const updateProfile = catchAsync(async (req, res, next) => {
   });
 });
 
-export const create = catchAsync(async (req, res, next) => {
-  let role;
-  switch (req.user.role) {
-    case "owner":
-      role = "admin";
-      break;
 
-    case "admin":
-      role = "user";
-      break;
-
-    default:
-      return next(new AppError("You are not allowed to create users", 403));
-  }
-
-  const newUser = await usersSC.create({
-    ...req.body,
-    password: await bcrypt.hash(req.body.password, 12),
-    role,
-  });
-
-  logger.info(`User created ${newUser.email}`);
-
-  res.status(201).json({
-    success: true,
-    data: newUser,
-  });
-});

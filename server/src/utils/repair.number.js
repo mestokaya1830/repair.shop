@@ -1,4 +1,4 @@
-export const generateRepairNumber = () => {
+export const repairNumber = () => {
   const date = new Date();
   return `REQ-${date.getFullYear()}${String(date.getMonth() + 1).padStart(
     2,

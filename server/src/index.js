@@ -7,8 +7,9 @@ import processHandler from "./utils/process.handler.js";
 import logger from "./utils/logger.js";
 import httpLogger from "./middleware/http.logger.js";
 import connectMongo from './infra/connect.mongo.js';
-import repairsRouter from './routes/repairs.router.js'
+import webRepairsRouter from './routes/web.repairs.router.js'
 import authRouter from './routes/auth.router.js'
+import repairsRouter from './routes/admin.repairs.router.js'
 import usersRouter from './routes/users.router.js'
 import customersRouter from './routes/customers.router.js'
 import devicesRouter from './routes/devices.router.js'
@@ -16,19 +17,24 @@ import dashboardRouter from './routes/dashboard.router.js'
 
 const app = express();
 
-app.use(helmet());
-app.use(cors());
+app.use(helmet({
+  crossOriginResourcePolicy: {policy: 'cross-origin'}
+}));
+app.use(cors({
+  origin: ['http://localhost:5173']
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static("src/uploads"));
 app.use(httpLogger);
 
-
-app.use('/api/repairs', repairsRouter)
+app.use('/api/web', webRepairsRouter)
 app.use('/api/auth', authRouter)
+app.use('/api/users', usersRouter)
+app.use('/api/repairs', repairsRouter)
 app.use('/api/dashboard', dashboardRouter)
 app.use('/api/customers', customersRouter)
 app.use('/api/devices', devicesRouter)
-app.use('/api/users', usersRouter)
 
 
 app.use((req, res, next) => {
