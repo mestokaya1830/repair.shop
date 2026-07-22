@@ -71,28 +71,29 @@
 
 <script>
 import api from "@/api/axios.js";
-import { updateusersSChema } from "@/validators/schemas.js";
+import { usersUpdateSchema } from "@/validators/schemas.js";
 
 export default {
   name: "EditUser",
-
   data() {
     return {
       user: null,
-      loading: false,
-      saving: false,
-      error: "",
       form: {
         firstName: "",
         lastName: "",
+        email: "",
         phone: "",
-        position: "",
         street: "",
         city: "",
         postalCode: "",
         country: "",
+        position: "",
+        role: "",
         active: true,
       },
+      loading: false,
+      error: "",
+      saving: false
     };
   },
 
@@ -104,10 +105,24 @@ export default {
     async getUser() {
       try {
         this.loading = true;
+
         const id = this.$route.params.id;
-        const response = await api.get(`/users/${id}/details`);
+
+        const response = await api.get(`/users/${id}/edit`);
         this.user = response.data.data;
-        this.form = response.data
+
+        this.form = {
+          firstName: response.data.data.firstName,
+          lastName: response.data.data.lastName,
+          phone: response.data.data.phone,
+          street: response.data.data.street,
+          city: response.data.data.city,
+          postalCode: response.data.data.postalCode,
+          country: response.data.data.country,
+          position: response.data.data.position,
+          role: response.data.data.role,
+          active: response.data.data.active,
+        };
       } catch (error) {
         this.error = error.response?.data?.message || "User not found";
       } finally {
@@ -116,9 +131,8 @@ export default {
     },
 
     async updateUser() {
-      console.log(this.form);
       try {
-        const result = updateusersSChema.safeParse(this.form);
+        const result = usersUpdateSchema.safeParse(this.form);
         if (!result.success) {
           result.error.issues.forEach((error) => {
             this.errors[error.path.join(".")] = error.message;

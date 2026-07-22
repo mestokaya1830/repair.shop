@@ -48,7 +48,7 @@ export const loginSchema = z.object({
 });
 
 // user
-export const usersSChema = z.object({
+export const usersSchema = z.object({
   email: z.string().email("Invalid email address").toLowerCase().trim(),
   password: z.string().min(8, "Password must be at least 8 characters"),
   role: z.enum(["owner", "admin", "user"]),
@@ -75,7 +75,7 @@ export const usersSChema = z.object({
 });
 
 // update user
-export const usersUpdateSChema = z.object({
+export const usersUpdateSchema = z.object({
   role: z.enum(["owner", "admin", "user"]).optional(),
   firstName: z
     .string()
@@ -119,7 +119,7 @@ export const customersSchema = z.object({
 });
 
 // update customer
-export const customersUpdateSChema = z.object({
+export const customersUpdateSchema = z.object({
   source: z.enum(["web", "office"]).optional(),
   firstName: z
     .string()

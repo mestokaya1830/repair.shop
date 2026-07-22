@@ -43,13 +43,13 @@ export const details = catchAsync(async (req, res, next) => {
 });
 
 export const edit = catchAsync(async (req, res, next) => {
-  const user = await usersSC.findById(req.params.id).lean();
-  if (!user) {
+  const data = await usersSC.findById(req.params.id).lean();
+  if (!data) {
     return next(new AppError("User not found", 404, "USER_NOT_FOUND"));
   }
   res.json({
     success: true,
-    user,
+    data,
   });
 });
 
