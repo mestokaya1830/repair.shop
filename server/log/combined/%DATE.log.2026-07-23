@@ -201,3 +201,22 @@
 {"env":"development","level":"info","message":"SIGINT - App shutting down gracefully","service":"mesfor repair shop","timestamp":"2026-07-23 00:51:41"}
 {"env":"development","level":"info","message":"HTTP server closed!","service":"mesfor repair shop","timestamp":"2026-07-23 00:51:41"}
 {"env":"development","level":"info","message":"MongoDB connection closed!","service":"mesfor repair shop","timestamp":"2026-07-23 00:51:41"}
+{"env":"development","level":"info","message":"Mongo Connected","service":"mesfor repair shop","timestamp":"2026-07-23 12:44:43"}
+{"env":"development","level":"info","message":"Server is runnin on PORT', 4001","service":"mesfor repair shop","timestamp":"2026-07-23 12:44:43"}
+{"env":"development","level":"info","message":"Mongo Connected","service":"mesfor repair shop","timestamp":"2026-07-23 12:45:47"}
+{"env":"development","level":"info","message":"Server is runnin on PORT', 4001","service":"mesfor repair shop","timestamp":"2026-07-23 12:45:47"}
+{"env":"development","level":"info","message":"Mongo Connected","service":"mesfor repair shop","timestamp":"2026-07-23 12:45:50"}
+{"env":"development","level":"info","message":"Server is runnin on PORT', 4001","service":"mesfor repair shop","timestamp":"2026-07-23 12:45:50"}
+{"env":"development","level":"info","message":"Mongo Connected","service":"mesfor repair shop","timestamp":"2026-07-23 12:45:53"}
+{"env":"development","level":"info","message":"Server is runnin on PORT', 4001","service":"mesfor repair shop","timestamp":"2026-07-23 12:45:53"}
+{"env":"development","level":"info","message":"Mongo Connected","service":"mesfor repair shop","timestamp":"2026-07-23 12:45:55"}
+{"env":"development","level":"info","message":"Server is runnin on PORT', 4001","service":"mesfor repair shop","timestamp":"2026-07-23 12:45:55"}
+{"env":"development","level":"info","message":"Mongo Connected","service":"mesfor repair shop","timestamp":"2026-07-23 12:46:13"}
+{"env":"development","level":"info","message":"Server is runnin on PORT', 4001","service":"mesfor repair shop","timestamp":"2026-07-23 12:46:13"}
+{"env":"development","level":"info","message":"Mongo Connected","service":"mesfor repair shop","timestamp":"2026-07-23 12:48:12"}
+{"env":"development","level":"info","message":"Server is runnin on PORT', 4001","service":"mesfor repair shop","timestamp":"2026-07-23 12:48:12"}
+{"env":"development","level":"info","message":"Mongo Connected","service":"mesfor repair shop","timestamp":"2026-07-23 12:48:19"}
+{"env":"development","level":"info","message":"Server is runnin on PORT', 4001","service":"mesfor repair shop","timestamp":"2026-07-23 12:48:19"}
+{"contentLength":"1156","duration":79,"env":"development","ip":"::1","level":"info","message":"http_request","method":"POST","path":"/api/web/create","requestId":"9ce6ee27-92be-45e8-b3d5-2cf96dd74c20","service":"mesfor repair shop","status":201,"timestamp":"2026-07-23 12:49:33","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"}
+{"env":"development","level":"info","message":"Mongo Connected","service":"mesfor repair shop","timestamp":"2026-07-23 12:52:01"}
+{"env":"development","level":"info","message":"Server is runnin on PORT', 4001","service":"mesfor repair shop","timestamp":"2026-07-23 12:52:01"}
