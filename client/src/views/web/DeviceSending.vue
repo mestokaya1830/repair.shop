@@ -96,28 +96,6 @@
 
         <input v-model="form.device.purchaseDate" type="date" />
       </div>
-
-      <div>
-        <label> Device Photos (optional) </label>
-
-        <input type="file" multiple accept="image/*" @change="handleImages" />
-
-        <small> Maximum 5 images </small>
-      </div>
-
-      <div v-if="imagePreviews.length" class="image-preview-container">
-        <h4>Selected Images</h4>
-
-        <div
-          v-for="(image, index) in imagePreviews"
-          :key="index"
-          class="image-preview"
-        >
-          <img :src="image.url" :alt="image.name" />
-
-          <button type="button" @click="removeImage(index)">×</button>
-        </div>
-      </div>
     </section>
 
     <!-- Problem -->
@@ -219,29 +197,48 @@
       </p>
       <div>
         <label> Preferred Contact Method </label>
-
         <select v-model="form.shipping.contactMethod">
           <option value="">Select</option>
-
           <option value="email">Email</option>
-
           <option value="phone">Phone</option>
         </select>
+      </div>
+    </section>
+
+    <!-- images -->
+    <section class="repair-card">
+      <div>
+        <label> Device Photos (optional) </label>
+
+        <input type="file" multiple accept="image/*" @change="handleImages" />
+
+        <small> Maximum 5 images </small>
+      </div>
+      <div v-if="imagePreviews.length" class="image-preview-container">
+        <h4>Selected Images</h4>
+
+        <div
+          v-for="(image, index) in imagePreviews"
+          :key="index"
+          class="image-preview"
+        >
+          <img :src="image.url" :alt="image.name" />
+
+          <button type="button" @click="removeImage(index)">X</button>
+        </div>
       </div>
     </section>
     <p v-if="errors['shipping.contactMethod']" class="form-error">
       {{ errors["shipping.contactMethod"] }}
     </p>
-    <button @click="submitRequest" :disabled="isSubmitting">
-      {{ isSubmitting ? "Checking..." : "Review Request" }}
-    </button>
+    <button @click="reviewBtn">Review Form</button>
   </div>
 </template>
 
 <script>
-import repairsSchema from "@/validations/repairs.schema.js";
-import { repairStore } from "@/stores/repair.js";
+import { repairsSchema } from "@/validations/repairs.schema.js";
 import api from "../../api/axios.js";
+import { getImages, saveImage, deleteImage, clearImages } from "@/utils/image.storage";
 
 export default {
   name: "RepairView",
@@ -249,65 +246,54 @@ export default {
     return {
       errors: {},
       isSubmitting: false,
+      currentImages: [],
       imagePreviews: [],
       maxImages: 5,
-      store: repairStore(),
+      form: JSON.parse(JSON.stringify(this.$store.state.repairs.form)),
     };
   },
-  computed: {
-    form() {
-      return this.store.form;
-    },
+  async created() {
+    const images = await getImages();
+    this.imagePreviews = images.map((file) => ({
+      name: file.name,
+      url: URL.createObjectURL(file),
+    }));
   },
-  mounted() {
-    if (this.$route.hash) {
-      setTimeout(() => {
-        const element = document.querySelector(this.$route.hash);
-        if (element) {
-          element.scrollIntoView({
-            behavior: "smooth",
-          });
-        }
-      }, 100);
-    }
+  async mounted() {
+    this.fillDefaults();
   },
   methods: {
-    handleImages(event) {
+    async handleImages(event) {
       const files = Array.from(event.target.files);
-      if (this.form.device.images.length + files.length > this.maxImages) {
-        alert("Maximum 5 images allowed");
 
+      const newFiles = files.filter(
+        (file) => !this.imagePreviews.some((p) => p.name === file.name),
+      );
+
+      if (this.imagePreviews.length + newFiles.length > this.maxImages) {
+        alert("Maximum 5 images allowed");
         return;
       }
 
-      files.forEach((file) => {
-        const exists = this.form.device.images.some(
-          (image) => image.name === file.name,
-        );
-
-        if (exists) {
-          return;
-        }
-
-        this.form.device.images.push(file);
-
+      for (const file of newFiles) {
+        await saveImage(file); // tekil kayıt, clear yok
         this.imagePreviews.push({
           name: file.name,
           url: URL.createObjectURL(file),
         });
-      });
+      }
 
       event.target.value = "";
     },
 
-    removeImage(index) {
-      URL.revokeObjectURL(this.imagePreviews[index].url);
-      this.form.device.images.splice(index, 1);
-
+    async removeImage(index) {
+      const { name, url } = this.imagePreviews[index];
+      URL.revokeObjectURL(url);
+      await deleteImage(name);
       this.imagePreviews.splice(index, 1);
     },
-
-    async submitRequest() {
+    
+    async reviewBtn() {
       this.errors = {};
       const result = repairsSchema.safeParse(this.form);
 
@@ -315,26 +301,46 @@ export default {
         result.error.issues.forEach((error) => {
           this.errors[error.path.join(".")] = error.message;
         });
-
         return;
       }
 
-      const formData = new FormData();
-      formData.append("data", JSON.stringify(result.data));
-
-      this.form.device.images.forEach((image) => {
-        formData.append("images", image);
-      });
-
-      try {
-        this.isSubmitting = true;
-        const response = await api.post("/web/create", formData);
-        this.submitted = true;
-      } catch (error) {
-        console.log(error);
-      } finally {
-        this.isSubmitting = false;
-      }
+      this.$store.commit("repairs/setRepairs", this.form);
+      this.$router.push("/device-reviewing");
+    },
+    
+    //test data
+    fillDefaults() {
+      this.form = {
+        customer: {
+          firstName: "Ahmet",
+          lastName: "Yılmaz",
+          email: "ahmet.yilmaz@example.com",
+          phone: "+90 532 123 45 67",
+          company: "Yılmaz Teknoloji Ltd. Şti.",
+        },
+        device: {
+          type: "Laptop",
+          brand: "Apple",
+          model: "MacBook Pro 16",
+          serialNumber: "C02G1234MD6R",
+          purchaseDate: "2023-05-15",
+          images: [],
+        },
+        problem: {
+          category: "Donanım",
+          description: "Cihaz şarj olmuyor ve fanlar yüksek sesle çalışıyor.",
+          startedAt: "2024-01-10",
+          deviceWorking: "Kısmen",
+          notes: "Daha önce servise gitmedi.",
+        },
+        shipping: {
+          street: "Atatürk Caddesi, No: 42 Daire: 5",
+          postalCode: "34380",
+          city: "İstanbul",
+          country: "Türkiye",
+          contactMethod: "E-posta",
+        },
+      };
     },
   },
 };

@@ -95,4 +95,12 @@ export const repairsUpdateSchema = z.object({
   estimatedCost: z.number().optional(),
 
   internalNotes: z.string().optional().or(z.literal("")),
+  reception: z
+    .object({
+      method: z.enum(["courier", "walk-in"]).optional(),
+      location: z.string().optional().or(z.literal("")),
+      courierCompany: z.string().optional().or(z.literal("")),
+      trackingNumber: z.string().optional().or(z.literal("")),
+    })
+    .optional(),
 });

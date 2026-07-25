@@ -3,15 +3,33 @@ import catchAsync from "../middleware/catch.async.js";
 import deviceSC from "../models/devices.sc.js";
 
 export const index = catchAsync(async (req, res, next) => {
-  const devices = await deviceSC.find().populate("customer").lean();
+  const { search, type, brand, customer } = req.query;
+  const filter = {};
 
-  if (devices.length === 0) {
-    return next(new AppError("Devices not found", 404, "DEVICES_NOT_FOUND"));
+  if (type) {
+    filter.type = type;
   }
+
+  if (brand) {
+    filter.brand = brand;
+  }
+
+  if (customer) {
+    filter.customer = customer;
+  }
+
+  if (search) {
+    filter.$or = [
+      { brand: { $regex: search, $options: "i" } },
+      { model: { $regex: search, $options: "i" } },
+      { serialNumber: { $regex: search, $options: "i" } },
+    ];
+  }
+
+  const devices = await deviceSC.find(filter).populate("customer").lean();
 
   res.json({
     success: true,
-
     devices,
   });
 });
@@ -87,15 +105,14 @@ export const create = catchAsync(async (req, res, next) => {
 });
 
 export const remove = catchAsync(async (req, res, next) => {
-  const device = await deviceSC.findByIdAndDelete(req.params.id);
-
-  if (!device) {
-    return next(new AppError("Device not found", 404, "DEVICE_NOT_FOUND"));
-  }
+  const device = await deviceSC.findByIdAndUpdate(
+    req.params.id,
+    { active: false },
+    { new: true },
+  );
 
   res.json({
     success: true,
-
     message: "Device deleted successfully",
   });
 });

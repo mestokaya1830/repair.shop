@@ -79,9 +79,3 @@ export const repairTrackController = catchAsync(async (req, res, next) => {
     data: result,
   });
 });
-
-const generateRepairNumber = () => {
-  const date = new Date().toISOString().slice(0, 10).replaceAll("-", "");
-  const random = Math.random().toString(36).substring(2, 7).toUpperCase();
-  return `REP-${date}-${random}`;
-};

@@ -28,6 +28,11 @@ const router = createRouter({
         },
 
         {
+          path: "repair-success",
+          name: "repair-success",
+          component: () => import("../views/web/RepairSuccess.vue"),
+        },
+        {
           path: "device-reviewing",
           name: "device-reviewing",
           component: () => import("../views/web/DeviceReviewing.vue"),
@@ -150,6 +155,11 @@ const router = createRouter({
               path: "create",
               name: "repairs-create",
               component: () => import("../views/admin/repairs/Create.vue"),
+            },
+            {
+              path: "review",
+              name: "repairs-review",
+              component: () => import("../views/admin/repairs/Review.vue"),
             },
 
             {

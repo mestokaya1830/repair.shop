@@ -13,7 +13,29 @@
     <p v-if="error" class="form-error">
       {{ error }}
     </p>
+    <div class="filters">
+      <input v-model="filters.search" placeholder="Search..." />
+      <button @click="getUsers">Search</button>
 
+      <select v-model="filters.role" @change="getUsers">
+        <option value="">All Roles</option>
+        <option value="admin">Admin</option>
+        <option value="user">User</option>
+      </select>
+      <select v-model="filters.position" @change="getUsers">
+        <option value="">All Positions</option>
+        <option value="Technician">Technician</option>
+        <option value="Manager">Manager</option>
+      </select>
+
+      <select v-model="filters.active" @change="getUsers">
+        <option value="">All Status</option>
+        <option value="true">Active</option>
+        <option value="false">Inactive</option>
+      </select>
+
+      <button @click="resetFilters">Reset</button>
+    </div>
     <table v-if="users?.length">
       <thead>
         <tr>
@@ -68,6 +90,7 @@
             >
               Edit
             </router-link>
+            <button @click="deleteUser(user._id)">Delete</button>
           </td>
         </tr>
       </tbody>
@@ -86,6 +109,12 @@ export default {
   data() {
     return {
       users: [],
+      filters: {
+        search: "",
+        role: "",
+        active: "",
+        position: "",
+      },
       loading: false,
       error: "",
     };
@@ -100,13 +129,42 @@ export default {
       try {
         this.loading = true;
         this.error = "";
-        const response = await api.get("/users");
+        const response = await api.get("/users", {
+          params: this.filters,
+        });
 
         this.users = response.data.data;
       } catch (error) {
         this.error = error.response?.data?.message || "Failed to load users";
       } finally {
         this.loading = false;
+      }
+    },
+    async resetFilters() {
+      this.filters = {
+        search: "",
+        role: "",
+        active: "",
+        position: "",
+      };
+
+      await this.getUsers();
+    },
+    async deleteUser(id) {
+      const confirmDelete = confirm(
+        "Are you sure you want to deactivate this user?",
+      );
+
+      if (!confirmDelete) {
+        return;
+      }
+
+      try {
+        await api.patch(`/users/${id}/delete`);
+
+        await this.getUsers();
+      } catch (error) {
+        this.error = error.response?.data?.message || "Delete failed";
       }
     },
   },

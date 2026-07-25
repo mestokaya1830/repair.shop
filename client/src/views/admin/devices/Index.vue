@@ -8,6 +8,29 @@
       {{ error }}
     </p>
 
+    <div class="filters">
+      <input v-model="filters.search" placeholder="Search..." />
+      <button @click="getDevices">Search</button>
+
+      <select v-model="filters.type" @change="getDevices">
+        <option value="">All Types</option>
+        <option value="Laptop">Laptop</option>
+        <option value="Desktop">Desktop</option>
+        <option value="Phone">Phone</option>
+        <option value="Tablet">Tablet</option>
+      </select>
+
+      <select v-model="filters.brand" @change="getDevices">
+        <option value="">All Brands</option>
+        <option value="Apple">Apple</option>
+        <option value="Dell">Dell</option>
+        <option value="HP">HP</option>
+        <option value="Lenovo">Lenovo</option>
+      </select>
+
+      <button @click="resetFilters">Reset</button>
+    </div>
+
     <table v-if="devices.length">
       <thead>
         <tr>
@@ -71,7 +94,12 @@ export default {
   data() {
     return {
       devices: [],
-
+      filters: {
+        search: "",
+        type: "",
+        brand: "",
+        customer: "",
+      },
       loading: false,
 
       error: "",
@@ -87,7 +115,9 @@ export default {
       try {
         this.loading = true;
 
-        const response = await api.get("/devices");
+        const response = await api.get("/devices", {
+          params: this.filters,
+        });
 
         this.devices = response.data.devices;
       } catch (error) {
@@ -96,7 +126,16 @@ export default {
         this.loading = false;
       }
     },
+    async resetFilters() {
+      this.filters = {
+        search: "",
+        type: "",
+        brand: "",
+        customer: "",
+      };
 
+      await this.getDevices();
+    },
     async deleteDevice(id) {
       const confirmDelete = confirm(
         "Are you sure you want to delete this device?",

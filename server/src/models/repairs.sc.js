@@ -2,6 +2,10 @@ import mongoose from "mongoose";
 
 const repairsSC = new mongoose.Schema(
   {
+    isActive: {
+      type: Boolean,
+      default: true
+    },
     repairNumber: {
       type: String,
       required: true,
@@ -9,7 +13,6 @@ const repairsSC = new mongoose.Schema(
       index: true,
     },
 
-    // Kaynak
     source: {
       type: String,
       enum: ["web", "office"],
@@ -84,19 +87,13 @@ const repairsSC = new mongoose.Schema(
       },
 
       startedAt: Date,
-
       deviceWorking: String,
-
       notes: String,
     },
-
     diagnosis: String,
-
     solution: String,
-
     estimatedCompletionDate: Date,
 
-    // Servis kabul bilgisi
     reception: {
       method: {
         type: String,
@@ -104,7 +101,6 @@ const repairsSC = new mongoose.Schema(
       },
 
       location: String,
-
       receivedBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "users",
@@ -115,11 +111,9 @@ const repairsSC = new mongoose.Schema(
       },
 
       courierCompany: String,
-
       trackingNumber: String,
     },
 
-    // Müşteri onayı
     approval: {
       status: {
         type: String,
@@ -128,19 +122,14 @@ const repairsSC = new mongoose.Schema(
       },
 
       approvedAt: Date,
-
       note: String,
     },
 
     shipping: {
       street: String,
-
       postalCode: String,
-
       city: String,
-
       country: String,
-
       contactMethod: {
         type: String,
         enum: ["phone", "email", "whatsapp"],
@@ -238,19 +227,23 @@ const repairsSC = new mongoose.Schema(
       },
     ],
 
-    // Admin tarafından oluşturulursa dolar
-    // Web tarafından null kalır
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,
-
       ref: "users",
-
       default: null,
     },
+
+    deletedBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "users",
+    },
+
+    deletedAt: Date,
   },
 
   {
     timestamps: true,
+    versionKey: false
   },
 );
 

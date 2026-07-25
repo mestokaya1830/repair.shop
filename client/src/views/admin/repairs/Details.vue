@@ -37,11 +37,11 @@
         <option value="">Select Technician</option>
 
         <option v-for="user in technicians" :key="user._id" :value="user._id">
-          {{ use?.firstName }}
-          {{ use?.lastName }}
+          {{ user?.firstName }}
+          {{ user?.lastName }}
 
           -
-          {{ use?.position || user.role }}
+          {{ user?.position || user.role }}
         </option>
       </select>
 
@@ -157,17 +157,11 @@
       <ul>
         <li v-for="item in repair.statusHistory" :key="item._id">
           {{ item.status }}
-
           -
-
           {{ item.note }}
-
           -
-
           {{ item.changedBy?.name }}
-
           -
-
           {{ formatDate(item.createdAt) }}
         </li>
       </ul>
@@ -196,9 +190,32 @@
           {{ formatDate(log.createdAt) }}
         </li>
       </ul>
+      <div v-if="repair.status === 'Deliverd'">
+        <ul>
+          <li>
+            {{ repair.reception.method }}
+            -
+            {{ repair.reception.location }}
+            -
+            {{ repair.reception.courierCompany }}
+            -
+            {{ repair.reception.trackingNumber }}
+            -
+          </li>
+        </ul>
+        {{ repair.reception }}
+      </div>
       <button v-if="repair.status === 'Delivered'" @click="reopenRepair">
         Reopen Repair
       </button>
+      <div class="image-preview">
+        <template v-for="item in repair.images">
+          <img
+            :src="`http://localhost:4001/${item.path}`"
+            :alt="item.name || 'Repair Images'"
+          />
+        </template>
+      </div>
     </div>
   </div>
 </template>
@@ -229,13 +246,12 @@ export default {
     async getRepair() {
       try {
         this.loading = true;
-
         const response = await api.get(
           `/repairs/${this.$route.params.id}/details`,
         );
 
         this.repair = response.data.repair;
-        console.log(this.repair)
+        console.log(this.repair);
       } catch (error) {
         this.error = error.response?.data?.message || "Failed to load repair";
       } finally {
@@ -247,7 +263,6 @@ export default {
       try {
         await api.patch(`/repairs/${this.repair._id}/status`, {
           status,
-
           note: `${status} status changed`,
         });
 
@@ -262,16 +277,21 @@ export default {
 
       return new Date(date).toLocaleDateString();
     },
+
     async getTechnicians() {
       try {
-        const response = await api.get("/users?position=technician");
-
+        const response = await api.get("/users", {
+          params: {
+            position: "technician",
+          },
+        });
         this.technicians = response.data.data;
       } catch (error) {
         this.error =
           error.response?.data?.message || "Failed to load technicians";
       }
     },
+
     async assignRepair() {
       try {
         await api.patch(`/repairs/${this.repair._id}/assign`, {
@@ -283,6 +303,7 @@ export default {
         this.error = error.response?.data?.message || "Assignment failed";
       }
     },
+
     async addWorkLog() {
       if (!this.workMessage) {
         return;
@@ -300,10 +321,10 @@ export default {
         this.error = error.response?.data?.message || "Failed to add work log";
       }
     },
+
     async reopenRepair() {
       try {
         await api.patch(`/repairs/${this.repair._id}/reopen`);
-
         this.getRepair();
       } catch (error) {
         this.error = error.response?.data?.message || "Reopen failed";

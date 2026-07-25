@@ -1,0 +1,514 @@
+{
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Server Error",
+  "method": "POST",
+  "requestId": "9a58aa02-d5ea-4cf4-b451-766cfae09400",
+  "service": "mesfor repair shop",
+  "stack": "ReferenceError: Pending is not defined\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/controllers/admin.repairs.controller.js:13:18\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/middleware/catch.async.js:2:19\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/route.js:157:13)\n    at auth (file:///media/mesto/Store/my-projects/repair.shop/server/src/middleware/auth.js:16:5)\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/route.js:157:13)\n    at Route.dispatch (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/route.js:117:3)\n    at handle (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:435:11)\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-25 00:01:18",
+  "url": "/api/repairs/create"
+}
+{
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Server Error",
+  "method": "POST",
+  "requestId": "ba8e1f60-650d-437b-8a5a-1de1e7f69650",
+  "service": "mesfor repair shop",
+  "stack": "ReferenceError: Pending is not defined\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/controllers/admin.repairs.controller.js:13:18\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/middleware/catch.async.js:2:19\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/route.js:157:13)\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/middleware/validate.js:19:5\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/route.js:157:13)\n    at done (/media/mesto/Store/my-projects/repair.shop/server/node_modules/multer/lib/make-middleware.js:70:7)\n    at indicateDone (/media/mesto/Store/my-projects/repair.shop/server/node_modules/multer/lib/make-middleware.js:74:68)\n    at /media/mesto/Store/my-projects/repair.shop/server/node_modules/multer/lib/make-middleware.js:247:11",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-25 00:03:41",
+  "url": "/api/repairs/create"
+}
+{
+  "code": "PAGE_NOT_FOUND",
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Page Not Found",
+  "method": "GET",
+  "requestId": "62efd839-311a-43bb-a1ab-034c28a52e1e",
+  "service": "mesfor repair shop",
+  "stack": "Error: Page Not Found\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/index.js:41:15\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at trimPrefix (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:342:13)\n    at /media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:297:9\n    at processParams (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:582:12)\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:291:5)\n    at httpLogger (file:///media/mesto/Store/my-projects/repair.shop/server/src/middleware/http.logger.js:25:3)\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at trimPrefix (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:342:13)\n    at /media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:297:9",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-25 00:04:34",
+  "url": "/src/uploads/repairs/REQ-20260725-3847/customer-1784930644809.jpeg"
+}
+{
+  "code": "PAGE_NOT_FOUND",
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Page Not Found",
+  "method": "GET",
+  "requestId": "4554f78d-1c21-4aae-a10a-cd9689faafec",
+  "service": "mesfor repair shop",
+  "stack": "Error: Page Not Found\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/index.js:41:15\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at trimPrefix (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:342:13)\n    at /media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:297:9\n    at processParams (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:582:12)\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:291:5)\n    at httpLogger (file:///media/mesto/Store/my-projects/repair.shop/server/src/middleware/http.logger.js:25:3)\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at trimPrefix (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:342:13)\n    at /media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:297:9",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-25 00:04:48",
+  "url": "/src/uploads/repairs/REQ-20260725-3847/customer-1784930644809.jpeg"
+}
+{
+  "code": "PAGE_NOT_FOUND",
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Page Not Found",
+  "method": "GET",
+  "requestId": "df4252fb-86d8-450c-a63c-4cf013bb7193",
+  "service": "mesfor repair shop",
+  "stack": "Error: Page Not Found\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/index.js:41:15\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at trimPrefix (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:342:13)\n    at /media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:297:9\n    at processParams (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:582:12)\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:291:5)\n    at httpLogger (file:///media/mesto/Store/my-projects/repair.shop/server/src/middleware/http.logger.js:25:3)\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at trimPrefix (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:342:13)\n    at /media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:297:9",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-25 00:04:56",
+  "url": "/src/uploads/repairs/REQ-20260725-3847/customer-1784930644809.jpeg"
+}
+{
+  "code": "PAGE_NOT_FOUND",
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Page Not Found",
+  "method": "GET",
+  "requestId": "78fe59e2-b155-4e78-b683-9b8eb8978ae8",
+  "service": "mesfor repair shop",
+  "stack": "Error: Page Not Found\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/index.js:41:15\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at trimPrefix (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:342:13)\n    at /media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:297:9\n    at processParams (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:582:12)\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:291:5)\n    at httpLogger (file:///media/mesto/Store/my-projects/repair.shop/server/src/middleware/http.logger.js:25:3)\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at trimPrefix (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:342:13)\n    at /media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:297:9",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-25 00:05:08",
+  "url": "/src/uploads/repairs/REQ-20260725-3847/customer-1784930644809.jpeg"
+}
+{
+  "code": "PAGE_NOT_FOUND",
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Page Not Found",
+  "method": "GET",
+  "requestId": "ad19f9ef-6a4d-4aa7-a438-e26d1fa801f3",
+  "service": "mesfor repair shop",
+  "stack": "Error: Page Not Found\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/index.js:41:15\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at trimPrefix (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:342:13)\n    at /media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:297:9\n    at processParams (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:582:12)\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:291:5)\n    at httpLogger (file:///media/mesto/Store/my-projects/repair.shop/server/src/middleware/http.logger.js:25:3)\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at trimPrefix (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:342:13)\n    at /media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:297:9",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-25 00:06:13",
+  "url": "/src/uploads/repairs/REQ-20260725-3847/customer-1784930644809.jpeg"
+}
+{
+  "code": "PAGE_NOT_FOUND",
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Page Not Found",
+  "method": "GET",
+  "requestId": "6c81db24-8265-489c-b94a-24883cbd67c1",
+  "service": "mesfor repair shop",
+  "stack": "Error: Page Not Found\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/index.js:41:15\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at trimPrefix (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:342:13)\n    at /media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:297:9\n    at processParams (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:582:12)\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:291:5)\n    at httpLogger (file:///media/mesto/Store/my-projects/repair.shop/server/src/middleware/http.logger.js:25:3)\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at trimPrefix (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:342:13)\n    at /media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:297:9",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-25 00:07:50",
+  "url": "/src/uploads/repairs/REQ-20260725-3847/customer-1784930644809.jpeg"
+}
+{
+  "code": "PAGE_NOT_FOUND",
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Page Not Found",
+  "method": "GET",
+  "requestId": "8604f018-8c50-4d09-a6f4-bb8eb31d675c",
+  "service": "mesfor repair shop",
+  "stack": "Error: Page Not Found\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/index.js:41:15\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at trimPrefix (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:342:13)\n    at /media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:297:9\n    at processParams (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:582:12)\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:291:5)\n    at httpLogger (file:///media/mesto/Store/my-projects/repair.shop/server/src/middleware/http.logger.js:25:3)\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at trimPrefix (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:342:13)\n    at /media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:297:9",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-25 00:08:35",
+  "url": "/src/uploads/repairs/REQ-20260725-3847/customer-1784930644809.jpeg"
+}
+{
+  "code": "PAGE_NOT_FOUND",
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Page Not Found",
+  "method": "GET",
+  "requestId": "c836367a-6c06-4bf0-a3a9-fbd132f32403",
+  "service": "mesfor repair shop",
+  "stack": "Error: Page Not Found\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/index.js:41:15\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at trimPrefix (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:342:13)\n    at /media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:297:9\n    at processParams (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:582:12)\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:291:5)\n    at httpLogger (file:///media/mesto/Store/my-projects/repair.shop/server/src/middleware/http.logger.js:25:3)\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at trimPrefix (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:342:13)\n    at /media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:297:9",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-25 00:10:51",
+  "url": "/src/uploads/repairs/REQ-20260725-3847/customer-1784930644809.jpeg"
+}
+{
+  "code": "PAGE_NOT_FOUND",
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Page Not Found",
+  "method": "DELETE",
+  "requestId": "7f6fd70d-54c7-4931-8d64-e98255b38ad4",
+  "service": "mesfor repair shop",
+  "stack": "Error: Page Not Found\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/index.js:41:15\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at trimPrefix (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:342:13)\n    at /media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:297:9\n    at processParams (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:582:12)\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:291:5)\n    at /media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:688:15\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:276:14)\n    at Function.handle (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:186:3)\n    at router (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:60:12)",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-25 00:15:33",
+  "url": "/api/repairs/6a63e154c7179fd384022b64/delete"
+}
+{
+  "code": "PAGE_NOT_FOUND",
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Page Not Found",
+  "method": "DELETE",
+  "requestId": "ae43b19a-286b-41b8-8235-391f0cd1bf00",
+  "service": "mesfor repair shop",
+  "stack": "Error: Page Not Found\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/index.js:41:15\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at trimPrefix (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:342:13)\n    at /media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:297:9\n    at processParams (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:582:12)\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:291:5)\n    at /media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:688:15\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:276:14)\n    at Function.handle (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:186:3)\n    at router (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:60:12)",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-25 00:15:41",
+  "url": "/api/repairs/6a63e154c7179fd384022b64/delete"
+}
+{
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Server Error",
+  "method": "GET",
+  "requestId": "dae3667e-5e6f-4a97-8706-b21205a150f9",
+  "service": "mesfor repair shop",
+  "stack": "ReferenceError: isActive is not defined\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/controllers/admin.repairs.controller.js:82:12\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/middleware/catch.async.js:2:19\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/route.js:157:13)\n    at auth (file:///media/mesto/Store/my-projects/repair.shop/server/src/middleware/auth.js:16:5)\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/route.js:157:13)\n    at Route.dispatch (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/route.js:117:3)\n    at handle (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:435:11)\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-25 00:24:54",
+  "url": "/api/repairs"
+}
+{
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Server Error",
+  "method": "GET",
+  "requestId": "ef402709-1568-40d9-a351-49f346c742e7",
+  "service": "mesfor repair shop",
+  "stack": "ReferenceError: isActive is not defined\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/controllers/admin.repairs.controller.js:82:12\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/middleware/catch.async.js:2:19\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/route.js:157:13)\n    at auth (file:///media/mesto/Store/my-projects/repair.shop/server/src/middleware/auth.js:16:5)\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/route.js:157:13)\n    at Route.dispatch (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/route.js:117:3)\n    at handle (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:435:11)\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-25 00:24:56",
+  "url": "/api/repairs"
+}
+{
+  "code": "REPAIRS_NOT_FOUND",
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Repairs not found",
+  "method": "GET",
+  "requestId": "9e2eb2c7-bfd0-43c9-9a14-f8c65d5e137c",
+  "service": "mesfor repair shop",
+  "stack": "Error: Repairs not found\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/controllers/admin.repairs.controller.js:93:17\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-25 00:25:15",
+  "url": "/api/repairs"
+}
+{
+  "code": "REPAIRS_NOT_FOUND",
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Repairs not found",
+  "method": "GET",
+  "requestId": "f855026c-9991-4b7c-ba0d-4dcc5f7e51c8",
+  "service": "mesfor repair shop",
+  "stack": "Error: Repairs not found\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/controllers/admin.repairs.controller.js:93:17\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-25 00:25:16",
+  "url": "/api/repairs"
+}
+{
+  "code": "REPAIR_NOT_FOUND",
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Repair not found",
+  "method": "GET",
+  "requestId": "2ab744f2-5a39-4abc-92b7-1681cfa69080",
+  "service": "mesfor repair shop",
+  "stack": "Error: Repair not found\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/controllers/admin.repairs.controller.js:114:17\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-25 00:25:47",
+  "url": "/api/repairs/6a63e2d4c7179fd384022b6b/details"
+}
+{
+  "code": "REPAIR_NOT_FOUND",
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Repair not found",
+  "method": "GET",
+  "requestId": "6b6def82-713b-4397-9d0b-e68e639204f0",
+  "service": "mesfor repair shop",
+  "stack": "Error: Repair not found\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/controllers/admin.repairs.controller.js:114:17\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-25 00:25:49",
+  "url": "/api/repairs/6a63e2d4c7179fd384022b6b/details"
+}
+{
+  "code": "REPAIRS_NOT_FOUND",
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Repairs not found",
+  "method": "GET",
+  "requestId": "5a6004ba-56db-475b-9a4c-fa6aa608fd37",
+  "service": "mesfor repair shop",
+  "stack": "Error: Repairs not found\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/controllers/admin.repairs.controller.js:93:17\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-25 00:25:55",
+  "url": "/api/repairs"
+}
+{
+  "code": "REPAIRS_NOT_FOUND",
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Repairs not found",
+  "method": "GET",
+  "requestId": "f7ac035f-2ee0-40f2-953d-8f1d3509fa86",
+  "service": "mesfor repair shop",
+  "stack": "Error: Repairs not found\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/controllers/admin.repairs.controller.js:93:17\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-25 00:29:27",
+  "url": "/api/repairs"
+}
+{
+  "code": "REPAIRS_NOT_FOUND",
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Repairs not found",
+  "method": "GET",
+  "requestId": "d6192f66-3657-4f3e-8228-f69e543c5611",
+  "service": "mesfor repair shop",
+  "stack": "Error: Repairs not found\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/controllers/admin.repairs.controller.js:93:17\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-25 00:29:28",
+  "url": "/api/repairs"
+}
+{
+  "code": "REPAIRS_NOT_FOUND",
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Repairs not found",
+  "method": "GET",
+  "requestId": "46d1360a-e026-4d2f-85c9-9970b4072e18",
+  "service": "mesfor repair shop",
+  "stack": "Error: Repairs not found\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/controllers/admin.repairs.controller.js:93:17\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-25 00:37:26",
+  "url": "/api/repairs"
+}
+{
+  "code": "REPAIRS_NOT_FOUND",
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Repairs not found",
+  "method": "GET",
+  "requestId": "da92957e-5508-4b77-aace-3312ed1506a7",
+  "service": "mesfor repair shop",
+  "stack": "Error: Repairs not found\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/controllers/admin.repairs.controller.js:93:17\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-25 00:39:26",
+  "url": "/api/repairs"
+}
+{
+  "code": "REPAIRS_NOT_FOUND",
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Repairs not found",
+  "method": "GET",
+  "requestId": "6f436a35-061c-4581-a5ef-6ab8bce6ceec",
+  "service": "mesfor repair shop",
+  "stack": "Error: Repairs not found\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/controllers/admin.repairs.controller.js:93:17\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-25 00:39:53",
+  "url": "/api/repairs"
+}
+{
+  "code": "INVALID_TOKEN",
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Invalid Token",
+  "method": "GET",
+  "requestId": "1b0bd658-fc81-4793-9917-790189e65872",
+  "service": "mesfor repair shop",
+  "stack": "Error: Invalid Token\n    at auth (file:///media/mesto/Store/my-projects/repair.shop/server/src/middleware/auth.js:19:17)\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/route.js:157:13)\n    at Route.dispatch (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/route.js:117:3)\n    at handle (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:435:11)\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at /media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:295:15\n    at processParams (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:582:12)\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:291:5)\n    at Function.handle (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:186:3)",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-25 00:59:33",
+  "url": "/api/repairs"
+}
+{
+  "code": "DEVICES_NOT_FOUND",
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Devices not found",
+  "method": "GET",
+  "requestId": "df2c9967-9c6c-46db-9eb3-45e7cd345041",
+  "service": "mesfor repair shop",
+  "stack": "Error: Devices not found\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/controllers/devices.controller.js:32:17\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-25 21:29:49",
+  "url": "/api/devices?search=&type=Desktop&brand=&customer="
+}
+{
+  "code": "DEVICES_NOT_FOUND",
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Devices not found",
+  "method": "GET",
+  "requestId": "34381ef9-2bc3-4311-b1eb-0f66ac50bfe1",
+  "service": "mesfor repair shop",
+  "stack": "Error: Devices not found\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/controllers/devices.controller.js:32:17\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-25 21:29:58",
+  "url": "/api/devices?search=&type=Desktop&brand=&customer="
+}
+{
+  "code": "DEVICES_NOT_FOUND",
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Devices not found",
+  "method": "GET",
+  "requestId": "55cb2ae3-8036-4544-9ff2-8da58232b96f",
+  "service": "mesfor repair shop",
+  "stack": "Error: Devices not found\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/controllers/devices.controller.js:32:17\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-25 21:30:11",
+  "url": "/api/devices?search=&type=Desktop&brand=&customer="
+}
+{
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Server Error",
+  "method": "GET",
+  "requestId": "650b6327-2707-4c7a-9c63-34eec4a31127",
+  "service": "mesfor repair shop",
+  "stack": "ReferenceError: userSC is not defined\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/controllers/users.controller.js:62:17\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/middleware/catch.async.js:2:19\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/route.js:157:13)\n    at auth (file:///media/mesto/Store/my-projects/repair.shop/server/src/middleware/auth.js:16:5)\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/route.js:157:13)\n    at Route.dispatch (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/route.js:117:3)\n    at handle (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:435:11)\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-25 21:33:39",
+  "url": "/api/users?search=&role=&active="
+}
+{
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Server Error",
+  "method": "GET",
+  "requestId": "e4058b1b-9cf7-49c7-8a2a-12eecc90c265",
+  "service": "mesfor repair shop",
+  "stack": "ReferenceError: position is not defined\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/controllers/users.controller.js:51:3\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/middleware/catch.async.js:2:19\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/route.js:157:13)\n    at auth (file:///media/mesto/Store/my-projects/repair.shop/server/src/middleware/auth.js:16:5)\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/route.js:157:13)\n    at Route.dispatch (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/route.js:117:3)\n    at handle (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:435:11)\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-25 21:36:15",
+  "url": "/api/users?search=&role=&active="
+}
+{
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Server Error",
+  "method": "GET",
+  "requestId": "71962558-50ff-40de-b30b-f5a5133f5c86",
+  "service": "mesfor repair shop",
+  "stack": "ReferenceError: position is not defined\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/controllers/users.controller.js:51:3\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/middleware/catch.async.js:2:19\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/route.js:157:13)\n    at auth (file:///media/mesto/Store/my-projects/repair.shop/server/src/middleware/auth.js:16:5)\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/route.js:157:13)\n    at Route.dispatch (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/route.js:117:3)\n    at handle (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:435:11)\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-25 21:36:18",
+  "url": "/api/users?search=&role=&active="
+}
+{
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Server Error",
+  "method": "GET",
+  "requestId": "b2dba5bf-7c20-4a9e-8e65-de13bf871e44",
+  "service": "mesfor repair shop",
+  "stack": "ReferenceError: position is not defined\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/controllers/users.controller.js:51:3\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/middleware/catch.async.js:2:19\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/route.js:157:13)\n    at auth (file:///media/mesto/Store/my-projects/repair.shop/server/src/middleware/auth.js:16:5)\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/route.js:157:13)\n    at Route.dispatch (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/route.js:117:3)\n    at handle (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:435:11)\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-25 21:36:19",
+  "url": "/api/users?search=&role=&active="
+}
+{
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Server Error",
+  "method": "GET",
+  "requestId": "ecc9941a-e668-4d39-83fb-6cb1012e48d8",
+  "service": "mesfor repair shop",
+  "stack": "ReferenceError: position is not defined\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/controllers/users.controller.js:51:3\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/middleware/catch.async.js:2:19\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/route.js:157:13)\n    at auth (file:///media/mesto/Store/my-projects/repair.shop/server/src/middleware/auth.js:16:5)\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/route.js:157:13)\n    at Route.dispatch (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/route.js:117:3)\n    at handle (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:435:11)\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-25 21:36:21",
+  "url": "/api/users?search=&role=&active="
+}
+{
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Server Error",
+  "method": "GET",
+  "requestId": "cf73b644-c29c-4c62-a54d-5e86a903d561",
+  "service": "mesfor repair shop",
+  "stack": "ReferenceError: position is not defined\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/controllers/users.controller.js:51:3\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/middleware/catch.async.js:2:19\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/route.js:157:13)\n    at auth (file:///media/mesto/Store/my-projects/repair.shop/server/src/middleware/auth.js:16:5)\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/route.js:157:13)\n    at Route.dispatch (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/route.js:117:3)\n    at handle (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:435:11)\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-25 21:36:29",
+  "url": "/api/users?search=&role=&active=&position="
+}
+{
+  "env": "development",
+  "ip": "::1",
+  "level": "error",
+  "message": "Server Error",
+  "method": "GET",
+  "requestId": "71a81e9a-d07e-49d5-9962-5f19d60550c9",
+  "service": "mesfor repair shop",
+  "stack": "ReferenceError: position is not defined\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/controllers/users.controller.js:51:3\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/middleware/catch.async.js:2:19\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/route.js:157:13)\n    at auth (file:///media/mesto/Store/my-projects/repair.shop/server/src/middleware/auth.js:16:5)\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)\n    at next (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/route.js:157:13)\n    at Route.dispatch (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/route.js:117:3)\n    at handle (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/index.js:435:11)\n    at Layer.handleRequest (/media/mesto/Store/my-projects/repair.shop/server/node_modules/router/lib/layer.js:152:17)",
+  "status": 200,
+  "success": false,
+  "timestamp": "2026-07-25 21:37:56",
+  "url": "/api/users?search=&role=&active=&position="
+}

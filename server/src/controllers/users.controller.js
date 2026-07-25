@@ -6,9 +6,8 @@ import usersSC from "../models/users.sc.js";
 import repairsSC from "../models/repairs.sc.js";
 import logger from "../utils/logger.js";
 
-
 export const create = catchAsync(async (req, res, next) => {
-  console.log(req.body)
+  console.log(req.body);
   let role;
   switch (req.user.role) {
     case "owner":
@@ -37,19 +36,37 @@ export const create = catchAsync(async (req, res, next) => {
   });
 });
 
-
 export const index = catchAsync(async (req, res, next) => {
-  const filter = {};
+  const { search, role, active, position } = req.query;
 
-  if (req.query.position) {
-    filter.position = req.query.position;
+const filter = {
+  active: true,
+};
+
+  if (role) {
+    filter.role = role;
   }
 
-  const data = await usersSC.find(filter).select("-password").lean();
+ if (active !== undefined && active !== "") {
+    filter.active = active === "true";
+  }
+  if (position) {
+    filter.position = position;
+  }
+
+  if (search) {
+    filter.$or = [
+      { firstName: { $regex: search, $options: "i" } },
+      { lastName: { $regex: search, $options: "i" } },
+      { email: { $regex: search, $options: "i" } },
+      { phone: { $regex: search, $options: "i" } },
+    ];
+  }
+  const users = await usersSC.find(filter).lean();
 
   res.json({
     success: true,
-    data
+    data: users,
   });
 });
 
@@ -143,4 +160,19 @@ export const updateProfile = catchAsync(async (req, res, next) => {
   });
 });
 
+export const deleteUser = catchAsync(async (req, res, next) => {
+  const user = await usersSC.findById(req.params.id);
 
+  if (!user) {
+    return next(new AppError("User not found", 404, "USER_NOT_FOUND"));
+  }
+
+  user.active = false;
+
+  await user.save();
+
+  res.json({
+    success: true,
+    message: "User deactivated successfully",
+  });
+});

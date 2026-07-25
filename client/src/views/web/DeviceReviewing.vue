@@ -7,21 +7,21 @@
         <p>
           Request Number:
           <strong>
-            {{ store.repairNumber }}
+            {{ form.repairNumber || "-" }}
           </strong>
         </p>
 
         <p>
           Status:
           <strong>
-            {{ store.status }}
+            {{ form.status || "Pending" }}
           </strong>
         </p>
 
         <p>
           Created:
           <strong>
-            {{ store.createdAt }}
+            {{ form.createdAt || "-" }}
           </strong>
         </p>
       </div>
@@ -51,7 +51,11 @@
         {{ form.customer.company || "-" }}
       </p>
 
-      <button class="actions no-print" @click="editSection('customer')">
+      <button
+        class="actions no-print"
+        @click="editSection('customer')"
+        :disabled="submitting"
+      >
         Edit
       </button>
     </section>
@@ -79,7 +83,11 @@
         {{ form.device.serialNumber || "-" }}
       </p>
 
-      <button class="actions no-print" @click="editSection('device')">
+      <button
+        class="actions no-print"
+        @click="editSection('device')"
+        :disabled="submitting"
+      >
         Edit
       </button>
     </section>
@@ -102,7 +110,11 @@
         {{ form.problem.deviceWorking }}
       </p>
 
-      <button class="actions no-print" @click="editSection('problem')">
+      <button
+        class="actions no-print"
+        @click="editSection('problem')"
+        :disabled="submitting"
+      >
         Edit
       </button>
     </section>
@@ -124,51 +136,126 @@
         {{ form.shipping.country }}
       </p>
 
-      <button class="actions no-print" @click="editSection('shipping')">
+      <button
+        class="actions no-print"
+        @click="editSection('shipping')"
+        :disabled="submitting"
+      >
         Edit
       </button>
     </section>
-    <img
-      v-for="image in form.device.images"
-      :key="image.name"
-      :src="URL.createObjectURL(image)"
-    />
-    <div class="actions no-print">
-      <button @click="printDoc()">Print PDF</button>
 
-      <button>Confirm Request</button>
+    <div class="image-preview-container">
+      <img
+        v-for="(url, index) in imageUrls"
+        :key="index"
+        :src="url"
+        class="image-preview"
+      />
     </div>
+
+    <div class="actions no-print">
+      <button @click="printDoc">Print PDF</button>
+
+      <button @click="submitForm" :disabled="submitting">
+        {{ submitting ? "Submitting..." : "Submit" }}
+      </button>
+    </div>
+
+    <p v-if="error" class="form-error">
+      {{ error }}
+    </p>
   </div>
 </template>
 
 <script>
-import { repairStore } from "@/stores/repair.js";
+import { getImages } from "@/utils/image.storage";
+import api from "../../api/axios";
 
 export default {
   name: "RepairReview",
 
   data() {
     return {
-      store: repairStore(),
+      imageUrls: [],
+
+      submitting: false,
+
+      error: "",
     };
   },
 
   computed: {
     form() {
-      return this.store.form;
+      return this.$store.state.repairs.form;
     },
+  },
+
+  async mounted() {
+    const images = await getImages();
+
+    this.imageUrls = images.map((image) => URL.createObjectURL(image));
+  },
+
+  beforeUnmount() {
+    this.imageUrls.forEach((url) => {
+      URL.revokeObjectURL(url);
+    });
   },
 
   methods: {
     editSection(section) {
       this.$router.push({
-        name: "repair",
+        name: "device-sending",
+
         hash: `#${section}`,
       });
     },
 
-    async printDoc() {
+    printDoc() {
       window.print();
+    },
+
+    async submitForm() {
+      if (this.submitting) {
+        return;
+      }
+
+      try {
+        this.submitting = true;
+
+        this.error = "";
+
+        const images = await getImages();
+
+        const formData = new FormData();
+
+        images.forEach((item) => {
+          formData.append("images", item);
+        });
+
+        formData.append("data", JSON.stringify(this.form));
+
+        const response = await api.post("/web/create", formData);
+
+        this.$store.commit("repairs/setRepairSuccess", {
+          repairNumber: response.data.data.repairNumber,
+
+          status: response.data.data.status,
+
+          createdAt: response.data.data.createdAt,
+        });
+
+        this.$store.commit("repairs/resetRepairs");
+
+        this.$router.replace({
+          name: "repair-success",
+        });
+      } catch (error) {
+        this.error = error.response?.data?.message || "Repair request failed";
+      } finally {
+        this.submitting = false;
+      }
     },
   },
 };

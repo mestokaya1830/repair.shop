@@ -219,7 +219,7 @@ export const update = catchAsync(async (req, res, next) => {
 });
 
 export const remove = catchAsync(async (req, res, next) => {
-  const data = await customersSC.findByIdAndDelete(req.params.id);
+  const device = await customersSC.findByIdAndUpdate(req.params.id,{active: false,},{new: true});
 
   res.json({
     success: true,

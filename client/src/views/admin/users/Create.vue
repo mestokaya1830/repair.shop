@@ -106,7 +106,7 @@
 
 <script>
 import api from "@/api/axios.js";
-import { usersSchema } from "@/validators/schemas.js";
+import { usersSchema } from "@/validations/users.schema.js";
 export default {
   name: "AddUser",
   data() {
@@ -143,7 +143,6 @@ export default {
       }
       try {
         this.loading = true;
-        return false
         await api.post("/users/create", result.data);
         this.$router.push("/admin/users");
       } catch (error) {

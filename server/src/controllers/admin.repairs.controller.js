@@ -8,16 +8,16 @@ import AppError from "../utils/app.error.js";
 export const create = catchAsync(async (req, res, next) => {
   const data = req.body;
 
-  const source = 'office';
+  const source = "office";
   const createdBy = req.user._id;
-  const status = Pending;
+  const status = "Pending";
 
   const images =
     req.files?.map((file) => ({
       filename: file.filename,
-      path: file.path,
+      path: `repairs/${req.repairNumber}/${file.filename}`,
       category: "incoming",
-      uploadedByType: req.user ? "user" : "customer",
+      uploadedByType: "user",
       uploadedBy: createdBy,
     })) || [];
 
@@ -35,7 +35,7 @@ export const create = catchAsync(async (req, res, next) => {
       company: data.customer.company || "",
       email: data.customer.email,
       createdBy,
-      source
+      source,
     });
   }
 
@@ -72,35 +72,48 @@ export const create = catchAsync(async (req, res, next) => {
 
   res.status(201).json({
     success: true,
-
     data: repair,
   });
 });
 
-export const repairTrackController = catchAsync(async (req, res, next) => {
-  const { repairNumber } = req.params;
-  const result = await repairsSC.findOne({ repairNumber });
-  if (!result) {
-    return next(
-      new AppError("Repairnumber not found", 404, "REPAIR_NUMBER_NOT__FOUND"),
-    );
-  }
-  res.json({
-    success: true,
-    data: result,
-  });
-});
-
-const generateRepairNumber = () => {
-  const date = new Date().toISOString().slice(0, 10).replaceAll("-", "");
-  const random = Math.random().toString(36).substring(2, 7).toUpperCase();
-  return `REP-${date}-${random}`;
-};
-
-// get all
+//get all
 export const index = catchAsync(async (req, res, next) => {
+  const { search, status, source, createdBy, fromDate, toDate } = req.query;
+
+  const filter = {};
+  if (status) {
+    filter.status = status;
+  }
+
+  if (source) {
+    filter.source = source;
+  }
+
+  if (createdBy) {
+    filter.createdBy = createdBy;
+  }
+
+  if (fromDate || toDate) {
+    filter.createdAt = {};
+
+    if (fromDate) {
+      filter.createdAt.$gte = new Date(fromDate);
+    }
+
+    if (toDate) {
+      const endDate = new Date(toDate);
+
+      endDate.setHours(23, 59, 59, 999);
+
+      filter.createdAt.$lte = endDate;
+    }
+  }
+
   const repairs = await repairsSC
-    .find()
+    .find({
+      isActive: true,
+      ...filter,
+    })
     .populate("customer")
     .populate("device")
     .populate("assignedTo")
@@ -109,15 +122,10 @@ export const index = catchAsync(async (req, res, next) => {
       createdAt: -1,
     })
     .lean();
-
-  if (repairs.length === 0) {
-    return next(new AppError("Repairs not found", 404, "REPAIRS_NOT_FOUND"));
-  }
-
-  res.json({
-    success: true,
-    repairs,
-  });
+    res.json({
+      success: true,
+      repairs
+    })
 });
 
 // details
@@ -129,6 +137,7 @@ export const details = catchAsync(async (req, res, next) => {
     .populate("assignedTo")
     .populate("statusHistory.changedBy")
     .populate("workLogs.createdBy")
+    .populate("createdBy", "firstName lastName email role position")
     .lean();
 
   if (!repair) {
@@ -147,6 +156,8 @@ export const edit = catchAsync(async (req, res, next) => {
     .findById(req.params.id)
     .populate("customer")
     .populate("device")
+    .populate("assignedTo", "firstName lastName email")
+    .populate("createdBy", "firstName lastName email")
     .lean();
 
   if (!repair) {
@@ -161,15 +172,20 @@ export const edit = catchAsync(async (req, res, next) => {
 
 // update
 export const update = catchAsync(async (req, res, next) => {
-  console.log("UPDATE BODY:", req.body);
+  const updateData = {
+    status: req.body.status,
+    assignedTo: req.body.assignedTo,
+    estimatedCompletionDate: req.body.estimatedCompletionDate,
+    problem: req.body.problem,
+    diagnosis: req.body.diagnosis,
+    solution: req.body.solution,
+    approval: req.body.approval,
+    reception: req.body.reception,
+  };
 
   const repair = await repairsSC.findByIdAndUpdate(
     req.params.id,
-
-    {
-      $set: req.body,
-    },
-
+    { $set: updateData },
     {
       returnDocument: "after",
       runValidators: true,
@@ -186,26 +202,10 @@ export const update = catchAsync(async (req, res, next) => {
   });
 });
 
-// delete
-export const remove = catchAsync(async (req, res, next) => {
-  const repair = await repairsSC.findByIdAndDelete(req.params.id);
-
-  if (!repair) {
-    return next(new AppError("Repair not found", 404, "REPAIR_NOT_FOUND"));
-  }
-
-  res.json({
-    success: true,
-    message: "Repair deleted successfully",
-  });
-});
-
 //update status
 export const updateStatus = catchAsync(async (req, res, next) => {
   const { status, note } = req.body;
-  console.log(req.body.status);
   const repair = await repairsSC.findById(req.params.id);
-  console.log(repair.status);
 
   if (!repair) {
     return next(new AppError("Repair not found", 404, "REPAIR_NOT_FOUND"));
@@ -330,17 +330,27 @@ export const reopenRepair = catchAsync(async (req, res, next) => {
   });
 });
 
-export const repairs = catchAsync(async (req, res, next) => {
-  const filter = {};
+//delete
+export const deleteRepair = catchAsync(async (req, res, next) => {
+  const repair = await repairsSC.findByIdAndUpdate(
+    req.params.id,
+    {
+      isActive: false,
+      deletedAt: new Date(),
+      deletedBy: req.user._id,
+    },
+    {
+      returnDocument: "after",
+      runValidators: true,
+    },
+  );
 
-  if (req.query.status) {
-    filter.status = req.query.status;
+  if (!repair) {
+    return next(new AppError("Repair not found", 404, "REPAIR_NOT_FOUND"));
   }
 
-  const repairs = await repairsSC
-    .find(filter)
-    .populate("customer")
-    .populate("device")
-    .populate("assignedTo")
-    .lean();
+  res.json({
+    success: true,
+    message: "Repair deleted successfully",
+  });
 });

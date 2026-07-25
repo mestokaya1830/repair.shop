@@ -11,7 +11,51 @@
     <p v-if="error" class="form-error">
       {{ error }}
     </p>
+    <div class="filters">
+      <input
+        v-model="filters.search"
+        type="text"
+        placeholder="Repair No / Customer"
+      />
+      <button @click="getRepairs">Search</button>
 
+      <select v-model="filters.status" @change="getRepairs">
+        <option value="">All Status</option>
+        <option value="Pending">Pending</option>
+        <option value="Received">Received</option>
+        <option value="Assigned">Assigned</option>
+        <option value="Repairing">Repairing</option>
+        <option value="Completed">Completed</option>
+        <option value="Delivered">Delivered</option>
+      </select>
+
+      <select v-model="filters.source" @change="getRepairs">
+        <option value="">All Sources</option>
+        <option value="web">Web</option>
+        <option value="office">Office</option>
+      </select>
+
+      <select v-model="filters.createdBy" @change="getRepairs">
+        <option value="">All Users</option>
+
+        <option v-for="user in users" :key="user._id" :value="user._id">
+          {{ user.firstName }} {{ user.lastName }}
+        </option>
+      </select>
+
+      <div class="date-filter">
+        <label>
+          From
+          <input type="date" v-model="filters.fromDate" />
+        </label>
+
+        <label>
+          To
+          <input type="date" v-model="filters.toDate" />
+        </label>
+      </div>
+      <button @click="resetFilters">Reset</button>
+    </div>
     <table v-if="repairs.length">
       <thead>
         <tr>
@@ -53,17 +97,13 @@
             {{ repair.source }}
           </td>
           <td>
-           <span
-             v-if="repair.createdBy"
-             class="user-link">
-             {{ repair.createdBy.firstName }}
-             {{ repair.createdBy.lastName }}
-           </span>
+            <span v-if="repair.createdBy" class="user-link">
+              {{ repair.createdBy.firstName }}
+              {{ repair.createdBy.lastName }}
+            </span>
 
-           <span v-else>
-             Web
-           </span>
-         </td>
+            <span v-else> Web </span>
+          </td>
 
           <td>
             <router-link :to="`/admin/repairs/${repair._id}/details`">
@@ -97,13 +137,23 @@ export default {
   data() {
     return {
       repairs: [],
+      users: [],
       loading: false,
       error: "",
+      filters: {
+        search: "",
+        status: "",
+        source: "",
+        createdBy: "",
+        fromDate: "",
+        toDate: "",
+      },
     };
   },
 
   mounted() {
     this.getRepairs();
+    this.getUsers();
   },
 
   methods: {
@@ -111,11 +161,34 @@ export default {
       try {
         this.loading = true;
         this.error = "";
-        const response = await api.get("/repairs");
+
+        const params = {
+          search: this.filters.search,
+          status: this.filters.status,
+          source: this.filters.source,
+          createdBy: this.filters.createdBy,
+          fromDate: this.filters.fromDate,
+          toDate: this.filters.toDate,
+        };
+        const response = await api.get("/repairs", { params });
 
         this.repairs = response.data.repairs;
+        console.log(this.repairs)
       } catch (error) {
         this.error = error.response?.data?.message || "Failed to load repairs";
+      } finally {
+        this.loading = false;
+      }
+    },
+     async getUsers() {
+      try {
+        this.loading = true;
+        this.error = "";
+        const response = await api.get("/users");
+
+        this.users = response.data.data;
+      } catch (error) {
+        this.error = error.response?.data?.message || "Failed to load users";
       } finally {
         this.loading = false;
       }
@@ -126,7 +199,7 @@ export default {
       }
 
       try {
-        await api.delete(`/repairs/${id}/delete`);
+        await api.delete(`/repairs/${id}/remove`);
 
         this.repairs = this.repairs.filter((repair) => repair._id !== id);
       } catch (error) {
@@ -136,6 +209,18 @@ export default {
 
     formatDate(date) {
       return new Date(date).toLocaleDateString();
+    },
+    resetFilters() {
+      this.filters = {
+        search: "",
+        status: "",
+        source: "",
+        createdBy: "",
+        fromDate: "",
+        toDate: "",
+      };
+
+      this.getRepairs();
     },
   },
 };
