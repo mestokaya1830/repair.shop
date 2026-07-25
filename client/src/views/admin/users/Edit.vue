@@ -56,7 +56,7 @@
 
       <div>
         <label>Status</label>
-        <select v-model="form.active">
+        <select v-model="form.isActive">
           <option :value="true">Active</option>
           <option :value="false">Inactive</option>
         </select>
@@ -89,7 +89,7 @@ export default {
         country: "",
         position: "",
         role: "",
-        active: true,
+        isActive: true,
       },
       loading: false,
       error: "",
@@ -121,7 +121,7 @@ export default {
           country: response.data.data.country,
           position: response.data.data.position,
           role: response.data.data.role,
-          active: response.data.data.active,
+          isActive: response.data.data.isActive,
         };
       } catch (error) {
         this.error = error.response?.data?.message || "User not found";

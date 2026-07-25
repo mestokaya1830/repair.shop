@@ -65,17 +65,17 @@ export const index = catchAsync(async (req, res) => {
 
     usersSC.countDocuments({
       "position": "technician",
-      active: true,
+      isActive: true,
     }),
 
     usersSC.countDocuments({
       role: "admin",
-      active: true,
+      isActive: true,
     }),
 
     usersSC.countDocuments({
       role: "owner",
-      active: true,
+      isActive: true,
     }),
   ]);
 

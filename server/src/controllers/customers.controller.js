@@ -8,7 +8,7 @@ import repairsSC from "../models/repairs.sc.js";
 export const index = catchAsync(async (req, res, next) => {
   const filter = {};
 
-  const { search, source, active, dateFrom, dateTo } = req.query;
+  const { search, source, isActive, dateFrom, dateTo } = req.query;
 
   // Search
   if (search) {
@@ -52,8 +52,8 @@ export const index = catchAsync(async (req, res, next) => {
   }
 
   // Active filter
-  if (active !== undefined && active !== "") {
-    filter.active = active === "true";
+  if (isActive !== undefined && isActive !== "") {
+    filter.isActive = isActive === "true";
   }
 
   // Date range validation
@@ -219,7 +219,7 @@ export const update = catchAsync(async (req, res, next) => {
 });
 
 export const remove = catchAsync(async (req, res, next) => {
-  const device = await customersSC.findByIdAndUpdate(req.params.id,{active: false,},{new: true});
+  const device = await customersSC.findByIdAndUpdate(req.params.id,{isActive: false,},{new: true});
 
   res.json({
     success: true,

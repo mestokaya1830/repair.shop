@@ -28,7 +28,7 @@
         <option value="Manager">Manager</option>
       </select>
 
-      <select v-model="filters.active" @change="getUsers">
+      <select v-model="filters.isActive" @change="getUsers">
         <option value="">All Status</option>
         <option value="true">Active</option>
         <option value="false">Inactive</option>
@@ -73,7 +73,7 @@
           </td>
 
           <td>
-            {{ user.active ? "Active" : "Inactive" }}
+            {{ user.isActive ? "Active" : "Inactive" }}
           </td>
 
           <td>
@@ -112,7 +112,7 @@ export default {
       filters: {
         search: "",
         role: "",
-        active: "",
+        isActive: "",
         position: "",
       },
       loading: false,
@@ -144,7 +144,7 @@ export default {
       this.filters = {
         search: "",
         role: "",
-        active: "",
+        isActive: "",
         position: "",
       };
 

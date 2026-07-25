@@ -91,7 +91,7 @@
 
       <div>
         <label>
-          <input v-model="form.active" type="checkbox" />
+          <input v-model="form.isActive" type="checkbox" />
 
           Active
         </label>
@@ -113,7 +113,14 @@ export default {
     return {
       loading: false,
       errors: {},
-      positions: ["Technician", "Reception", "Manager"],
+      positions: [ 
+        "Manager",
+        "Technician",
+        "Support",
+        "Sales",
+        "Accounting",
+        "Warehouse"
+      ],
       form: {
         email: "",
         password: "",
@@ -125,7 +132,7 @@ export default {
         postalCode: "",
         position: "",
         country: "",
-        active: true,
+        isActive: true,
       },
     };
   },

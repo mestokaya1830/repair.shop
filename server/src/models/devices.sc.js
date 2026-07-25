@@ -57,7 +57,7 @@ const deviceSC = new mongoose.Schema(
       default: null
     },
 
-    active: {
+    isActive: {
       type: Boolean,
       default: true,
     },

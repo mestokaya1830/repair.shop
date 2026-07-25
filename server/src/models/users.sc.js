@@ -19,11 +19,7 @@ const usersSC = new mongoose.Schema(
 
     role: {
       type: String,
-      enum: [
-        "owner",
-        "admin",
-        "user",
-      ],
+      enum: ["owner", "admin", "user"],
       required: true,
       index: true,
     },
@@ -69,10 +65,18 @@ const usersSC = new mongoose.Schema(
 
     position: {
       type: String,
-      default: "",
+      enum: [
+        "Manager",
+        "Technician",
+        "Support",
+        "Sales",
+        "Accounting",
+        "Warehouse",
+      ],
+      default: "Technician",
     },
 
-    active: {
+    isActive: {
       type: Boolean,
       default: true,
       index: true,

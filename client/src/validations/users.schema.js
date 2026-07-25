@@ -24,7 +24,7 @@ export const usersSchema = z.object({
   postalCode: z.string().trim().optional().or(z.literal("")),
   country: z.string().trim().optional().or(z.literal("")),
   position: z.string().optional().or(z.literal("")),
-  active: z.boolean().default(true),
+  isActive: z.boolean().default(true),
 });
 
 // update user
@@ -44,5 +44,5 @@ export const usersUpdateSchema = z.object({
   postalCode: z.string().optional(),
   country: z.string().optional(),
   position: z.string().optional(),
-  active: z.boolean().optional(),
+  isActive: z.boolean().optional(),
 });

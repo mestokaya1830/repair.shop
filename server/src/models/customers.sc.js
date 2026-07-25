@@ -12,7 +12,7 @@ const customersSC = new mongoose.Schema(
       index: true,
     },
 
-    active: {
+    isActive: {
       type: Boolean,
       default: true,
       index: true,

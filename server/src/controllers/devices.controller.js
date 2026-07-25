@@ -107,7 +107,7 @@ export const create = catchAsync(async (req, res, next) => {
 export const remove = catchAsync(async (req, res, next) => {
   const device = await deviceSC.findByIdAndUpdate(
     req.params.id,
-    { active: false },
+    { isActive: false },
     { new: true },
   );
 

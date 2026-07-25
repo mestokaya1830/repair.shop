@@ -60,7 +60,7 @@ export const loginController = catchAsync(async (req, res, next) => {
 //     email: "mesfor100@outlook.com",
 //     password: await bcrypt.hash("12121212", 10),
 //     role: "owner",
-//     active: true,
+//     isActive: true,
 //     firstName: "mesto",
 //     lastName: "kaya",
 //     phone: "",

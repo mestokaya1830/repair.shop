@@ -24,7 +24,7 @@
         <option value="admin">Admin</option>
       </select>
 
-      <select v-model="active" @change="getCustomers">
+      <select v-model="isActive" @change="getCustomers">
         <option value="">All Status</option>
 
         <option value="true">Active</option>
@@ -100,7 +100,7 @@ export default {
       source: "",
       dateFrom: "",
       dateTo: "",
-      active: "",
+      isActive: "",
       loading: false,
       error: "",
     };
@@ -120,7 +120,7 @@ export default {
           params: {
             search: this.search || undefined,
             source: this.source || undefined,
-            active: this.active || undefined,
+            isActive: this.isActive || undefined,
             dateFrom: this.dateFrom || undefined,
             dateTo: this.dateTo || undefined,
           },

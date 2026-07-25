@@ -64,7 +64,7 @@
       <p>
         <strong>Status:</strong>
 
-        {{ user.active ? "Active" : "Inactive" }}
+        {{ user.isActive ? "Active" : "Inactive" }}
       </p>
 
       <p>

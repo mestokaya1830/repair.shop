@@ -37,18 +37,18 @@ export const create = catchAsync(async (req, res, next) => {
 });
 
 export const index = catchAsync(async (req, res, next) => {
-  const { search, role, active, position } = req.query;
+  const { search, role, isActive, position } = req.query;
 
 const filter = {
-  active: true,
+  isActive: true,
 };
 
   if (role) {
     filter.role = role;
   }
 
- if (active !== undefined && active !== "") {
-    filter.active = active === "true";
+ if (isActive !== undefined && isActive !== "") {
+    filter.isActive = isActive === "true";
   }
   if (position) {
     filter.position = position;
@@ -167,7 +167,7 @@ export const deleteUser = catchAsync(async (req, res, next) => {
     return next(new AppError("User not found", 404, "USER_NOT_FOUND"));
   }
 
-  user.active = false;
+  user.isActive = false;
 
   await user.save();
 
