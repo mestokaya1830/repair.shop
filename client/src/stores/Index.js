@@ -5,21 +5,31 @@ const vuexLocalStorage = new VuexPersist({
   key: "vuex",
   storage: window.localStorage,
 
+  // Reducer: Tüm modülleri dahil ediyoruz (sadece device.images hariç)
   reducer: (state) => ({
+    // 1. Auth kalıcı
+    auth: state.auth,
+
+    // 2. Tenant kalıcı
+    tenant: {
+      data: state.tenant.data,
+    },
+
+    // 3. Invoice kalıcı
+    invoice: {
+      data: state.invoice.data,
+    },
+
+    // 4. Repairs kalıcı (images hariç tutularak)
     repairs: {
       form: {
         ...state.repairs.form,
         device: {
           ...state.repairs.form.device,
-          images: undefined,
+          images: undefined, // Resimleri storage kotasını doldurmaması için hariç tutuyoruz
         },
       },
-
       success: state.repairs.success,
-    },
-
-    invoice: {
-      data: state.invoice.data,
     },
   }),
 });
@@ -143,9 +153,28 @@ const invoiceModule = {
     },
   },
 };
+
+const tenantModule = {
+  namespaced: true,
+
+  state: () => ({
+    data: null,
+  }),
+
+  mutations: {
+    setTenant(state, payload) {
+      state.data = payload;
+    },
+
+    resetTenant(state) {
+      state.data = null;
+    },
+  },
+};
+
 export default createStore({
   state: {
-    auth: "",
+    auth: null,
   },
 
   mutations: {
@@ -158,7 +187,8 @@ export default createStore({
   getters: {},
   modules: {
     repairs: repairsModule,
-     invoice: invoiceModule,
+    invoice: invoiceModule,
+    tenant: tenantModule,
   },
 
   plugins: [vuexLocalStorage.plugin],

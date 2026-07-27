@@ -3,7 +3,7 @@
     <div class="logo">RepairService Admin</div>
 
     <div class="nav-links">
-      <router-link to="/admin" class="nav-link" active-class="active">
+      <router-link to="/admin/dashboard" class="nav-link" active-class="active">
         Dashboard
       </router-link>
 
@@ -26,6 +26,14 @@
 
       <router-link to="/admin/users" class="nav-link" active-class="active">
         Users
+      </router-link>
+
+      <router-link to="/admin/dashboard/profile" class="nav-link" active-class="active">
+        Profile
+      </router-link>
+     
+      <router-link to="/admin/tenants/profile" class="nav-link" active-class="active">
+        Tenants Profile
       </router-link>
 
       <button @click="logout" class="logout-btn" type="button">Logout</button>

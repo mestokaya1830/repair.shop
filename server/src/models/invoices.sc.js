@@ -50,7 +50,7 @@ const invoicePositionSC = new mongoose.Schema(
     grossTotal: {
       type: Number,
       default: 0,
-    },
+    }
   },
   {
     _id: true,

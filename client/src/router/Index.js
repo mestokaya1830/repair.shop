@@ -55,19 +55,34 @@ const router = createRouter({
       component: AdminLayout,
       children: [
         {
-          path: "",
-          name: "dashboard",
-          component: () => import("../views/admin/Index.vue"),
+          path: "tenants",
+          children: [
+            {
+              path: "profile",
+              name: "tenants-profile",
+              component: () => import("../views/admin/tenants/Profile.vue"),
+            }
+          ],
         },
         {
-          path: "settings",
-          name: "settings",
-          component: () => import("../views/admin/Settings.vue"),
-        },
-        {
-          path: "profile",
-          name: "profile",
-          component: () => import("../views/admin/Profile.vue"),
+          path: "dashboard",
+          children:[
+            {
+              path: "",
+              name: "dashboard",
+              component: () => import("../views/admin/dashboard/Index.vue"),
+            },
+            {
+              path: "details",
+              name: "dashboard-details",
+              component: () => import("../views/admin/dashboard/Details.vue"),
+            },
+            {
+              path: "profile",
+              name: "profile",
+              component: () => import("../views/admin/dashboard/Profile.vue"),
+            },
+          ]
         },
         {
           path: "customers",

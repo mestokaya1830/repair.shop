@@ -4,7 +4,9 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { env } from "../config/env.js";
 import usersSC from "../models/users.sc.js";
+import tenantSC from '../models/tenants.sc.js'
 import logger from "../utils/logger.js";
+
 
 
 export const loginController = catchAsync(async (req, res, next) => {
@@ -28,13 +30,14 @@ export const loginController = catchAsync(async (req, res, next) => {
       ),
     );
   }
-
+  
   logger.info({
     event: "LOGIN_SUCCESS",
     userId: user._id,
     role: user.role,
   });
-
+  
+  const tenant = await tenantSC.findOne().lean()
   const token = jwt.sign(
     { _id: user._id, email: user.email, role: user.role },
     env.JWT_SECRET,
@@ -50,6 +53,7 @@ export const loginController = catchAsync(async (req, res, next) => {
       role: user.role,
       firstName: user.firstName,
       lastName: user.lastName,
+      tenant
     },
   });
 });

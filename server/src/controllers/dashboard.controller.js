@@ -1,199 +1,109 @@
+import AppError from "../utils/app.error.js";
 import catchAsync from "../middleware/catch.async.js";
-
 import repairsSC from "../models/repairs.sc.js";
 import customersSC from "../models/customers.sc.js";
-import usersSC from "../models/users.sc.js";
+import devicesSC from "../models/devices.sc.js";
 
-// Dashboard main
+// Dashboard
 export const index = catchAsync(async (req, res) => {
+console.log(req.user.role)
+  const baseFilter = {};
+  if (req.user && req.user.role === "user") {
+    baseFilter.assignedTo = req.user._id;
+  }
+
+  // 2. Sorguları çalıştırıyoruz
   const [
     totalRepairs,
     pending,
     received,
     diagnosing,
-    repairing,
     waitingApproval,
+    repairing,
     testing,
     ready,
     delivered,
     cancelled,
 
-    customers,
-    technicians,
-    admins,
-    owners,
+    totalCustomers,
+    totalDevices,
+
+    recentRepairs,
   ] = await Promise.all([
-    repairsSC.countDocuments(),
+    // Repairs - Taban filtre uygulanıyor
+    repairsSC.countDocuments(baseFilter),
 
-    repairsSC.countDocuments({
-      status: "Pending",
-    }),
+    repairsSC.countDocuments({ ...baseFilter, status: "Pending" }),
+    repairsSC.countDocuments({ ...baseFilter, status: "Received" }),
+    repairsSC.countDocuments({ ...baseFilter, status: "Diagnosing" }),
+    repairsSC.countDocuments({ ...baseFilter, status: "WaitingApproval" }),
+    repairsSC.countDocuments({ ...baseFilter, status: "Repairing" }),
+    repairsSC.countDocuments({ ...baseFilter, status: "Testing" }),
+    repairsSC.countDocuments({ ...baseFilter, status: "Ready" }),
+    repairsSC.countDocuments({ ...baseFilter, status: "Delivered" }),
+    repairsSC.countDocuments({ ...baseFilter, status: "Cancelled" }),
 
-    repairsSC.countDocuments({
-      status: "Received",
-    }),
-
-    repairsSC.countDocuments({
-      status: "Diagnosing",
-    }),
-
-    repairsSC.countDocuments({
-      status: "Repairing",
-    }),
-
-    repairsSC.countDocuments({
-      status: "WaitingApproval",
-    }),
-
-    repairsSC.countDocuments({
-      status: "Testing",
-    }),
-
-    repairsSC.countDocuments({
-      status: "Ready",
-    }),
-
-    repairsSC.countDocuments({
-      status: "Delivered",
-    }),
-
-    repairsSC.countDocuments({
-      status: "Cancelled",
-    }),
-
+    // Customers & Devices (Tüm sistemdeki genel sayılar kalır)
     customersSC.countDocuments(),
+    devicesSC.countDocuments(),
 
-    usersSC.countDocuments({
-      "position": "technician",
-      isActive: true,
-    }),
-
-    usersSC.countDocuments({
-      role: "admin",
-      isActive: true,
-    }),
-
-    usersSC.countDocuments({
-      role: "owner",
-      isActive: true,
-    }),
-  ]);
-
-  const recentActivity = await repairsSC.aggregate([
-    {
-      $unwind: "$statusHistory",
-    },
-
-    {
-      $sort: {
-        "statusHistory.createdAt": -1,
-      },
-    },
-
-    {
-      $limit: 10,
-    },
-
-    {
-      $project: {
-        repairNumber: 1,
-        statusHistory: 1,
-      },
-    },
+    // Recent Repairs - Taban filtre uygulanıyor
+    repairsSC
+      .find(baseFilter)
+      .populate("customer", "firstName lastName")
+      .populate("assignedTo", "firstName lastName") // İsteğe bağlı: Atanan kişiyi de doldurabilirsin
+      .sort({ createdAt: -1 })
+      .limit(10)
+      .lean(),
   ]);
 
   res.json({
     success: true,
-
-    stats: {
+    data: {
       repairs: {
         total: totalRepairs,
-
         pending,
-
         received,
-
         diagnosing,
-
         waitingApproval,
-
         repairing,
-
         testing,
-
         ready,
-
         delivered,
-
         cancelled,
       },
 
-      customers,
+      customers: {
+        total: totalCustomers,
+      },
 
-      technicians,
+      devices: {
+        total: totalDevices,
+      },
 
-      admins,
-
-      owners,
+      recentRepairs,
     },
-
-    recentActivity,
-  });
-});
-export const repairs = catchAsync(async (req, res) => {
-  const filter = {};
-
-  if (req.query.status) {
-    filter.status = req.query.status;
-  }
-  const repairs = await repairsSC
-    .find(filter)
-    .populate("customer")
-    .populate("device")
-    .populate("assignedTo")
-    .sort({
-      createdAt: -1,
-    })
-    .lean();
-
-  res.json({
-    success: true,
-    count: repairs.length,
-    repairs,
   });
 });
 
-// Dashboard Customers
-
-export const customers = catchAsync(async (req, res) => {
-  const data = await customersSC
-
-    .find()
-
-    .sort({
-      createdAt: -1,
-    })
-
-    .lean();
-
-  res.json({
-    success: true,
-    data,
-  });
-});
 
 export const details = catchAsync(async (req, res, next) => {
-  const data = await repairsSC
-    .findById(req.params.id)
-    .populate("customer")
-    .populate("device")
-    .populate("assignedTo")
-    .populate("statusHistory.changedBy")
-    .populate("workLogs.createdBy")
+  const { status } = req.query;
+  const filter = {};
+  if (status) {
+    filter.status = status;
+  }
+
+  const repairs = await repairsSC
+    .find(filter)
+    .populate("customer", "firstName lastName email phone")
+    .populate("device", "brand model serialNumber")
+    .sort({ createdAt: -1 })
     .lean();
 
   res.json({
     success: true,
-    data,
+    results: repairs.length,
+    data: { repairs },
   });
 });

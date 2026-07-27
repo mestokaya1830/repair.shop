@@ -7,7 +7,6 @@ import repairsSC from "../models/repairs.sc.js";
 import logger from "../utils/logger.js";
 
 export const create = catchAsync(async (req, res, next) => {
-  console.log(req.body);
   let role;
   switch (req.user.role) {
     case "owner":
@@ -37,35 +36,15 @@ export const create = catchAsync(async (req, res, next) => {
 });
 
 export const index = catchAsync(async (req, res, next) => {
-  const { search, role, isActive, position } = req.query;
-
-  const filter = {
-    isActive: true,
-  };
-
-  if (role) {
-    filter.role = role;
+  if (req.user && req.user.role === "user") {
+    return next(new AppError("You do not have permission to view users list.", 403));
   }
 
-  if (isActive !== undefined && isActive !== "") {
-    filter.isActive = isActive === "true";
-  }
-  if (position) {
-    filter.position = position;
-  }
-
-  if (search) {
-    filter.$or = [
-      { firstName: { $regex: search, $options: "i" } },
-      { lastName: { $regex: search, $options: "i" } },
-      { email: { $regex: search, $options: "i" } },
-      { phone: { $regex: search, $options: "i" } },
-    ];
-  }
-  const users = await usersSC.find(filter).lean();
+  const users = await usersSC.find().lean();
 
   res.json({
     success: true,
+    results: users.length,
     data: users,
   });
 });

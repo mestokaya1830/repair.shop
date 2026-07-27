@@ -14,6 +14,8 @@ import usersRouter from './routes/users.router.js'
 import customersRouter from './routes/customers.router.js'
 import devicesRouter from './routes/devices.router.js'
 import dashboardRouter from './routes/dashboard.router.js'
+import tanentsRouter from "./routes/tenants.router.js";
+
 const app = express();
 
 app.use(helmet({
@@ -34,6 +36,7 @@ app.use('/api/repairs', repairsRouter)
 app.use('/api/dashboard', dashboardRouter)
 app.use('/api/customers', customersRouter)
 app.use('/api/devices', devicesRouter)
+app.use('/api/tenants', tanentsRouter)
 
 
 app.use((req, res, next) => {
