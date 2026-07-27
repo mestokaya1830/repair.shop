@@ -20,6 +20,10 @@
         Devices
       </router-link>
 
+      <router-link to="/admin/invoices" class="nav-link" active-class="active">
+        Invoices
+      </router-link>
+
       <router-link to="/admin/users" class="nav-link" active-class="active">
         Users
       </router-link>

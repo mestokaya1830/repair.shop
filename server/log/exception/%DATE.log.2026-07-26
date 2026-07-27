@@ -1,0 +1,513 @@
+{
+  "date": "Sun Jul 26 2026 21:44:26 GMT+0200 (Central European Summer Time)",
+  "env": "development",
+  "error": {},
+  "exception": true,
+  "level": "error",
+  "message": "uncaughtException: createCommunication is not defined\nReferenceError: createCommunication is not defined\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js:44:42\n    at ModuleJob.run (node:internal/modules/esm/module_job:325:25)\n    at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)",
+  "os": {
+    "loadavg": [
+      1.23,
+      0.87,
+      0.8
+    ],
+    "uptime": 23521.48
+  },
+  "process": {
+    "argv": [
+      "/home/mesto/.nvm/versions/node/v20.20.0/bin/node",
+      "/media/mesto/Store/my-projects/repair.shop/server/src/index.js"
+    ],
+    "cwd": "/media/mesto/Store/my-projects/repair.shop/server",
+    "execPath": "/home/mesto/.nvm/versions/node/v20.20.0/bin/node",
+    "gid": 1000,
+    "memoryUsage": {
+      "arrayBuffers": 18262468,
+      "external": 20653892,
+      "heapTotal": 56696832,
+      "heapUsed": 29318232,
+      "rss": 94629888
+    },
+    "pid": 23568,
+    "uid": 1000,
+    "version": "v20.20.0"
+  },
+  "service": "mesfor repair shop",
+  "stack": "ReferenceError: createCommunication is not defined\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js:44:42\n    at ModuleJob.run (node:internal/modules/esm/module_job:325:25)\n    at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)",
+  "timestamp": "2026-07-26 21:44:26",
+  "trace": [
+    {
+      "column": 42,
+      "file": "file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js",
+      "function": null,
+      "line": 44,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 25,
+      "file": "node:internal/modules/esm/module_job",
+      "function": "ModuleJob.run",
+      "line": 325,
+      "method": "run",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/esm/loader",
+      "function": "async ModuleLoader.import",
+      "line": 606,
+      "method": "import",
+      "native": false
+    },
+    {
+      "column": 5,
+      "file": "node:internal/modules/run_main",
+      "function": "async asyncRunEntryPointWithESMLoader",
+      "line": 117,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+{
+  "date": "Sun Jul 26 2026 21:44:30 GMT+0200 (Central European Summer Time)",
+  "env": "development",
+  "error": {},
+  "exception": true,
+  "level": "error",
+  "message": "uncaughtException: createCommunication is not defined\nReferenceError: createCommunication is not defined\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js:44:42\n    at ModuleJob.run (node:internal/modules/esm/module_job:325:25)\n    at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)",
+  "os": {
+    "loadavg": [
+      1.29,
+      0.89,
+      0.81
+    ],
+    "uptime": 23524.72
+  },
+  "process": {
+    "argv": [
+      "/home/mesto/.nvm/versions/node/v20.20.0/bin/node",
+      "/media/mesto/Store/my-projects/repair.shop/server/src/index.js"
+    ],
+    "cwd": "/media/mesto/Store/my-projects/repair.shop/server",
+    "execPath": "/home/mesto/.nvm/versions/node/v20.20.0/bin/node",
+    "gid": 1000,
+    "memoryUsage": {
+      "arrayBuffers": 18262468,
+      "external": 20653892,
+      "heapTotal": 55902208,
+      "heapUsed": 31019280,
+      "rss": 94343168
+    },
+    "pid": 23601,
+    "uid": 1000,
+    "version": "v20.20.0"
+  },
+  "service": "mesfor repair shop",
+  "stack": "ReferenceError: createCommunication is not defined\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js:44:42\n    at ModuleJob.run (node:internal/modules/esm/module_job:325:25)\n    at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)",
+  "timestamp": "2026-07-26 21:44:30",
+  "trace": [
+    {
+      "column": 42,
+      "file": "file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js",
+      "function": null,
+      "line": 44,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 25,
+      "file": "node:internal/modules/esm/module_job",
+      "function": "ModuleJob.run",
+      "line": 325,
+      "method": "run",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/esm/loader",
+      "function": "async ModuleLoader.import",
+      "line": 606,
+      "method": "import",
+      "native": false
+    },
+    {
+      "column": 5,
+      "file": "node:internal/modules/run_main",
+      "function": "async asyncRunEntryPointWithESMLoader",
+      "line": 117,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+{
+  "date": "Sun Jul 26 2026 21:45:15 GMT+0200 (Central European Summer Time)",
+  "env": "development",
+  "error": {},
+  "exception": true,
+  "level": "error",
+  "message": "uncaughtException: createCommunication is not defined\nReferenceError: createCommunication is not defined\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js:44:42\n    at ModuleJob.run (node:internal/modules/esm/module_job:325:25)\n    at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)",
+  "os": {
+    "loadavg": [
+      1.18,
+      0.93,
+      0.83
+    ],
+    "uptime": 23569.78
+  },
+  "process": {
+    "argv": [
+      "/home/mesto/.nvm/versions/node/v20.20.0/bin/node",
+      "/media/mesto/Store/my-projects/repair.shop/server/src/index.js"
+    ],
+    "cwd": "/media/mesto/Store/my-projects/repair.shop/server",
+    "execPath": "/home/mesto/.nvm/versions/node/v20.20.0/bin/node",
+    "gid": 1000,
+    "memoryUsage": {
+      "arrayBuffers": 18262468,
+      "external": 20653809,
+      "heapTotal": 56426496,
+      "heapUsed": 31114984,
+      "rss": 94531584
+    },
+    "pid": 23680,
+    "uid": 1000,
+    "version": "v20.20.0"
+  },
+  "service": "mesfor repair shop",
+  "stack": "ReferenceError: createCommunication is not defined\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js:44:42\n    at ModuleJob.run (node:internal/modules/esm/module_job:325:25)\n    at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)",
+  "timestamp": "2026-07-26 21:45:15",
+  "trace": [
+    {
+      "column": 42,
+      "file": "file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js",
+      "function": null,
+      "line": 44,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 25,
+      "file": "node:internal/modules/esm/module_job",
+      "function": "ModuleJob.run",
+      "line": 325,
+      "method": "run",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/esm/loader",
+      "function": "async ModuleLoader.import",
+      "line": 606,
+      "method": "import",
+      "native": false
+    },
+    {
+      "column": 5,
+      "file": "node:internal/modules/run_main",
+      "function": "async asyncRunEntryPointWithESMLoader",
+      "line": 117,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+{
+  "date": "Sun Jul 26 2026 21:45:17 GMT+0200 (Central European Summer Time)",
+  "env": "development",
+  "error": {},
+  "exception": true,
+  "level": "error",
+  "message": "uncaughtException: createCommunication is not defined\nReferenceError: createCommunication is not defined\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js:44:42\n    at ModuleJob.run (node:internal/modules/esm/module_job:325:25)\n    at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)",
+  "os": {
+    "loadavg": [
+      1.18,
+      0.93,
+      0.83
+    ],
+    "uptime": 23572
+  },
+  "process": {
+    "argv": [
+      "/home/mesto/.nvm/versions/node/v20.20.0/bin/node",
+      "/media/mesto/Store/my-projects/repair.shop/server/src/index.js"
+    ],
+    "cwd": "/media/mesto/Store/my-projects/repair.shop/server",
+    "execPath": "/home/mesto/.nvm/versions/node/v20.20.0/bin/node",
+    "gid": 1000,
+    "memoryUsage": {
+      "arrayBuffers": 18262468,
+      "external": 20653892,
+      "heapTotal": 56958976,
+      "heapUsed": 29392704,
+      "rss": 95117312
+    },
+    "pid": 23713,
+    "uid": 1000,
+    "version": "v20.20.0"
+  },
+  "service": "mesfor repair shop",
+  "stack": "ReferenceError: createCommunication is not defined\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js:44:42\n    at ModuleJob.run (node:internal/modules/esm/module_job:325:25)\n    at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)",
+  "timestamp": "2026-07-26 21:45:17",
+  "trace": [
+    {
+      "column": 42,
+      "file": "file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js",
+      "function": null,
+      "line": 44,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 25,
+      "file": "node:internal/modules/esm/module_job",
+      "function": "ModuleJob.run",
+      "line": 325,
+      "method": "run",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/esm/loader",
+      "function": "async ModuleLoader.import",
+      "line": 606,
+      "method": "import",
+      "native": false
+    },
+    {
+      "column": 5,
+      "file": "node:internal/modules/run_main",
+      "function": "async asyncRunEntryPointWithESMLoader",
+      "line": 117,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+{
+  "date": "Sun Jul 26 2026 21:45:19 GMT+0200 (Central European Summer Time)",
+  "env": "development",
+  "error": {},
+  "exception": true,
+  "level": "error",
+  "message": "uncaughtException: getRepairCommunications is not defined\nReferenceError: getRepairCommunications is not defined\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js:44:41\n    at ModuleJob.run (node:internal/modules/esm/module_job:325:25)\n    at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)",
+  "os": {
+    "loadavg": [
+      1.32,
+      0.96,
+      0.84
+    ],
+    "uptime": 23574.33
+  },
+  "process": {
+    "argv": [
+      "/home/mesto/.nvm/versions/node/v20.20.0/bin/node",
+      "/media/mesto/Store/my-projects/repair.shop/server/src/index.js"
+    ],
+    "cwd": "/media/mesto/Store/my-projects/repair.shop/server",
+    "execPath": "/home/mesto/.nvm/versions/node/v20.20.0/bin/node",
+    "gid": 1000,
+    "memoryUsage": {
+      "arrayBuffers": 18262468,
+      "external": 20653809,
+      "heapTotal": 55902208,
+      "heapUsed": 30798168,
+      "rss": 97030144
+    },
+    "pid": 23742,
+    "uid": 1000,
+    "version": "v20.20.0"
+  },
+  "service": "mesfor repair shop",
+  "stack": "ReferenceError: getRepairCommunications is not defined\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js:44:41\n    at ModuleJob.run (node:internal/modules/esm/module_job:325:25)\n    at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)",
+  "timestamp": "2026-07-26 21:45:19",
+  "trace": [
+    {
+      "column": 41,
+      "file": "file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js",
+      "function": null,
+      "line": 44,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 25,
+      "file": "node:internal/modules/esm/module_job",
+      "function": "ModuleJob.run",
+      "line": 325,
+      "method": "run",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/esm/loader",
+      "function": "async ModuleLoader.import",
+      "line": 606,
+      "method": "import",
+      "native": false
+    },
+    {
+      "column": 5,
+      "file": "node:internal/modules/run_main",
+      "function": "async asyncRunEntryPointWithESMLoader",
+      "line": 117,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+{
+  "date": "Sun Jul 26 2026 21:45:27 GMT+0200 (Central European Summer Time)",
+  "env": "development",
+  "error": {},
+  "exception": true,
+  "level": "error",
+  "message": "uncaughtException: getRepairCommunications is not defined\nReferenceError: getRepairCommunications is not defined\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js:44:41\n    at ModuleJob.run (node:internal/modules/esm/module_job:325:25)\n    at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)",
+  "os": {
+    "loadavg": [
+      1.22,
+      0.95,
+      0.84
+    ],
+    "uptime": 23582.06
+  },
+  "process": {
+    "argv": [
+      "/home/mesto/.nvm/versions/node/v20.20.0/bin/node",
+      "/media/mesto/Store/my-projects/repair.shop/server/src/index.js"
+    ],
+    "cwd": "/media/mesto/Store/my-projects/repair.shop/server",
+    "execPath": "/home/mesto/.nvm/versions/node/v20.20.0/bin/node",
+    "gid": 1000,
+    "memoryUsage": {
+      "arrayBuffers": 18262468,
+      "external": 20653892,
+      "heapTotal": 56958976,
+      "heapUsed": 29532312,
+      "rss": 95768576
+    },
+    "pid": 23797,
+    "uid": 1000,
+    "version": "v20.20.0"
+  },
+  "service": "mesfor repair shop",
+  "stack": "ReferenceError: getRepairCommunications is not defined\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js:44:41\n    at ModuleJob.run (node:internal/modules/esm/module_job:325:25)\n    at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)",
+  "timestamp": "2026-07-26 21:45:27",
+  "trace": [
+    {
+      "column": 41,
+      "file": "file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js",
+      "function": null,
+      "line": 44,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 25,
+      "file": "node:internal/modules/esm/module_job",
+      "function": "ModuleJob.run",
+      "line": 325,
+      "method": "run",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/esm/loader",
+      "function": "async ModuleLoader.import",
+      "line": 606,
+      "method": "import",
+      "native": false
+    },
+    {
+      "column": 5,
+      "file": "node:internal/modules/run_main",
+      "function": "async asyncRunEntryPointWithESMLoader",
+      "line": 117,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+{
+  "date": "Sun Jul 26 2026 21:45:29 GMT+0200 (Central European Summer Time)",
+  "env": "development",
+  "error": {},
+  "exception": true,
+  "level": "error",
+  "message": "uncaughtException: getRepairCommunications is not defined\nReferenceError: getRepairCommunications is not defined\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js:44:41\n    at ModuleJob.run (node:internal/modules/esm/module_job:325:25)\n    at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)",
+  "os": {
+    "loadavg": [
+      1.2,
+      0.95,
+      0.84
+    ],
+    "uptime": 23584.61
+  },
+  "process": {
+    "argv": [
+      "/home/mesto/.nvm/versions/node/v20.20.0/bin/node",
+      "/media/mesto/Store/my-projects/repair.shop/server/src/index.js"
+    ],
+    "cwd": "/media/mesto/Store/my-projects/repair.shop/server",
+    "execPath": "/home/mesto/.nvm/versions/node/v20.20.0/bin/node",
+    "gid": 1000,
+    "memoryUsage": {
+      "arrayBuffers": 18262468,
+      "external": 20653809,
+      "heapTotal": 56164352,
+      "heapUsed": 31091552,
+      "rss": 95522816
+    },
+    "pid": 23826,
+    "uid": 1000,
+    "version": "v20.20.0"
+  },
+  "service": "mesfor repair shop",
+  "stack": "ReferenceError: getRepairCommunications is not defined\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js:44:41\n    at ModuleJob.run (node:internal/modules/esm/module_job:325:25)\n    at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)",
+  "timestamp": "2026-07-26 21:45:29",
+  "trace": [
+    {
+      "column": 41,
+      "file": "file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js",
+      "function": null,
+      "line": 44,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 25,
+      "file": "node:internal/modules/esm/module_job",
+      "function": "ModuleJob.run",
+      "line": 325,
+      "method": "run",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/esm/loader",
+      "function": "async ModuleLoader.import",
+      "line": 606,
+      "method": "import",
+      "native": false
+    },
+    {
+      "column": 5,
+      "file": "node:internal/modules/run_main",
+      "function": "async asyncRunEntryPointWithESMLoader",
+      "line": 117,
+      "method": null,
+      "native": false
+    }
+  ]
+}{"date":"Sun Jul 26 2026 21:46:29 GMT+0200 (Central European Summer Time)","env":"development","error":{},"exception":true,"level":"error","message":"uncaughtException: getCommunications is not defined\nReferenceError: getCommunications is not defined\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js:44:41\n    at ModuleJob.run (node:internal/modules/esm/module_job:325:25)\n    at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)","os":{"loadavg":[0.92,0.92,0.84],"uptime":23644.05},"process":{"argv":["/home/mesto/.nvm/versions/node/v20.20.0/bin/node","/media/mesto/Store/my-projects/repair.shop/server/src/index.js"],"cwd":"/media/mesto/Store/my-projects/repair.shop/server","execPath":"/home/mesto/.nvm/versions/node/v20.20.0/bin/node","gid":1000,"memoryUsage":{"arrayBuffers":18262468,"external":20653892,"heapTotal":56696832,"heapUsed":29490688,"rss":94957568},"pid":23943,"uid":1000,"version":"v20.20.0"},"service":"mesfor repair shop","stack":"ReferenceError: getCommunications is not defined\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js:44:41\n    at ModuleJob.run (node:internal/modules/esm/module_job:325:25)\n    at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)","timestamp":"2026-07-26 21:46:29","trace":[{"column":41,"file":"file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js","function":null,"line":44,"method":null,"native":false},{"column":25,"file":"node:internal/modules/esm/module_job","function":"ModuleJob.run","line":325,"method":"run","native":false},{"column":24,"file":"node:internal/modules/esm/loader","function":"async ModuleLoader.import","line":606,"method":"import","native":false},{"column":5,"file":"node:internal/modules/run_main","function":"async asyncRunEntryPointWithESMLoader","line":117,"method":null,"native":false}]}
+{"date":"Sun Jul 26 2026 21:46:53 GMT+0200 (Central European Summer Time)","env":"development","error":{},"exception":true,"level":"error","message":"uncaughtException: getCommunications is not defined\nReferenceError: getCommunications is not defined\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js:44:41\n    at ModuleJob.run (node:internal/modules/esm/module_job:325:25)\n    at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)","os":{"loadavg":[0.87,0.91,0.83],"uptime":23668.24},"process":{"argv":["/home/mesto/.nvm/versions/node/v20.20.0/bin/node","/media/mesto/Store/my-projects/repair.shop/server/src/index.js"],"cwd":"/media/mesto/Store/my-projects/repair.shop/server","execPath":"/home/mesto/.nvm/versions/node/v20.20.0/bin/node","gid":1000,"memoryUsage":{"arrayBuffers":18262468,"external":20653892,"heapTotal":55902208,"heapUsed":30868264,"rss":97837056},"pid":23985,"uid":1000,"version":"v20.20.0"},"service":"mesfor repair shop","stack":"ReferenceError: getCommunications is not defined\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js:44:41\n    at ModuleJob.run (node:internal/modules/esm/module_job:325:25)\n    at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)","timestamp":"2026-07-26 21:46:53","trace":[{"column":41,"file":"file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js","function":null,"line":44,"method":null,"native":false},{"column":25,"file":"node:internal/modules/esm/module_job","function":"ModuleJob.run","line":325,"method":"run","native":false},{"column":24,"file":"node:internal/modules/esm/loader","function":"async ModuleLoader.import","line":606,"method":"import","native":false},{"column":5,"file":"node:internal/modules/run_main","function":"async asyncRunEntryPointWithESMLoader","line":117,"method":null,"native":false}]}
+{"date":"Sun Jul 26 2026 22:17:52 GMT+0200 (Central European Summer Time)","env":"development","error":{},"exception":true,"level":"error","message":"uncaughtException: workItemSchema is not defined\nReferenceError: workItemSchema is not defined\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js:92:12\n    at ModuleJob.run (node:internal/modules/esm/module_job:325:25)\n    at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)","os":{"loadavg":[0.4,0.68,0.81],"uptime":25527.57},"process":{"argv":["/home/mesto/.nvm/versions/node/v20.20.0/bin/node","/media/mesto/Store/my-projects/repair.shop/server/src/index.js"],"cwd":"/media/mesto/Store/my-projects/repair.shop/server","execPath":"/home/mesto/.nvm/versions/node/v20.20.0/bin/node","gid":1000,"memoryUsage":{"arrayBuffers":18262468,"external":20653892,"heapTotal":57221120,"heapUsed":30183208,"rss":95924224},"pid":26428,"uid":1000,"version":"v20.20.0"},"service":"mesfor repair shop","stack":"ReferenceError: workItemSchema is not defined\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js:92:12\n    at ModuleJob.run (node:internal/modules/esm/module_job:325:25)\n    at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)","timestamp":"2026-07-26 22:17:52","trace":[{"column":12,"file":"file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js","function":null,"line":92,"method":null,"native":false},{"column":25,"file":"node:internal/modules/esm/module_job","function":"ModuleJob.run","line":325,"method":"run","native":false},{"column":24,"file":"node:internal/modules/esm/loader","function":"async ModuleLoader.import","line":606,"method":"import","native":false},{"column":5,"file":"node:internal/modules/run_main","function":"async asyncRunEntryPointWithESMLoader","line":117,"method":null,"native":false}]}
+{"date":"Sun Jul 26 2026 22:17:56 GMT+0200 (Central European Summer Time)","env":"development","error":{},"exception":true,"level":"error","message":"uncaughtException: workItemSchema is not defined\nReferenceError: workItemSchema is not defined\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js:87:48\n    at ModuleJob.run (node:internal/modules/esm/module_job:325:25)\n    at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)","os":{"loadavg":[0.45,0.69,0.81],"uptime":25531.26},"process":{"argv":["/home/mesto/.nvm/versions/node/v20.20.0/bin/node","/media/mesto/Store/my-projects/repair.shop/server/src/index.js"],"cwd":"/media/mesto/Store/my-projects/repair.shop/server","execPath":"/home/mesto/.nvm/versions/node/v20.20.0/bin/node","gid":1000,"memoryUsage":{"arrayBuffers":18262468,"external":20653892,"heapTotal":57483264,"heapUsed":30405344,"rss":95051776},"pid":26462,"uid":1000,"version":"v20.20.0"},"service":"mesfor repair shop","stack":"ReferenceError: workItemSchema is not defined\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js:87:48\n    at ModuleJob.run (node:internal/modules/esm/module_job:325:25)\n    at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)","timestamp":"2026-07-26 22:17:56","trace":[{"column":48,"file":"file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js","function":null,"line":87,"method":null,"native":false},{"column":25,"file":"node:internal/modules/esm/module_job","function":"ModuleJob.run","line":325,"method":"run","native":false},{"column":24,"file":"node:internal/modules/esm/loader","function":"async ModuleLoader.import","line":606,"method":"import","native":false},{"column":5,"file":"node:internal/modules/run_main","function":"async asyncRunEntryPointWithESMLoader","line":117,"method":null,"native":false}]}
+{"date":"Sun Jul 26 2026 22:18:15 GMT+0200 (Central European Summer Time)","env":"development","error":{},"exception":true,"level":"error","message":"uncaughtException: workItemSchema is not defined\nReferenceError: workItemSchema is not defined\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js:87:48\n    at ModuleJob.run (node:internal/modules/esm/module_job:325:25)\n    at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)","os":{"loadavg":[0.68,0.73,0.83],"uptime":25549.85},"process":{"argv":["/home/mesto/.nvm/versions/node/v20.20.0/bin/node","/media/mesto/Store/my-projects/repair.shop/server/src/index.js"],"cwd":"/media/mesto/Store/my-projects/repair.shop/server","execPath":"/home/mesto/.nvm/versions/node/v20.20.0/bin/node","gid":1000,"memoryUsage":{"arrayBuffers":18262468,"external":20653892,"heapTotal":56688640,"heapUsed":31911384,"rss":96747520},"pid":26500,"uid":1000,"version":"v20.20.0"},"service":"mesfor repair shop","stack":"ReferenceError: workItemSchema is not defined\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js:87:48\n    at ModuleJob.run (node:internal/modules/esm/module_job:325:25)\n    at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)","timestamp":"2026-07-26 22:18:15","trace":[{"column":48,"file":"file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js","function":null,"line":87,"method":null,"native":false},{"column":25,"file":"node:internal/modules/esm/module_job","function":"ModuleJob.run","line":325,"method":"run","native":false},{"column":24,"file":"node:internal/modules/esm/loader","function":"async ModuleLoader.import","line":606,"method":"import","native":false},{"column":5,"file":"node:internal/modules/run_main","function":"async asyncRunEntryPointWithESMLoader","line":117,"method":null,"native":false}]}
+{"date":"Sun Jul 26 2026 22:18:17 GMT+0200 (Central European Summer Time)","env":"development","error":{},"exception":true,"level":"error","message":"uncaughtException: workItemSchema is not defined\nReferenceError: workItemSchema is not defined\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js:87:48\n    at ModuleJob.run (node:internal/modules/esm/module_job:325:25)\n    at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)","os":{"loadavg":[0.68,0.73,0.83],"uptime":25551.84},"process":{"argv":["/home/mesto/.nvm/versions/node/v20.20.0/bin/node","/media/mesto/Store/my-projects/repair.shop/server/src/index.js"],"cwd":"/media/mesto/Store/my-projects/repair.shop/server","execPath":"/home/mesto/.nvm/versions/node/v20.20.0/bin/node","gid":1000,"memoryUsage":{"arrayBuffers":18262468,"external":20653892,"heapTotal":57221120,"heapUsed":30193128,"rss":96030720},"pid":26532,"uid":1000,"version":"v20.20.0"},"service":"mesfor repair shop","stack":"ReferenceError: workItemSchema is not defined\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js:87:48\n    at ModuleJob.run (node:internal/modules/esm/module_job:325:25)\n    at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)","timestamp":"2026-07-26 22:18:17","trace":[{"column":48,"file":"file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js","function":null,"line":87,"method":null,"native":false},{"column":25,"file":"node:internal/modules/esm/module_job","function":"ModuleJob.run","line":325,"method":"run","native":false},{"column":24,"file":"node:internal/modules/esm/loader","function":"async ModuleLoader.import","line":606,"method":"import","native":false},{"column":5,"file":"node:internal/modules/run_main","function":"async asyncRunEntryPointWithESMLoader","line":117,"method":null,"native":false}]}
+{"date":"Sun Jul 26 2026 22:18:20 GMT+0200 (Central European Summer Time)","env":"development","error":{},"exception":true,"level":"error","message":"uncaughtException: workItemSchema is not defined\nReferenceError: workItemSchema is not defined\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js:87:48\n    at ModuleJob.run (node:internal/modules/esm/module_job:325:25)\n    at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)","os":{"loadavg":[0.79,0.75,0.83],"uptime":25554.94},"process":{"argv":["/home/mesto/.nvm/versions/node/v20.20.0/bin/node","/media/mesto/Store/my-projects/repair.shop/server/src/index.js"],"cwd":"/media/mesto/Store/my-projects/repair.shop/server","execPath":"/home/mesto/.nvm/versions/node/v20.20.0/bin/node","gid":1000,"memoryUsage":{"arrayBuffers":18262468,"external":20653892,"heapTotal":57221120,"heapUsed":30355192,"rss":96739328},"pid":26562,"uid":1000,"version":"v20.20.0"},"service":"mesfor repair shop","stack":"ReferenceError: workItemSchema is not defined\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js:87:48\n    at ModuleJob.run (node:internal/modules/esm/module_job:325:25)\n    at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)","timestamp":"2026-07-26 22:18:20","trace":[{"column":48,"file":"file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js","function":null,"line":87,"method":null,"native":false},{"column":25,"file":"node:internal/modules/esm/module_job","function":"ModuleJob.run","line":325,"method":"run","native":false},{"column":24,"file":"node:internal/modules/esm/loader","function":"async ModuleLoader.import","line":606,"method":"import","native":false},{"column":5,"file":"node:internal/modules/run_main","function":"async asyncRunEntryPointWithESMLoader","line":117,"method":null,"native":false}]}
+{"date":"Sun Jul 26 2026 22:19:26 GMT+0200 (Central European Summer Time)","env":"development","error":{},"exception":true,"level":"error","message":"uncaughtException: workItemSchema is not defined\nReferenceError: workItemSchema is not defined\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js:87:48\n    at ModuleJob.run (node:internal/modules/esm/module_job:325:25)\n    at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)","os":{"loadavg":[0.82,0.75,0.83],"uptime":25620.98},"process":{"argv":["/home/mesto/.nvm/versions/node/v20.20.0/bin/node","/media/mesto/Store/my-projects/repair.shop/server/src/index.js"],"cwd":"/media/mesto/Store/my-projects/repair.shop/server","execPath":"/home/mesto/.nvm/versions/node/v20.20.0/bin/node","gid":1000,"memoryUsage":{"arrayBuffers":18262468,"external":20653892,"heapTotal":56426496,"heapUsed":32212312,"rss":97628160},"pid":26663,"uid":1000,"version":"v20.20.0"},"service":"mesfor repair shop","stack":"ReferenceError: workItemSchema is not defined\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js:87:48\n    at ModuleJob.run (node:internal/modules/esm/module_job:325:25)\n    at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)","timestamp":"2026-07-26 22:19:26","trace":[{"column":48,"file":"file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js","function":null,"line":87,"method":null,"native":false},{"column":25,"file":"node:internal/modules/esm/module_job","function":"ModuleJob.run","line":325,"method":"run","native":false},{"column":24,"file":"node:internal/modules/esm/loader","function":"async ModuleLoader.import","line":606,"method":"import","native":false},{"column":5,"file":"node:internal/modules/run_main","function":"async asyncRunEntryPointWithESMLoader","line":117,"method":null,"native":false}]}
+{"date":"Sun Jul 26 2026 22:19:44 GMT+0200 (Central European Summer Time)","env":"development","error":{},"exception":true,"level":"error","message":"uncaughtException: addWorkItem is not defined\nReferenceError: addWorkItem is not defined\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js:88:65\n    at ModuleJob.run (node:internal/modules/esm/module_job:325:25)\n    at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)","os":{"loadavg":[0.89,0.77,0.83],"uptime":25639.42},"process":{"argv":["/home/mesto/.nvm/versions/node/v20.20.0/bin/node","/media/mesto/Store/my-projects/repair.shop/server/src/index.js"],"cwd":"/media/mesto/Store/my-projects/repair.shop/server","execPath":"/home/mesto/.nvm/versions/node/v20.20.0/bin/node","gid":1000,"memoryUsage":{"arrayBuffers":18262468,"external":20653892,"heapTotal":56688640,"heapUsed":32305648,"rss":96813056},"pid":26724,"uid":1000,"version":"v20.20.0"},"service":"mesfor repair shop","stack":"ReferenceError: addWorkItem is not defined\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js:88:65\n    at ModuleJob.run (node:internal/modules/esm/module_job:325:25)\n    at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)","timestamp":"2026-07-26 22:19:44","trace":[{"column":65,"file":"file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js","function":null,"line":88,"method":null,"native":false},{"column":25,"file":"node:internal/modules/esm/module_job","function":"ModuleJob.run","line":325,"method":"run","native":false},{"column":24,"file":"node:internal/modules/esm/loader","function":"async ModuleLoader.import","line":606,"method":"import","native":false},{"column":5,"file":"node:internal/modules/run_main","function":"async asyncRunEntryPointWithESMLoader","line":117,"method":null,"native":false}]}
+{"date":"Sun Jul 26 2026 22:20:01 GMT+0200 (Central European Summer Time)","env":"development","error":{},"exception":true,"level":"error","message":"uncaughtException: addWorkItem is not defined\nReferenceError: addWorkItem is not defined\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js:88:65\n    at ModuleJob.run (node:internal/modules/esm/module_job:325:25)\n    at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)","os":{"loadavg":[0.76,0.75,0.82],"uptime":25656.32},"process":{"argv":["/home/mesto/.nvm/versions/node/v20.20.0/bin/node","/media/mesto/Store/my-projects/repair.shop/server/src/index.js"],"cwd":"/media/mesto/Store/my-projects/repair.shop/server","execPath":"/home/mesto/.nvm/versions/node/v20.20.0/bin/node","gid":1000,"memoryUsage":{"arrayBuffers":18262468,"external":20653892,"heapTotal":57221120,"heapUsed":30461296,"rss":96366592},"pid":26802,"uid":1000,"version":"v20.20.0"},"service":"mesfor repair shop","stack":"ReferenceError: addWorkItem is not defined\n    at file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js:88:65\n    at ModuleJob.run (node:internal/modules/esm/module_job:325:25)\n    at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)","timestamp":"2026-07-26 22:20:01","trace":[{"column":65,"file":"file:///media/mesto/Store/my-projects/repair.shop/server/src/routes/admin.repairs.router.js","function":null,"line":88,"method":null,"native":false},{"column":25,"file":"node:internal/modules/esm/module_job","function":"ModuleJob.run","line":325,"method":"run","native":false},{"column":24,"file":"node:internal/modules/esm/loader","function":"async ModuleLoader.import","line":606,"method":"import","native":false},{"column":5,"file":"node:internal/modules/run_main","function":"async asyncRunEntryPointWithESMLoader","line":117,"method":null,"native":false}]}

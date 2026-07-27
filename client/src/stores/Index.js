@@ -4,6 +4,7 @@ import VuexPersist from "vuex-persist";
 const vuexLocalStorage = new VuexPersist({
   key: "vuex",
   storage: window.localStorage,
+
   reducer: (state) => ({
     repairs: {
       form: {
@@ -15,6 +16,10 @@ const vuexLocalStorage = new VuexPersist({
       },
 
       success: state.repairs.success,
+    },
+
+    invoice: {
+      data: state.invoice.data,
     },
   }),
 });
@@ -93,6 +98,51 @@ const repairsModule = {
   },
 };
 
+const invoiceModule = {
+  namespaced: true,
+
+  state: () => ({
+    data: {
+      invoiceNumber: "",
+      date: "",
+      serviceDate: "",
+      paymentTerms: 14,
+      currency: "EUR",
+      vatType: "standard",
+      paymentStatus: "unpaid",
+      repair: null,
+      customer: null,
+      items: [],
+      netTotal: 0,
+      vatTotal: 0,
+      total: 0,
+    },
+  }),
+
+  mutations: {
+    setInvoice(state, payload) {
+      state.data = payload;
+    },
+
+    resetInvoice(state) {
+      state.data = {
+        invoiceNumber: "",
+        date: "",
+        serviceDate: "",
+        paymentTerms: 14,
+        currency: "EUR",
+        vatType: "standard",
+        paymentStatus: "unpaid",
+        repair: null,
+        customer: null,
+        items: [],
+        netTotal: 0,
+        vatTotal: 0,
+        total: 0,
+      };
+    },
+  },
+};
 export default createStore({
   state: {
     auth: "",
@@ -108,6 +158,7 @@ export default createStore({
   getters: {},
   modules: {
     repairs: repairsModule,
+     invoice: invoiceModule,
   },
 
   plugins: [vuexLocalStorage.plugin],

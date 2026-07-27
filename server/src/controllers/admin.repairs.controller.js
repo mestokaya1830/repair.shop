@@ -2,6 +2,7 @@ import catchAsync from "../middleware/catch.async.js";
 import customersSC from "../models/customers.sc.js";
 import repairsSC from "../models/repairs.sc.js";
 import devicesSC from "../models/devices.sc.js";
+import communicationsSC from "../models/communications.sc.js";
 import logger from "../utils/logger.js";
 import AppError from "../utils/app.error.js";
 
@@ -122,10 +123,10 @@ export const index = catchAsync(async (req, res, next) => {
       createdAt: -1,
     })
     .lean();
-    res.json({
-      success: true,
-      repairs
-    })
+  res.json({
+    success: true,
+    repairs,
+  });
 });
 
 // details
@@ -136,8 +137,9 @@ export const details = catchAsync(async (req, res, next) => {
     .populate("device")
     .populate("assignedTo")
     .populate("statusHistory.changedBy")
-    .populate("workLogs.createdBy")
+    .populate("workItems.createdBy")
     .populate("createdBy", "firstName lastName email role position")
+
     .lean();
 
   if (!repair) {
@@ -146,10 +148,10 @@ export const details = catchAsync(async (req, res, next) => {
 
   res.json({
     success: true,
-    repair,
+
+    data: repair,
   });
 });
-
 // edit
 export const edit = catchAsync(async (req, res, next) => {
   const repair = await repairsSC
@@ -352,5 +354,72 @@ export const deleteRepair = catchAsync(async (req, res, next) => {
   res.json({
     success: true,
     message: "Repair deleted successfully",
+  });
+});
+
+export const addWorkItem = catchAsync(async (req, res, next) => {
+  const repair = await repairsSC.findById(req.params.id);
+
+  if (!repair) {
+    return next(new AppError("Repair not found", 404, "REPAIR_NOT_FOUND"));
+  }
+
+  repair.workItems.push({
+    ...req.body,
+
+    createdBy: req.user._id,
+
+    createdAt: new Date(),
+  });
+
+  await repair.save();
+
+  res.json({
+    success: true,
+
+    data: repair.workItems,
+  });
+});
+
+//create communications
+export const createCommunication = catchAsync(async (req, res, next) => {
+  const communication = await communicationsSC.create({
+    repairId: req.body.repairId,
+
+    customerId: req.body.customerId,
+
+    deviceId: req.body.deviceId,
+
+    type: req.body.type,
+
+    contactPerson: req.body.contactPerson,
+
+    subject: req.body.subject,
+
+    message: req.body.message,
+
+    createdBy: req.user?._id,
+  });
+
+  res.status(201).json({
+    success: true,
+    data: communication,
+  });
+});
+
+// GET communications
+export const getCommunications = catchAsync(async (req, res, next) => {
+  const communications = await communicationsSC
+    .find({
+      repairId: req.params.repairId,
+    })
+    .populate("createdBy", "firstName lastName email role")
+    .sort({
+      createdAt: -1,
+    });
+
+  res.json({
+    success: true,
+    data: communications,
   });
 });

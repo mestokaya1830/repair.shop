@@ -2,10 +2,15 @@ import mongoose from "mongoose";
 
 const repairsSC = new mongoose.Schema(
   {
+    // -----------------------------------------------------------------
+    // BASIC
+    // -----------------------------------------------------------------
+
     isActive: {
       type: Boolean,
-      default: true
+      default: true,
     },
+
     repairNumber: {
       type: String,
       required: true,
@@ -20,6 +25,10 @@ const repairsSC = new mongoose.Schema(
       index: true,
     },
 
+    // -----------------------------------------------------------------
+    // RELATIONS
+    // -----------------------------------------------------------------
+
     customer: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "customers",
@@ -31,6 +40,10 @@ const repairsSC = new mongoose.Schema(
       ref: "devices",
       required: true,
     },
+
+    // -----------------------------------------------------------------
+    // REPAIR STATUS
+    // -----------------------------------------------------------------
 
     status: {
       type: String,
@@ -75,6 +88,10 @@ const repairsSC = new mongoose.Schema(
       ref: "users",
     },
 
+    // -----------------------------------------------------------------
+    // REPAIR DETAILS
+    // -----------------------------------------------------------------
+
     problem: {
       category: {
         type: String,
@@ -87,12 +104,34 @@ const repairsSC = new mongoose.Schema(
       },
 
       startedAt: Date,
+
       deviceWorking: String,
+
       notes: String,
     },
+
     diagnosis: String,
+
     solution: String,
+
     estimatedCompletionDate: Date,
+
+    // -----------------------------------------------------------------
+    // COMMUNICATIONS
+    // Customer conversations
+    // Stored in separate communications collection
+    // -----------------------------------------------------------------
+
+    communications: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "communications",
+      },
+    ],
+
+    // -----------------------------------------------------------------
+    // LOGISTICS
+    // -----------------------------------------------------------------
 
     reception: {
       method: {
@@ -101,16 +140,16 @@ const repairsSC = new mongoose.Schema(
       },
 
       location: String,
+
       receivedBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "users",
       },
 
-      receivedAt: {
-        type: Date,
-      },
+      receivedAt: Date,
 
       courierCompany: String,
+
       trackingNumber: String,
     },
 
@@ -122,19 +161,28 @@ const repairsSC = new mongoose.Schema(
       },
 
       approvedAt: Date,
+
       note: String,
     },
 
     shipping: {
       street: String,
+
       postalCode: String,
+
       city: String,
+
       country: String,
+
       contactMethod: {
         type: String,
         enum: ["phone", "email", "whatsapp"],
       },
     },
+
+    // -----------------------------------------------------------------
+    // FILES
+    // -----------------------------------------------------------------
 
     images: [
       {
@@ -170,49 +218,52 @@ const repairsSC = new mongoose.Schema(
       },
     ],
 
-    workflow: {
-      received: {
-        user: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "users",
-        },
+    // -----------------------------------------------------------------
+    // WORK ITEMS
+    // Invoice Positions Source
+    // -----------------------------------------------------------------
 
-        date: Date,
-      },
-
-      diagnosis: {
-        user: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "users",
-        },
-
-        date: Date,
-      },
-
-      repair: {
-        user: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "users",
-        },
-
-        date: Date,
-      },
-
-      delivery: {
-        user: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "users",
-        },
-
-        date: Date,
-      },
-    },
-
-    workLogs: [
+    workItems: [
       {
-        message: {
+        date: {
+          type: Date,
+          default: Date.now,
+        },
+
+        type: {
+          type: String,
+          enum: ["service", "part"],
+          required: true,
+        },
+
+        title: {
           type: String,
           required: true,
+          trim: true,
+        },
+
+        description: {
+          type: String,
+          default: "",
+          trim: true,
+        },
+
+        quantity: {
+          type: Number,
+          default: 1,
+          min: 1,
+        },
+
+        partInfo: {
+          name: String,
+
+          brand: String,
+
+          model: String,
+
+          serialNumber: String,
+
+          partNumber: String,
         },
 
         createdBy: {
@@ -226,6 +277,10 @@ const repairsSC = new mongoose.Schema(
         },
       },
     ],
+
+    // -----------------------------------------------------------------
+    // SYSTEM
+    // -----------------------------------------------------------------
 
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,
@@ -243,7 +298,7 @@ const repairsSC = new mongoose.Schema(
 
   {
     timestamps: true,
-    versionKey: false
+    versionKey: false,
   },
 );
 

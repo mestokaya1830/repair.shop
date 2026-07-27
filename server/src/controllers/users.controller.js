@@ -39,15 +39,15 @@ export const create = catchAsync(async (req, res, next) => {
 export const index = catchAsync(async (req, res, next) => {
   const { search, role, isActive, position } = req.query;
 
-const filter = {
-  isActive: true,
-};
+  const filter = {
+    isActive: true,
+  };
 
   if (role) {
     filter.role = role;
   }
 
- if (isActive !== undefined && isActive !== "") {
+  if (isActive !== undefined && isActive !== "") {
     filter.isActive = isActive === "true";
   }
   if (position) {

@@ -14,7 +14,6 @@ import usersRouter from './routes/users.router.js'
 import customersRouter from './routes/customers.router.js'
 import devicesRouter from './routes/devices.router.js'
 import dashboardRouter from './routes/dashboard.router.js'
-
 const app = express();
 
 app.use(helmet({

@@ -9,49 +9,67 @@
     </p>
 
     <div v-if="repair">
-      <h3>Repair Number</h3>
-      <p>{{ repair.repairNumber }}</p>
+      <!-- BASIC -->
 
-      <h3>Status</h3>
+      <section>
+        <h3>Repair Information</h3>
 
-      <p>
-        {{ repair.status }}
-      </p>
-      <p>
-        {{ repair.source }}
-      </p>
-      <p>
-        {{ repair.createdBy }}
-      </p>
+        <p>
+          Repair Number:
+          {{ repair.repairNumber }}
+        </p>
 
-      <h3>Assigned Technician</h3>
+        <p>
+          Status:
+          {{ repair.status }}
+        </p>
 
-      <p v-if="repair.assignedTo">
-        Current:
+        <p>
+          Source:
+          {{ repair.source }}
+        </p>
+      </section>
 
-        {{ repair.assignedTo?.firstName }}
-        {{ repair.assignedTo?.lastName }}
-      </p>
+      <hr />
 
-      <select v-model="selectedTechnician">
-        <option value="">Select Technician</option>
+      <!-- ASSIGN -->
 
-        <option v-for="user in technicians" :key="user._id" :value="user._id">
-          {{ user?.firstName }}
-          {{ user?.lastName }}
+      <section>
+        <h3>Assigned Technician</h3>
 
-          -
-          {{ user?.position || user.role }}
-        </option>
-      </select>
+        <p v-if="repair.assignedTo">
+          Current:
 
-      <button @click="assignRepair" :disabled="!selectedTechnician">
-        Assign
-      </button>
+          {{ repair.assignedTo.firstName }}
 
-      <!-- Status Actions -->
+          {{ repair.assignedTo.lastName }}
+        </p>
 
-      <div class="status-actions">
+        <select v-model="selectedTechnician">
+          <option value="">Select Technician</option>
+
+          <option v-for="user in technicians" :key="user._id" :value="user._id">
+            {{ user.firstName }}
+
+            {{ user.lastName }}
+
+            -
+            {{ user.position || user.role }}
+          </option>
+        </select>
+
+        <button @click="assignRepair" :disabled="!selectedTechnician">
+          Assign
+        </button>
+      </section>
+
+      <hr />
+
+      <!-- STATUS -->
+
+      <section>
+        <h3>Status Actions</h3>
+
         <button
           v-if="repair.status === 'Pending'"
           @click="changeStatus('Received')"
@@ -93,133 +111,196 @@
         >
           Deliver
         </button>
-      </div>
+      </section>
 
       <hr />
 
-      <h3>Customer</h3>
+      <!-- CUSTOMER -->
 
-      <p>
-        {{ repair.customer?.firstName }}
-        {{ repair.customer?.lastName }}
-      </p>
+      <section>
+        <h3>Customer</h3>
 
-      <p>
-        {{ repair.customer?.phone }}
-      </p>
+        <p>
+          {{ repair.customer?.firstName }}
 
-      <p>
-        {{ repair.customer?.email }}
-      </p>
+          {{ repair.customer?.lastName }}
+        </p>
 
-      <hr />
+        <p>
+          {{ repair.customer?.phone }}
+        </p>
 
-      <h3>Device</h3>
-
-      <p>
-        {{ repair.device?.brand }}
-        {{ repair.device?.model }}
-      </p>
-
-      <p>
-        Serial:
-        {{ repair.device?.serialNumber }}
-      </p>
+        <p>
+          {{ repair.customer?.email }}
+        </p>
+      </section>
 
       <hr />
 
-      <h3>Problem</h3>
+      <!-- DEVICE -->
 
-      <p>
-        Category:
-        {{ repair.problem?.category }}
-      </p>
+      <section>
+        <h3>Device</h3>
 
-      <p>
-        Description:
-        {{ repair.problem?.description }}
-      </p>
+        <p>
+          {{ repair.device?.brand }}
 
-      <p>
-        Device Working:
-        {{ repair.problem?.deviceWorking }}
-      </p>
+          {{ repair.device?.model }}
+        </p>
 
-      <p>
-        Notes:
-        {{ repair.problem?.notes }}
-      </p>
+        <p>
+          Serial:
+
+          {{ repair.device?.serialNumber }}
+        </p>
+      </section>
 
       <hr />
 
-      <h3>Status History</h3>
+      <!-- PROBLEM -->
 
-      <ul>
-        <li v-for="item in repair.statusHistory" :key="item._id">
-          {{ item.status }}
-          -
-          {{ item.note }}
-          -
-          {{ item.changedBy?.name }}
-          -
-          {{ formatDate(item.createdAt) }}
-        </li>
-      </ul>
+      <section>
+        <h3>Problem</h3>
+
+        <p>
+          Category:
+          {{ repair.problem?.category }}
+        </p>
+
+        <p>
+          Description:
+          {{ repair.problem?.description }}
+        </p>
+
+        <p>
+          Notes:
+          {{ repair.problem?.notes }}
+        </p>
+      </section>
 
       <hr />
 
-      <h3>Work Logs</h3>
+      <!-- STATUS HISTORY -->
 
-      <div>
-        <textarea
-          v-model="workMessage"
-          placeholder="Add work note..."
-        ></textarea>
+      <section>
+        <h3>Status History</h3>
 
-        <button @click="addWorkLog">Add Log</button>
-      </div>
-
-      <ul>
-        <li v-for="log in repair.workLogs" :key="log._id">
-          {{ log.message }}
-          -
-          {{ log.createdBy?.firstName }}
-
-          {{ log.createdBy?.lastName }}
-          -
-          {{ formatDate(log.createdAt) }}
-        </li>
-      </ul>
-      <div v-if="repair.status === 'Deliverd'">
         <ul>
-          <li>
-            {{ repair.reception.method }}
+          <li v-for="item in repair.statusHistory" :key="item._id">
+            {{ item.status }}
+
             -
-            {{ repair.reception.location }}
+
+            {{ item.note }}
+
             -
-            {{ repair.reception.courierCompany }}
-            -
-            {{ repair.reception.trackingNumber }}
-            -
+
+            {{ formatDate(item.createdAt) }}
           </li>
         </ul>
-        {{ repair.reception }}
-      </div>
+      </section>
+
+      <hr />
+
+      <!-- WORK ITEMS -->
+
+      <section>
+        <h3>Work Items</h3>
+
+        <div class="work-item-form">
+          <input v-model="workItem.title" placeholder="Work title" />
+
+          <textarea v-model="workItem.description" placeholder="Description" />
+
+          <select v-model="workItem.type">
+            <option value="service">Service</option>
+
+            <option value="part">Part</option>
+          </select>
+
+          <input type="number" v-model.number="workItem.quantity" min="1" />
+
+          <template v-if="workItem.type === 'part'">
+            <input v-model="workItem.partInfo.name" placeholder="Part name" />
+
+            <input v-model="workItem.partInfo.brand" placeholder="Brand" />
+
+            <input v-model="workItem.partInfo.model" placeholder="Model" />
+
+            <input
+              v-model="workItem.partInfo.serialNumber"
+              placeholder="Serial Number"
+            />
+          </template>
+
+          <button @click="addWorkItem">Add Work Item</button>
+        </div>
+
+        <ul>
+          <li v-for="item in repair.workItems" :key="item._id">
+            {{ formatDate(item.date) }}
+
+            -
+
+            {{ item.type }}
+
+            -
+
+            {{ item.title }}
+
+            <span> ({{ item.quantity }}) </span>
+
+            <p>
+              {{ item.description }}
+            </p>
+
+            <small v-if="item.partInfo">
+              {{ item.partInfo.brand }}
+
+              {{ item.partInfo.model }}
+            </small>
+          </li>
+        </ul>
+      </section>
+
+      <hr />
+
+      <!-- IMAGES -->
+
+      <section>
+        <h3>Images</h3>
+
+        <div class="image-preview">
+          <img
+            v-for="item in repair.images"
+            :key="item._id"
+            :src="`http://localhost:4001/${item.path}`"
+            alt="Repair Image"
+          />
+        </div>
+      </section>
+
+      <hr />
+
+      <!-- INVOICE -->
       <button v-if="repair.status === 'Delivered'" @click="reopenRepair">
         Reopen Repair
       </button>
-      <div class="image-preview">
-        <template v-for="item in repair.images">
-          <img
-            :src="`http://localhost:4001/${item.path}`"
-            :alt="item.name || 'Repair Images'"
-          />
-        </template>
-      </div>
+      <router-link :to="`/admin/repairs/${repair._id}/communications`">
+        Communications
+      </router-link>
+      <button v-if="repair.status !== 'Ready'" disabled>Create Invoice</button>
+
+      <router-link
+        v-else
+        :to="`/admin/invoices/${repair._id}/create`"
+        class="nav-link"
+      >
+        Create Invoice
+      </router-link>
     </div>
   </div>
 </template>
-
 <script>
 import api from "@/api/axios.js";
 
@@ -229,10 +310,31 @@ export default {
   data() {
     return {
       repair: null,
+
       technicians: [],
+
       selectedTechnician: "",
-      workMessage: "",
+
+      workItem: {
+        type: "service",
+
+        title: "",
+
+        description: "",
+
+        quantity: 1,
+
+        partInfo: {
+          name: "",
+          brand: "",
+          model: "",
+          serialNumber: "",
+          partNumber: "",
+        },
+      },
+
       loading: false,
+
       error: "",
     };
   },
@@ -246,11 +348,13 @@ export default {
     async getRepair() {
       try {
         this.loading = true;
+
         const response = await api.get(
           `/repairs/${this.$route.params.id}/details`,
         );
 
-        this.repair = response.data.repair;
+        this.repair = response.data.data;
+
         console.log(this.repair);
       } catch (error) {
         this.error = error.response?.data?.message || "Failed to load repair";
@@ -263,6 +367,7 @@ export default {
       try {
         await api.patch(`/repairs/${this.repair._id}/status`, {
           status,
+
           note: `${status} status changed`,
         });
 
@@ -285,6 +390,7 @@ export default {
             position: "technician",
           },
         });
+
         this.technicians = response.data.data;
       } catch (error) {
         this.error =
@@ -304,27 +410,50 @@ export default {
       }
     },
 
-    async addWorkLog() {
-      if (!this.workMessage) {
+    async addWorkItem() {
+      if (!this.workItem.title) {
+        this.error = "Work title is required";
+
         return;
       }
 
       try {
-        await api.patch(`/repairs/${this.repair._id}/work-log`, {
-          message: this.workMessage,
+        await api.patch(`/repairs/${this.repair._id}/work-items`, {
+          ...this.workItem,
         });
 
-        this.workMessage = "";
+        this.workItem = {
+          type: "service",
+
+          title: "",
+
+          description: "",
+
+          quantity: 1,
+
+          partInfo: {
+            name: "",
+
+            brand: "",
+
+            model: "",
+
+            serialNumber: "",
+
+            partNumber: "",
+          },
+        };
 
         this.getRepair();
       } catch (error) {
-        this.error = error.response?.data?.message || "Failed to add work log";
+        this.error = error.response?.data?.message || "Failed to add work item";
       }
     },
 
     async reopenRepair() {
       try {
         await api.patch(`/repairs/${this.repair._id}/reopen`);
+
         this.getRepair();
       } catch (error) {
         this.error = error.response?.data?.message || "Reopen failed";

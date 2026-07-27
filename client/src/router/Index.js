@@ -168,9 +168,39 @@ const router = createRouter({
               component: () => import("../views/admin/repairs/Details.vue"),
             },
             {
+              path: ":id/communications",
+              name: "repairs-communications",
+              component: () => import("../views/admin/repairs/Communications.vue"),
+            },
+            {
               path: ":id/edit",
               name: "repairs-edit",
               component: () => import("../views/admin/repairs/Edit.vue"),
+            },
+          ],
+        },
+        {
+          path: "invoices",
+          children: [
+            {
+              path: "",
+              name: "invoices-index",
+              component: () => import("../views/admin/invoices/Index.vue"),
+            },
+            {
+              path: "preview",
+              name: "invoices-preview",
+              component: () => import("../views/admin/invoices/Preview.vue"),
+            },
+            {
+              path: ":id/create",
+              name: "invoices-create",
+              component: () => import("../views/admin/invoices/Create.vue"),
+            },
+            {
+              path: ":id/details",
+              name: "invoices-details",
+              component: () => import("../views/admin/invoices/Details.vue"),
             },
           ],
         },
