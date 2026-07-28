@@ -103,7 +103,7 @@ import api from "@/api/axios.js";
 
 export default {
   name: "TrackPage",
-
+  inject:['formatDate'],
   data() {
     return {
       repairNumber: "",
@@ -117,7 +117,6 @@ export default {
     async search() {
       if (!this.repairNumber) {
         this.error = "Please enter repair number";
-
         return;
       }
 
@@ -125,20 +124,15 @@ export default {
         this.loading = true;
         this.error = "";
         this.repair = null;
-        const response = await api.get(`/web/repair/track/${this.repairNumber}`);
-        this.repair = response.data.data;
+
+        const res = await api.get(`/web/repair/track/${this.repairNumber}`);
+        this.repair = res.data.data;
       } catch (error) {
         this.error = error.response?.data?.message || "Repair not found";
       } finally {
         this.loading = false;
       }
-    },
-
-    formatDate(date) {
-      if (!date) return "-";
-
-      return new Date(date).toLocaleString();
-    },
+    }
   },
 };
 </script>

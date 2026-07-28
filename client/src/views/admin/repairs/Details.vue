@@ -191,7 +191,7 @@
       <section>
         <h3>Status History</h3>
 
-        <ul>
+        <ul class="list">
           <li v-for="item in repair.statusHistory" :key="item._id">
             {{ item.status }}
 
@@ -242,7 +242,7 @@
           <button @click="addWorkItem" class="btn">Add Work Item</button>
         </div>
 
-        <ul>
+        <ul class="list">
           <li v-for="item in repair.workItems" :key="item._id">
             {{ formatDate(item.date) }}
 

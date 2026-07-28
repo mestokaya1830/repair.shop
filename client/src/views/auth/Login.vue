@@ -59,6 +59,8 @@ export default {
     async login() {
       try {
         this.errors = {};
+        this.credentials = "";
+        
         const result = loginSchema.safeParse(this.form);
         if (!result.success) {
           result.error.issues.forEach((error) => {

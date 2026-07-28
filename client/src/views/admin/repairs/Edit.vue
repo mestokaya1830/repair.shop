@@ -115,7 +115,7 @@
       <h2>Reception</h2>
 
       <h3>Current Reception</h3>
-      <ul>
+      <ul class="list">
           <li>
             Method: {{ form.reception.method }}
           </li>

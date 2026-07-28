@@ -199,14 +199,14 @@ export const edit = catchAsync(async (req, res, next) => {
 });
 
 export const update = catchAsync(async (req, res, next) => {
+  console.log('test')
   const data = await customersSC.findByIdAndUpdate(
     req.params.id,
     {
       $set: req.body,
     },
     {
-      returnDocument: "after",
-      runValidators: true,
+      returnDocument: "after"
     },
   );
 

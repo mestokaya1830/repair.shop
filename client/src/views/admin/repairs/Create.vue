@@ -38,6 +38,26 @@
       <p v-if="errors['customer.phone']" class="form-error">
         {{ errors["customer.phone"] }}
       </p>
+
+      <!-- Customer Street & Postal Code (Yeni Eklendi) -->
+      <div>
+        <label class="label"> Street (optional) </label>
+
+        <input v-model="form.customer.street" type="text" />
+      </div>
+      <p v-if="errors['customer.street']" class="form-error">
+        {{ errors["customer.street"] }}
+      </p>
+
+      <div>
+        <label class="label"> Postal Code (optional) </label>
+
+        <input v-model="form.customer.postalCode" type="text" />
+      </div>
+      <p v-if="errors['customer.postalCode']" class="form-error">
+        {{ errors["customer.postalCode"] }}
+      </p>
+
       <div>
         <label class="label"> Company Name (optional) </label>
 
@@ -184,8 +204,8 @@
 
         <input v-model="form.shipping.city" type="text" />
       </div>
-      <p v-if="errors['shipping.cisty']" class="form-error">
-        {{ errors["shipping.cisty"] }}
+      <p v-if="errors['shipping.city']" class="form-error">
+        {{ errors["shipping.city"] }}
       </p>
       <div>
         <label class="label"> Country </label>
@@ -222,7 +242,7 @@
           :key="index"
           class="image-preview"
         >
-          <img :src="image.url" :alt="image.name" />
+          <img :src="image.name" :alt="image.name" />
 
           <button type="button" class="btn" @click="removeImage(index)">X</button>
         </div>
@@ -276,7 +296,7 @@ export default {
       }
 
       for (const file of newFiles) {
-        await saveImage(file); // tekil kayıt, clear yok
+        await saveImage(file);
         this.imagePreviews.push({
           name: file.name,
           url: URL.createObjectURL(file),
@@ -308,7 +328,7 @@ export default {
       this.$router.push("/admin/repairs/review");
     },
     
-    //test data
+    // test data
     fillDefaults() {
       this.form = {
         customer: {
@@ -316,6 +336,8 @@ export default {
           lastName: "Yılmaz",
           email: "ahmet.yilmaz@example.com",
           phone: "+90 532 123 45 67",
+          street: "Atatürk Caddesi No: 42",
+          postalCode: "34380",
           company: "Yılmaz Teknoloji Ltd. Şti.",
         },
         device: {

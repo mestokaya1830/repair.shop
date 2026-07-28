@@ -1,7 +1,6 @@
 <template>
   <div class="success-page">
     <h1>Repair Request Created</h1>
-
     <p>Thank you for your request.</p>
 
     <div class="request-box">

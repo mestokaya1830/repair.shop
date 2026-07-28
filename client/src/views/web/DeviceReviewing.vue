@@ -178,9 +178,7 @@ export default {
   data() {
     return {
       imageUrls: [],
-
       submitting: false,
-
       error: "",
     };
   },
@@ -207,7 +205,6 @@ export default {
     editSection(section) {
       this.$router.push({
         name: "device-sending",
-
         hash: `#${section}`,
       });
     },
@@ -223,11 +220,9 @@ export default {
 
       try {
         this.submitting = true;
-
         this.error = "";
 
         const images = await getImages();
-
         const formData = new FormData();
 
         images.forEach((item) => {
@@ -235,15 +230,12 @@ export default {
         });
 
         formData.append("data", JSON.stringify(this.form));
-
-        const response = await api.post("/web/create", formData);
+        const res = await api.post("/web/create", formData);
 
         this.$store.commit("repairs/setRepairSuccess", {
-          repairNumber: response.data.data.repairNumber,
-
-          status: response.data.data.status,
-
-          createdAt: response.data.data.createdAt,
+          repairNumber: res.data.data.repairNumber,
+          status: res.data.data.status,
+          createdAt: res.data.data.createdAt,
         });
 
         this.$store.commit("repairs/resetRepairs");

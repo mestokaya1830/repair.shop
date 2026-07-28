@@ -32,7 +32,7 @@
         Profile
       </router-link>
      
-      <router-link to="/admin/tenants/profile" class="nav-link" active-class="active">
+      <router-link v-if="$store.state.auth.role==='owner'" to="/admin/tenants/profile" class="nav-link" active-class="active">
         Tenants Profile
       </router-link>
 
@@ -49,7 +49,6 @@ export default {
     logout() {
       localStorage.removeItem("token");
       localStorage.removeItem("user");
-
       this.$router.push("/auth/login");
     },
   },

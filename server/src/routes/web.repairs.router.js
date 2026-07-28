@@ -5,13 +5,13 @@ import upload from '../middleware/upload.images.js';
 import createRepairNumber from '../middleware/repair.number.middleware.js';
 import {
   create,
-  repairTrackController,
+  repairTrack,
 } from "../controllers/web.repairs.controller.js";
 
 const router = express.Router()
 
 router.post('/create', createRepairNumber, upload.array('images', 5), validate(repairsSchema), create)
-router.get('/repair/track/:repairNumber', repairTrackController);
+router.get('/repair/track/:repairNumber', repairTrack);
 
 
 export default router;

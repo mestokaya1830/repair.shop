@@ -62,7 +62,7 @@
       <section v-if="device.accessories?.length" class="details-section">
         <h3>Accessories</h3>
 
-        <ul>
+        <ul class >
           <li v-for="item in device.accessories" :key="item">
             {{ item }}
           </li>

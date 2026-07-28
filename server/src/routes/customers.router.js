@@ -26,7 +26,7 @@ router.get("/:id/devices/:deviceId/details", auth, deviceDetails)
 router.get("/:id/repairs/:repairId/details", auth, repairDetails)
 
 router.get("/:id/edit", auth, edit);
-router.patch("/:id/update", auth, validate(customersSchema), update);
+router.put("/:id/update", auth, validate(customersSchema), update);
 router.delete("/:id/remove", auth, remove);
 
 export default router;

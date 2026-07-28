@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="$store.state.auth.role==='owner'">
     <div v-if="fetching">
       <p>Loading profile...</p>
     </div>
@@ -354,8 +354,6 @@ export default {
       try {
         this.fetching = true
         const response = await api.get('/tenants')
-
-        console.log(response.data)
         if (response.data) {
           this.form = {
             ...this.form,

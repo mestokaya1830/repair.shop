@@ -51,7 +51,7 @@
     <div class="communication-list">
       <h3>History</h3>
 
-      <ul>
+      <ul class="list">
         <li v-for="item in communications" :key="item._id">
           <strong>
             {{ item.type }}

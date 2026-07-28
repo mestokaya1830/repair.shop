@@ -66,8 +66,9 @@ export const create = catchAsync(async (req, res, next) => {
   });
 });
 
-export const repairTrackController = catchAsync(async (req, res, next) => {
+export const repairTrack = catchAsync(async (req, res, next) => {
   const { repairNumber } = req.params;
+  
   const result = await repairsSC.findOne({ repairNumber });
   if (!result) {
     return next(

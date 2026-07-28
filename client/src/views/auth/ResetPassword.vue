@@ -23,8 +23,8 @@
             {{ errors.newPassword }}
           </p>
         </div>
-        <p v-if="serverError" class="form-error">
-          {{ serverError }}
+        <p v-if="credentials" class="form-error">
+          {{ credentials }}
         </p>
         <button type="submit" class="btn submit-button" :disabled="loading">
           {{ loading ? "Resetting..." : "Reset Password" }}
@@ -48,7 +48,7 @@ export default {
       },
       loading: false,
       errors: {},
-      serverError: ""
+      credentials: ""
     };
   },
 
@@ -56,7 +56,7 @@ export default {
     async handleResetPassword() {
       try {
         this.errors = {};
-        this.serverError = "";
+        this.credentials = "";
         
         const result = resetPasswordSchema.safeParse(this.form);
         if (!result.success) {
@@ -71,7 +71,7 @@ export default {
         
         this.$router.push("/auth/login");
       } catch (error) {
-        this.serverError = error.response?.data?.message || "Failed to reset password";
+        this.credentials = error.response?.data?.message || "Failed to reset password";
       } finally {
         this.loading = false;
       }
