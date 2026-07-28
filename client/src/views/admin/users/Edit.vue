@@ -10,59 +10,59 @@
 
     <form v-if="user" @submit.prevent="updateUser">
       <div>
-        <label>First Name</label>
-        <input v-model="form.firstName" type="text" />
+        <label class="label">First Name</label>
+        <input v-model="form.firstName" class="inputs" type="text" />
       </div>
 
       <div>
-        <label>Last Name</label>
-        <input v-model="form.lastName" type="text" />
+        <label class="label">Last Name</label>
+        <input v-model="form.lastName" class="inputs" type="text" />
       </div>
 
       <div>
-        <label>Email</label>
-        <input :value="user.email" disabled />
+        <label class="label">Email</label>
+        <input :value="user.email" class="inputs" disabled />
       </div>
 
       <div>
-        <label>Phone</label>
-        <input v-model="form.phone" type="text" />
+        <label class="label">Phone</label>
+        <input v-model="form.phone" class="inputs" type="text" />
       </div>
 
       <div>
-        <label>Position</label>
-        <input v-model="form.position" type="text" />
+        <label class="label">Position</label>
+        <input v-model="form.position" class="inputs" type="text" />
       </div>
 
       <div>
-        <label>Street</label>
-        <input v-model="form.street" />
+        <label class="label">Street</label>
+        <input v-model="form.street" class="inputs" />
       </div>
 
       <div>
-        <label>City</label>
-        <input v-model="form.city" />
+        <label class="label">City</label>
+        <input v-model="form.city" class="inputs" />
       </div>
 
       <div>
-        <label>Postal Code</label>
-        <input v-model="form.postalCode" />
+        <label class="label">Postal Code</label>
+        <input v-model="form.postalCode" class="inputs" />
       </div>
 
       <div>
-        <label>Country</label>
-        <input v-model="form.country" />
+        <label class="label">Country</label>
+        <input v-model="form.country" class="inputs" />
       </div>
 
       <div>
-        <label>Status</label>
-        <select v-model="form.isActive">
+        <label class="label">Status</label>
+        <select v-model="form.isActive" class="inputs select">
           <option :value="true">Active</option>
           <option :value="false">Inactive</option>
         </select>
       </div>
 
-      <button type="submit" :disabled="saving">
+      <button type="submit" class="btn" :disabled="saving">
         {{ saving ? "Saving..." : "Save Changes" }}
       </button>
     </form>

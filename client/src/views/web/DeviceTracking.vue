@@ -6,10 +6,11 @@
       <input
         v-model="repairNumber"
         type="text"
+        class="inputs"
         placeholder="Enter repair number"
       />
 
-      <button @click="search" :disabled="loading">
+      <button class="btn" @click="search" :disabled="loading">
         {{ loading ? "Searching..." : "Search" }}
       </button>
     </div>

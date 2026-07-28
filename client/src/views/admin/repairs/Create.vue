@@ -6,7 +6,7 @@
     <section class="repair-card">
       <h2>Customer Information</h2>
       <div>
-        <label> First Name </label>
+        <label class="label"> First Name </label>
 
         <input v-model="form.customer.firstName" type="text" />
       </div>
@@ -15,7 +15,7 @@
       </p>
 
       <div>
-        <label> Last Name </label>
+        <label class="label"> Last Name </label>
 
         <input v-model="form.customer.lastName" type="text" />
       </div>
@@ -23,7 +23,7 @@
         {{ errors["customer.lastName"] }}
       </p>
       <div>
-        <label> Email </label>
+        <label class="label"> Email </label>
 
         <input v-model="form.customer.email" type="email" />
       </div>
@@ -31,7 +31,7 @@
         {{ errors["customer.email"] }}
       </p>
       <div>
-        <label> Phone </label>
+        <label class="label"> Phone </label>
 
         <input v-model="form.customer.phone" type="tel" />
       </div>
@@ -39,7 +39,7 @@
         {{ errors["customer.phone"] }}
       </p>
       <div>
-        <label> Company Name (optional) </label>
+        <label class="label"> Company Name (optional) </label>
 
         <input v-model="form.customer.company" type="text" />
       </div>
@@ -49,7 +49,7 @@
     <section class="repair-card">
       <h2>Device Information</h2>
       <div>
-        <label>Device Type</label>
+        <label class="label">Device Type</label>
 
         <select v-model="form.device.type">
           <option value="">Select device type</option>
@@ -66,7 +66,7 @@
       </div>
 
       <div>
-        <label>Brand</label>
+        <label class="label">Brand</label>
 
         <input v-model="form.device.brand" type="text" />
 
@@ -76,7 +76,7 @@
       </div>
 
       <div>
-        <label>Model</label>
+        <label class="label">Model</label>
 
         <input v-model="form.device.model" type="text" />
 
@@ -86,13 +86,13 @@
       </div>
 
       <div>
-        <label> Serial Number (optional) </label>
+        <label class="label"> Serial Number (optional) </label>
 
         <input v-model="form.device.serialNumber" type="text" />
       </div>
 
       <div>
-        <label> Purchase Date (optional) </label>
+        <label class="label"> Purchase Date (optional) </label>
 
         <input v-model="form.device.purchaseDate" type="date" />
       </div>
@@ -102,7 +102,7 @@
     <section class="repair-card">
       <h2>Problem Information</h2>
       <div>
-        <label> Problem Category </label>
+        <label class="label"> Problem Category </label>
         <select v-model="form.problem.category">
           <option value="">Select category</option>
           <option value="hardware">Hardware</option>
@@ -119,7 +119,7 @@
       </div>
 
       <div>
-        <label> Problem Description </label>
+        <label class="label"> Problem Description </label>
 
         <textarea v-model="form.problem.description" rows="5"></textarea>
       </div>
@@ -127,7 +127,7 @@
         {{ errors["problem.description"] }}
       </p>
       <div>
-        <label> When did the problem start? </label>
+        <label class="label"> When did the problem start? </label>
 
         <input
           v-model="form.problem.startedAt"
@@ -137,7 +137,7 @@
       </div>
 
       <div>
-        <label> Is the device currently working? </label>
+        <label class="label"> Is the device currently working? </label>
 
         <select v-model="form.problem.deviceWorking">
           <option value="">Select</option>
@@ -154,7 +154,7 @@
       </div>
 
       <div>
-        <label> Additional Notes </label>
+        <label class="label"> Additional Notes </label>
 
         <textarea v-model="form.problem.notes" rows="3"></textarea>
       </div>
@@ -164,7 +164,7 @@
     <section class="repair-card">
       <h2>Shipping Information</h2>
       <div>
-        <label> Street Address </label>
+        <label class="label"> Street Address </label>
 
         <input v-model="form.shipping.street" type="text" />
       </div>
@@ -172,7 +172,7 @@
         {{ errors["shipping.street"] }}
       </p>
       <div>
-        <label> Postal Code </label>
+        <label class="label"> Postal Code </label>
 
         <input v-model="form.shipping.postalCode" type="text" />
       </div>
@@ -180,7 +180,7 @@
         {{ errors["shipping.postalCode"] }}
       </p>
       <div>
-        <label> City </label>
+        <label class="label"> City </label>
 
         <input v-model="form.shipping.city" type="text" />
       </div>
@@ -188,7 +188,7 @@
         {{ errors["shipping.cisty"] }}
       </p>
       <div>
-        <label> Country </label>
+        <label class="label"> Country </label>
 
         <input v-model="form.shipping.country" type="text" />
       </div>
@@ -196,7 +196,7 @@
         {{ errors["shipping.country"] }}
       </p>
       <div>
-        <label> Preferred Contact Method </label>
+        <label class="label"> Preferred Contact Method </label>
         <select v-model="form.shipping.contactMethod">
           <option value="">Select</option>
           <option value="email">Email</option>
@@ -208,7 +208,7 @@
     <!-- images -->
     <section class="repair-card">
       <div>
-        <label> Device Photos (optional) </label>
+        <label class="label"> Device Photos (optional) </label>
 
         <input type="file" multiple accept="image/*" @change="handleImages" />
 
@@ -224,14 +224,14 @@
         >
           <img :src="image.url" :alt="image.name" />
 
-          <button type="button" @click="removeImage(index)">X</button>
+          <button type="button" class="btn" @click="removeImage(index)">X</button>
         </div>
       </div>
     </section>
     <p v-if="errors['shipping.contactMethod']" class="form-error">
       {{ errors["shipping.contactMethod"] }}
     </p>
-    <button @click="reviewBtn">Review Form</button>
+    <button @click="reviewBtn" class="btn">Review Form</button>
   </div>
 </template>
 

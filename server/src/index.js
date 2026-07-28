@@ -15,6 +15,8 @@ import customersRouter from './routes/customers.router.js'
 import devicesRouter from './routes/devices.router.js'
 import dashboardRouter from './routes/dashboard.router.js'
 import tanentsRouter from "./routes/tenants.router.js";
+import invoicesRouter from './routes/invoices.router.js'
+
 
 const app = express();
 
@@ -37,6 +39,7 @@ app.use('/api/dashboard', dashboardRouter)
 app.use('/api/customers', customersRouter)
 app.use('/api/devices', devicesRouter)
 app.use('/api/tenants', tanentsRouter)
+app.use('/api/invoices', invoicesRouter)
 
 
 app.use((req, res, next) => {

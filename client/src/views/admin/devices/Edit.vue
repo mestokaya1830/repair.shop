@@ -63,7 +63,7 @@
         <textarea v-model="form.notes"></textarea>
       </div>
 
-      <button type="submit">Save</button>
+      <button type="submit" class="btn">Save</button>
     </form>
   </div>
 </template>

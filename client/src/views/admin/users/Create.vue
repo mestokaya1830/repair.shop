@@ -6,7 +6,7 @@
       <h3>Account Information</h3>
 
       <div>
-        <label> Email </label>
+        <label class="label"> Email </label>
 
         <input v-model="form.email" type="email" />
 
@@ -16,7 +16,7 @@
       </div>
 
       <div>
-        <label> Password </label>
+        <label class="label"> Password </label>
 
         <input v-model="form.password" type="password" />
 
@@ -30,25 +30,25 @@
       <h3>Profile Information</h3>
 
       <div>
-        <label> First Name </label>
+        <label class="label"> First Name </label>
 
         <input v-model="form.firstName" type="text" />
       </div>
 
       <div>
-        <label> Last Name </label>
+        <label class="label"> Last Name </label>
 
         <input v-model="form.lastName" type="text" />
       </div>
 
       <div>
-        <label> Phone </label>
+        <label class="label"> Phone </label>
 
         <input v-model="form.phone" type="text" />
       </div>
 
       <div>
-        <label> Position </label>
+        <label class="label"> Position </label>
 
         <select v-model="form.position">
           <option value="">Select Position</option>
@@ -66,38 +66,38 @@
       <h3>Address</h3>
 
       <div>
-        <label> Street </label>
+        <label class="label"> Street </label>
 
-        <input v-model="form.street" type="text" />
+        <input v-model="form.street" class="inputs" type="text" />
       </div>
 
       <div>
-        <label> City </label>
+        <label class="label"> City </label>
 
-        <input v-model="form.city" type="text" />
+        <input v-model="form.city" class="inputs" type="text" />
       </div>
 
       <div>
-        <label> Postal Code </label>
+        <label class="label"> Postal Code </label>
 
-        <input v-model="form.postalCode" type="text" />
+        <input v-model="form.postalCode" class="inputs" type="text" />
       </div>
 
       <div>
-        <label> Country </label>
+        <label class="label"> Country </label>
 
-        <input v-model="form.country" type="text" />
+        <input v-model="form.country" class="inputs" type="text" />
       </div>
 
       <div>
-        <label>
-          <input v-model="form.isActive" type="checkbox" />
+        <label class="label">
+          <input v-model="form.isActive" class="check" type="checkbox" />
 
           Active
         </label>
       </div>
 
-      <button type="submit" :disabled="loading">
+      <button type="submit" class="btn" :disabled="loading">
         {{ loading ? "Saving..." : "Create User" }}
       </button>
     </form>

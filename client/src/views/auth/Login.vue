@@ -2,21 +2,21 @@
   <div class="login-page">
     <div class="login-card">
       <h1>Admin Login</h1>
-
       <form @submit.prevent="login">
-        <div>
-          <label> Email </label>
-          <input v-model="form.email" type="email" placeholder="Email" />
+        <div class="form-group">
+          <label class="label"> Email </label>
+          <input v-model="form.email" type="email" class="inputs" placeholder="Email" />
           <p v-if="errors.email" class="form-error">
             {{ errors.email }}
           </p>
         </div>
 
-        <div>
-          <label> Password </label>
+        <div class="form-group">
+          <label class="label"> Password </label>
           <input
             v-model="form.password"
             type="password"
+            class="inputs"
             placeholder="Password"
           />
           <p v-if="errors.password" class="form-error">
@@ -26,10 +26,13 @@
         <p v-if="credentials" class="form-error">
           {{ credentials }}
         </p>
-        <button type="submit" :disabled="loading">
+        <button type="submit" class="btn submit-button" :disabled="loading">
           {{ loading ? "Logging in..." : "Login" }}
         </button>
       </form>
+     <router-link to="/auth/reset-password" class="forgot-password-link">
+        Forgot Password?
+      </router-link>
     </div>
   </div>
 </template>
@@ -54,7 +57,6 @@ export default {
 
   methods: {
     async login() {
-
       try {
         this.errors = {};
         const result = loginSchema.safeParse(this.form);
@@ -64,8 +66,8 @@ export default {
           });
           return;
         }
-        const response = await api.post("/auth/login", this.form);
-        const { token, user } = response.data;
+        const res = await api.post("/auth/login", this.form);
+        const { token, user } = res.data;
         localStorage.setItem("token", token);
         this.$store.commit('setAuth', user)
         this.$router.push("/admin");

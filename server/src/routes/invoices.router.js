@@ -5,15 +5,15 @@ import {
   index,
   details,
   updatePaymentStatus,
-} from "../controllers/admin.invoice.controller.js";
+} from "../controllers/invoices.controller.js";
 
 import auth from '../middleware/auth.js';
 
 const router = express.Router();
 
 router.get("/", auth, index);
-router.post("/", auth, create);
-router.get("/:id", auth, details);
+router.post("/create", auth, create);
+router.get("/:id/details", auth, details);
 router.patch("/:id/payment-status", auth, updatePaymentStatus);
 
 export default router;

@@ -52,7 +52,7 @@
       </p>
 
       <button
-        class="actions no-print"
+        class="btn no-print"
         @click="editSection('customer')"
         :disabled="submitting"
       >
@@ -84,7 +84,7 @@
       </p>
 
       <button
-        class="actions no-print"
+        class="btn no-print"
         @click="editSection('device')"
         :disabled="submitting"
       >
@@ -101,7 +101,7 @@
       </p>
 
       <p>
-        Description:
+        Description0:
         {{ form.problem.description }}
       </p>
 
@@ -111,7 +111,7 @@
       </p>
 
       <button
-        class="actions no-print"
+        class="btn no-print"
         @click="editSection('problem')"
         :disabled="submitting"
       >
@@ -137,7 +137,7 @@
       </p>
 
       <button
-        class="actions no-print"
+        class="btn no-print"
         @click="editSection('shipping')"
         :disabled="submitting"
       >
@@ -154,10 +154,10 @@
       />
     </div>
 
-    <div class="actions no-print">
+    <div class="btn no-print">
       <button @click="printDoc">Print PDF</button>
 
-      <button @click="submitForm" :disabled="submitting">
+      <button class="btn" @click="submitForm" :disabled="submitting">
         {{ submitting ? "Submitting..." : "Submit" }}
       </button>
     </div>

@@ -58,7 +58,7 @@
           </option>
         </select>
 
-        <button @click="assignRepair" :disabled="!selectedTechnician">
+        <button class="btn" @click="assignRepair" :disabled="!selectedTechnician">
           Assign
         </button>
       </section>
@@ -72,6 +72,7 @@
 
         <button
           v-if="repair.status === 'Pending'"
+          class="btn"
           @click="changeStatus('Received')"
         >
           Receive
@@ -79,6 +80,7 @@
 
         <button
           v-if="repair.status === 'Received'"
+          class="btn"
           @click="changeStatus('Diagnosing')"
         >
           Start Diagnosis
@@ -86,6 +88,7 @@
 
         <button
           v-if="repair.status === 'Diagnosing'"
+          class="btn"
           @click="changeStatus('Repairing')"
         >
           Start Repair
@@ -93,6 +96,7 @@
 
         <button
           v-if="repair.status === 'Repairing'"
+          class="btn"
           @click="changeStatus('Testing')"
         >
           Start Testing
@@ -100,6 +104,7 @@
 
         <button
           v-if="repair.status === 'Testing'"
+          class="btn"
           @click="changeStatus('Ready')"
         >
           Mark Ready
@@ -107,6 +112,7 @@
 
         <button
           v-if="repair.status === 'Ready'"
+          class="btn"
           @click="changeStatus('Delivered')"
         >
           Deliver
@@ -233,7 +239,7 @@
             />
           </template>
 
-          <button @click="addWorkItem">Add Work Item</button>
+          <button @click="addWorkItem" class="btn">Add Work Item</button>
         </div>
 
         <ul>
@@ -283,13 +289,13 @@
       <hr />
 
       <!-- INVOICE -->
-      <button v-if="repair.status === 'Delivered'" @click="reopenRepair">
+      <button v-if="repair.status === 'Delivered'" class="btn" @click="reopenRepair">
         Reopen Repair
       </button>
       <router-link :to="`/admin/repairs/${repair._id}/communications`">
         Communications
       </router-link>
-      <button v-if="repair.status !== 'Ready'" disabled>Create Invoice</button>
+      <button v-if="repair.status !== 'Ready'" class="btn" disabled>Create Invoice</button>
 
       <router-link
         v-else

@@ -13,7 +13,7 @@
       <h2>General</h2>
 
       <div>
-        <label>Status</label>
+        <label class="label">Status</label>
 
         <select v-model="form.status">
           <option value="Pending">Pending</option>
@@ -29,7 +29,7 @@
       </div>
 
       <div>
-        <label> Assigned Technician </label>
+        <label class="label"> Assigned Technician </label>
         <select v-model="form.assignedTo">
           <option value="">Select technician</option>
           <option v-for="user in technicians" :key="user._id" :value="user._id">
@@ -39,7 +39,7 @@
       </div>
 
       <div>
-        <label> Estimated Completion Date </label>
+        <label class="label"> Estimated Completion Date </label>
         <input type="date" v-model="form.estimatedCompletionDate" />
       </div>
 
@@ -48,17 +48,17 @@
       <h2>Problem</h2>
 
       <div>
-        <label> Category </label>
+        <label class="label"> Category </label>
         <input v-model="form.problem.category" />
       </div>
 
       <div>
-        <label> Description </label>
+        <label class="label"> Description </label>
         <textarea v-model="form.problem.description" />
       </div>
 
       <div>
-        <label> Device Working </label>
+        <label class="label"> Device Working </label>
 
         <select v-model="form.problem.deviceWorking">
           <option value="">Select</option>
@@ -68,12 +68,12 @@
       </div>
 
       <div>
-        <label> Started At </label>
+        <label class="label"> Started At </label>
         <input v-model="form.problem.startedAt" />
       </div>
 
       <div>
-        <label> Notes </label>
+        <label class="label"> Notes </label>
         <textarea v-model="form.problem.notes" />
       </div>
 
@@ -82,12 +82,12 @@
       <h2>Diagnosis</h2>
 
       <div>
-        <label> Diagnosis </label>
+        <label class="label"> Diagnosis </label>
         <textarea v-model="form.diagnosis" />
       </div>
 
       <div>
-        <label> Solution </label>
+        <label class="label"> Solution </label>
         <textarea v-model="form.solution" />
       </div>
 
@@ -96,7 +96,7 @@
       <h2>Approval</h2>
 
       <div>
-        <label> Status </label>
+        <label class="label"> Status </label>
 
         <select v-model="form.approval.status">
           <option value="pending">Pending</option>
@@ -106,7 +106,7 @@
       </div>
 
       <div>
-        <label> Note </label>
+        <label class="label"> Note </label>
         <textarea v-model="form.approval.note" />
       </div>
 
@@ -131,7 +131,7 @@
         
         </ul>
       <div>
-        <label> Method </label>
+        <label class="label"> Method </label>
 
         <select v-model="form.reception.method">
           <option value="">Select</option>
@@ -141,20 +141,20 @@
       </div>
 
       <div>
-        <label> Location </label>
+        <label class="label"> Location </label>
         <input v-model="form.reception.location" />
       </div>
 
       <div>
-        <label> Courier Company </label>
+        <label class="label"> Courier Company </label>
         <input v-model="form.reception.courierCompany" />
       </div>
 
       <div>
-        <label> Tracking Number </label>
+        <label class="label"> Tracking Number </label>
         <input v-model="form.reception.trackingNumber" />
       </div>
-      <button type="submit" :disabled="loading">Update Repair</button>
+      <button type="submit" class="btn" :disabled="loading">Update Repair</button>
     </form>
   </div>
 </template>

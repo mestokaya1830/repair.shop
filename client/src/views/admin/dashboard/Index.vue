@@ -12,7 +12,7 @@
     <div v-else-if="error" class="alert alert-danger my-4" role="alert">
       {{ error }}
       <button
-        class="btn btn-sm btn-outline-danger ms-3"
+        class="btn"
         @click="fetchDashboard"
       >
         Retry
@@ -31,7 +31,7 @@
             Overview of repairs, customers, and registered devices.
           </p>
         </div>
-        <button class="btn btn-outline-primary btn-sm" @click="fetchDashboard">
+        <button class="btn" @click="fetchDashboard">
           <i class="bi bi-arrow-clockwise me-1"></i> Refresh
         </button>
       </div>

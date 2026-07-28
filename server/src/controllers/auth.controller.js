@@ -4,12 +4,10 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { env } from "../config/env.js";
 import usersSC from "../models/users.sc.js";
-import tenantSC from '../models/tenants.sc.js'
+import tenantSC from "../models/tenants.sc.js";
 import logger from "../utils/logger.js";
 
-
-
-export const loginController = catchAsync(async (req, res, next) => {
+export const login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
 
   const user = await usersSC.findOne({ email }).select("+password");
@@ -30,14 +28,14 @@ export const loginController = catchAsync(async (req, res, next) => {
       ),
     );
   }
-  
+
   logger.info({
     event: "LOGIN_SUCCESS",
     userId: user._id,
     role: user.role,
   });
-  
-  const tenant = await tenantSC.findOne().lean()
+
+  const tenant = await tenantSC.findOne().lean();
   const token = jwt.sign(
     { _id: user._id, email: user.email, role: user.role },
     env.JWT_SECRET,
@@ -53,11 +51,47 @@ export const loginController = catchAsync(async (req, res, next) => {
       role: user.role,
       firstName: user.firstName,
       lastName: user.lastName,
-      tenant
+      tenant,
     },
   });
 });
 
+export const resetPassword = catchAsync(async (req, res, next) => {
+  const { email, token, newPassword } = req.body;
+  const user = await usersSC.findOne({ email });
+
+  if (!user) {
+    logger.warn({
+      event: "RESET_PASSWORD_FAILED",
+      email,
+      ip: req.ip,
+      reason: "Invalid token or user not found",
+    });
+
+    return next(
+      new AppError(
+        "Invalid or expired reset token",
+        400,
+        "INVALID_OR_EXPIRED_TOKEN",
+      ),
+    );
+  }
+  await usersSC.updateOne(
+    { email },
+    { $set: { password: await bcrypt.hash(newPassword, 12) } },
+  );
+  
+  logger.info({
+    event: "RESET_PASSWORD_SUCCESS",
+    userId: user._id,
+    email: user.email,
+  });
+
+  res.json({
+    success: true,
+    message: "Password has been successfully reset",
+  });
+});
 // //first usersSC
 // const createFirstUser = async () => {
 //   await usersSC.create({

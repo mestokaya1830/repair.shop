@@ -46,9 +46,20 @@ const router = createRouter({
       ],
     },
     {
-      path: "/login",
-      name: "login",
-      component: () => import("../views/Login.vue"),
+      path: "/auth",
+      children: [
+        {
+          path: "login",
+          name: "login",
+          component: () => import("../views/auth/Login.vue"),
+        },
+        {
+          path: "reset-password",
+          name: "reset-password",
+          component: () => import("../views/auth/ResetPassword.vue"),
+        },
+
+      ]
     },
     {
       path: "/admin",

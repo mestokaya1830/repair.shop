@@ -41,7 +41,7 @@
         {{ errors.message }}
       </span>
 
-      <button @click="addCommunication">Save</button>
+      <button @click="addCommunication" class="btn">Save</button>
     </div>
 
     <hr />

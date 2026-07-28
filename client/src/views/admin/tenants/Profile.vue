@@ -20,7 +20,7 @@
           <h3>General & Contact Information</h3>
           <div>
             <div>
-              <label for="company">Company / Tenant Name *</label>
+              <label class="label" for="company">Company / Tenant Name *</label>
               <input
                 id="company"
                 v-model.trim="form.company"
@@ -33,7 +33,7 @@
               </span>
             </div>
             <div>
-              <label for="firstName">Firstname *</label>
+              <label class="label" for="firstName">Firstname *</label>
               <input
                 id="firstName"
                 v-model.trim="form.firstName"
@@ -46,7 +46,7 @@
               </span>
             </div>
             <div>
-              <label for="lastName">Lastname *</label>
+              <label class="label" for="lastName">Lastname *</label>
               <input
                 id="lastName"
                 v-model.trim="form.lastName"
@@ -60,7 +60,7 @@
             </div>
 
             <div>
-              <label for="email">Business Email</label>
+              <label class="label" for="email">Business Email</label>
               <input
                 id="email"
                 v-model.trim="form.email"
@@ -73,7 +73,7 @@
             </div>
 
             <div>
-              <label for="phone">Phone Number</label>
+              <label class="label" for="phone">Phone Number</label>
               <input
                 id="phone"
                 v-model.trim="form.phone"
@@ -86,7 +86,7 @@
             </div>
 
             <div>
-              <label for="website">Website</label>
+              <label class="label" for="website">Website</label>
               <input
                 id="website"
                 v-model.trim="form.website"
@@ -105,7 +105,7 @@
           <h3>Address Details</h3>
           <div>
             <div>
-              <label for="street">Street Address</label>
+              <label class="label" for="street">Street Address</label>
               <input
                 id="street"
                 v-model.trim="form.address.street"
@@ -118,7 +118,7 @@
             </div>
 
             <div>
-              <label for="postalCode">Postal Code</label>
+              <label class="label" for="postalCode">Postal Code</label>
               <input
                 id="postalCode"
                 v-model.trim="form.address.postalCode"
@@ -131,7 +131,7 @@
             </div>
 
             <div>
-              <label for="city">City</label>
+              <label class="label" for="city">City</label>
               <input
                 id="city"
                 v-model.trim="form.address.city"
@@ -144,7 +144,7 @@
             </div>
 
             <div>
-              <label for="country">Country</label>
+              <label class="label" for="country">Country</label>
               <input
                 id="country"
                 v-model.trim="form.address.country"
@@ -163,7 +163,7 @@
           <h3>Tax & Registration Details</h3>
           <div>
             <div>
-              <label for="taxNumber">Tax Number (Steuernummer)</label>
+              <label class="label" for="taxNumber">Tax Number (Steuernummer)</label>
               <input
                 id="taxNumber"
                 v-model.trim="form.billingDetails.taxNumber"
@@ -176,7 +176,7 @@
             </div>
 
             <div>
-              <label for="vatId">VAT ID (USt-IdNr)</label>
+              <label class="label" for="vatId">VAT ID (USt-IdNr)</label>
               <input
                 id="vatId"
                 v-model.trim="form.billingDetails.vatId"
@@ -189,7 +189,7 @@
             </div>
 
             <div>
-              <label for="commercialRegister">Commercial Register No.</label>
+              <label class="label" for="commercialRegister">Commercial Register No.</label>
               <input
                 id="commercialRegister"
                 v-model.trim="form.billingDetails.commercialRegister"
@@ -208,7 +208,7 @@
           <h3>Bank Credentials (For Invoices)</h3>
           <div>
             <div>
-              <label for="accountHolder">Account Holder</label>
+              <label class="label" for="accountHolder">Account Holder</label>
               <input
                 id="accountHolder"
                 v-model.trim="form.bankDetails.accountHolder"
@@ -221,7 +221,7 @@
             </div>
 
             <div>
-              <label for="bankName">Bank Name</label>
+              <label class="label" for="bankName">Bank Name</label>
               <input
                 id="bankName"
                 v-model.trim="form.bankDetails.bankName"
@@ -234,7 +234,7 @@
             </div>
 
             <div>
-              <label for="iban">IBAN</label>
+              <label class="label" for="iban">IBAN</label>
               <input
                 id="iban"
                 v-model.trim="form.bankDetails.iban"
@@ -247,7 +247,7 @@
             </div>
 
             <div>
-              <label for="bic">BIC / SWIFT</label>
+              <label class="label" for="bic">BIC / SWIFT</label>
               <input
                 id="bic"
                 v-model.trim="form.bankDetails.bic"
@@ -266,7 +266,7 @@
           <h3>Branding & Formatting</h3>
           <div>
             <div>
-              <label for="currency">Default Currency / Locale</label>
+              <label class="label" for="currency">Default Currency / Locale</label>
               <select id="currency" v-model="form.currency">
                 <option value="EUR.de-DE">EUR (€) - Germany</option>
                 <option value="USD.en-US">USD ($) - United States</option>
@@ -279,7 +279,7 @@
             </div>
 
             <div>
-              <label for="logoUrl">Tenant Logo URL</label>
+              <label class="label" for="logoUrl">Tenant Logo URL</label>
               <input
                 id="logoUrl"
                 v-model.trim="form.logoUrl"
@@ -295,7 +295,7 @@
 
         <!-- SAVE BUTTON -->
         <div>
-          <button type="submit" :disabled="loading">
+          <button type="submit" class="btn" :disabled="loading">
             <i class="bi bi-floppy" aria-hidden="true"></i>
             <span>{{ loading ? 'Saving...' : 'Save Profile' }}</span>
           </button>

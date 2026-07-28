@@ -17,7 +17,7 @@
         type="text"
         placeholder="Repair No / Customer"
       />
-      <button @click="getRepairs">Search</button>
+      <button @click="getRepairs" class="btn">Search</button>
 
       <select v-model="filters.status" @change="getRepairs">
         <option value="">All Status</option>
@@ -44,17 +44,17 @@
       </select>
 
       <div class="date-filter">
-        <label>
+        <label class="label">
           From
           <input type="date" v-model="filters.fromDate" />
         </label>
 
-        <label>
+        <label class="label">
           To
           <input type="date" v-model="filters.toDate" />
         </label>
       </div>
-      <button @click="resetFilters">Reset</button>
+      <button @click="resetFilters" class="btn">Reset</button>
     </div>
     <table v-if="repairs.length">
       <thead>
@@ -118,7 +118,7 @@
 
             |
 
-            <button @click="deleteRepair(repair._id)">Delete</button>
+            <button class="btn" @click="deleteRepair(repair._id)">Delete</button>
           </td>
         </tr>
       </tbody>

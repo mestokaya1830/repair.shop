@@ -18,15 +18,15 @@
                   invoicePreview.customer.lastName
               }}
             </div>
-            <div class="meta-label">
+            <div class="label">
               {{ invoicePreview.customer.address || "-" }}
             </div>
-            <div class="meta-label">
+            <div class="label">
               {{ invoicePreview.customer.postalCode }}
               {{ invoicePreview.customer.city }}
             </div>
           </div>
-          <div v-else class="meta-label">Customer details not provided</div>
+          <div v-else class="label">Customer details not provided</div>
         </div>
 
         <div class="party-box tenant-box">
@@ -54,26 +54,26 @@
           </div>
 
           <div class="recipient-row">
-            <span class="meta-label">Repair ID:</span>
+            <span class="label">Repair ID:</span>
             <span class="meta-value">{{ invoicePreview.repairId || "-" }}</span>
           </div>
 
           <div v-if="invoicePreview.serviceDate" class="recipient-row">
-            <span class="meta-label">Service Date:</span>
+            <span class="label">Service Date:</span>
             <span class="meta-value">{{
               formatDate(invoicePreview.serviceDate)
             }}</span>
           </div>
 
           <div class="recipient-row">
-            <span class="meta-label">Invoice Date:</span>
+            <span class="label">Invoice Date:</span>
             <span class="meta-value">{{
               formatDate(invoicePreview.date)
             }}</span>
           </div>
 
           <div class="recipient-row">
-            <span class="meta-label">Payment Terms:</span>
+            <span class="label">Payment Terms:</span>
             <span class="meta-value"
               >{{ invoicePreview.paymentTerms || 14 }} Days</span
             >
@@ -213,11 +213,11 @@
 
     <!-- ACTIONS -->
     <div class="sections btn-container">
-      <button class="btn btn-primary" :disabled="loading" @click="saveInvoice">
+      <button class="btn" :disabled="loading" @click="saveInvoice">
         <i class="bi bi-floppy-fill btn-icons" aria-hidden="true"></i>
         <span>{{ loading ? "Saving..." : "Save Invoice" }}</span>
       </button>
-      <button @click="printDoc()">Print PDF</button>
+      <button @click="printDoc()" class="btn">Print PDF</button>
       <router-link to="/admin/invoices" class="btn btn-secondary">
         <i class="bi bi-arrow-left-circle icons" aria-hidden="true"></i> Back
       </router-link>
@@ -252,7 +252,6 @@ export default {
         this.$store.state.invoice?.invoice || this.$store.state.invoice;
       this.tenant = this.$store?.state.auth.tenant || null;
       this.invoicePreview = storeInvoice.data;
-      console.log(this.tenant);
     },
 
     calculateItemTotal(item) {
@@ -267,10 +266,11 @@ export default {
     },
     async saveInvoice() {
       if (!this.invoicePreview) return;
-
       try {
         this.loading = true;
-        const response = await api.post("/invoices", this.invoicePreview);
+        this.invoicePreview.tenantId = this.$store.state.auth.tenant._id
+        console.log(this.invoicePreview0)
+        const response = await api.post("/invoices/create", this.invoicePreview);
 
         if (response.status === 200 || response.status === 201) {
           this.$router.push("/admin/invoices");

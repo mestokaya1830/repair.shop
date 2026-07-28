@@ -1,62 +1,71 @@
-import { z } from "zod";
+import { z } from 'zod';
 
-const invoiceWorkItemSchema = z.object({
-  workflowItemId: z.string(),
-  title: z.string().min(2, "Title is required"),
-  description: z.string().optional(),
-  quantity: z.number().min(1).default(1),
-  unitPrice: z.number().min(0),
-  vat: z.number().min(0).max(100).default(19),
-  total: z.number().optional(),
+// 1. Yedek Parça / Malzeme Bilgisi Şeması
+export const partInfoSchema = z.object({
+  partNumber: z.string().optional().default(''),
+  name: z.string().optional().default(''),
+  brand: z.string().optional().default(''),
+  unit: z.string().optional().default('pcs'),
+  costPrice: z.number().optional().default(0),
 });
 
+// 2. Fatura Kalemi (Work Item) Şeması
+export const workItemSchema = z.object({
+  workflowItemId: z.string().nullable().optional(),
+  title: z.string().min(1, 'Başlık alanı zorunludur'),
+  description: z.string().optional().default(''),
+  quantity: z.number().min(0, 'Miktar 0 veya daha büyük olmalıdır').default(1),
+  price: z.number().min(0, 'Fiyat 0 veya daha büyük olmalıdır').default(0),
+  vat: z.number().min(0).max(100).optional().default(0),
+  total: z.number().optional(),
+  
+  // Gömülü nesneler
+  partInfo: partInfoSchema.optional(),
+  workflowItem: z.record(z.unknown()).nullable().optional(), // Esnek obje/Mixed alan için
+});
+
+// 3. Müşteri Bilgileri Şeması
+export const customerSchema = z.object({
+  firstName: z.string().optional().default(''),
+  lastName: z.string().optional().default(''),
+  company: z.string().optional().default(''),
+  address: z.string().optional().default(''),
+  postalCode: z.string().optional().default(''),
+  city: z.string().optional().default(''),
+});
+
+// 4. Ana Fatura (Invoice) Zod Şeması
 export const invoicesSchema = z.object({
-  repairId: z.string(),
-  invoiceNumber: z.string().optional(),
+  repairId: z.string().nullable().optional(),
+  
+  // Müşteri
+  customer: customerSchema.optional(),
 
-  customer: z.object({
-    customerId: z.string(),
-    firstName: z.string().min(2),
-    lastName: z.string().min(2),
-    email: z.string().email(),
-    address: z.string().optional(),
-    postalCode: z.string().optional(),
-    city: z.string().optional(),
+  // Hizmet Sağlayan (Tenant ID)
+  tenantId: z.string({
+    required_error: 'Tenant ID zorunludur',
   }),
 
-  repair: z.object({
-    repairNumber: z.string(),
-    device: z.object({
-      brand: z.string(),
-      model: z.string(),
-      serialNumber: z.string().optional(),
-    }),
-  }),
+  // Tarihler ve Koşullar
+  serviceDate: z.coerce.date().nullable().optional(), // String tarih gelirse Date objesine çevirir
+  date: z.coerce.date().default(() => new Date()),
+  paymentTerms: z.number().int().positive().default(14),
 
-  date: z.string(),
-  serviceDate: z.string(),
+  // Vergi Tipi
+  vatType: z
+    .enum(['standard', 'reverse_charge', 'small_business'])
+    .default('standard'),
 
-  currency: z.enum(["EUR", "CHF"]),
+  // Para Birimi
+  currency: z.string().default('EUR'),
 
-  vatType: z.enum([
-    "standard",
-    "small_business",
-    "reverse_charge",
-  ]),
+  // Fatura Kalemleri
+  workItems: z.array(workItemSchema).default([]),
 
-  workItems: z.array(invoiceWorkItemSchema)
-    .min(1, "At least one work item required"),
-
+  // Toplam Hesaplamaları
   totals: z.object({
-    net: z.number(),
-    vat: z.number(),
-    total: z.number(),
+    net: z.number().default(0),
+    vat: z.number().default(0),
+    total: z.number().default(0),
   }),
-
-  paymentStatus: z.enum([
-    "unpaid",
-    "paid",
-  ]),
-
-  paymentTerms: z.number().optional(),
 });

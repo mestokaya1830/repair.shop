@@ -7,10 +7,8 @@ import repairsSC from "../models/repairs.sc.js";
 
 export const index = catchAsync(async (req, res, next) => {
   const filter = {};
-
   const { search, source, isActive, dateFrom, dateTo } = req.query;
 
-  // Search
   if (search) {
     filter.$or = [
       {

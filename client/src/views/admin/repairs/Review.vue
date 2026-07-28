@@ -51,7 +51,7 @@
         {{ form.customer.company || "-" }}
       </p>
 
-      <button class="actions no-print" @click="editSection('customer')">
+      <button class="btn no-print" @click="editSection('customer')">
         Edit
       </button>
     </section>
@@ -102,7 +102,7 @@
         {{ form.problem.deviceWorking }}
       </p>
 
-      <button class="actions no-print" @click="editSection('problem')">
+      <button class="btn no-print" @click="editSection('problem')">
         Edit
       </button>
     </section>
@@ -137,9 +137,9 @@
       />
     </div>
     <div class="actions no-print">
-      <button @click="printDoc()">Print PDF</button>
+      <button class="btn" @click="printDoc()">Print PDF</button>
 
-      <button @click="submitForm">Submit</button>
+      <button class="btn" @click="submitForm">Submit</button>
     </div>
   </div>
 </template>

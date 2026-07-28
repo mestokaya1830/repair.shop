@@ -10,7 +10,7 @@
 
     <div class="filters">
       <input v-model="filters.search" placeholder="Search..." />
-      <button @click="getDevices">Search</button>
+      <button @click="getDevices" class="btn">Search</button>
 
       <select v-model="filters.type" @change="getDevices">
         <option value="">All Types</option>
@@ -28,7 +28,7 @@
         <option value="Lenovo">Lenovo</option>
       </select>
 
-      <button @click="resetFilters">Reset</button>
+      <button @click="resetFilters" class="btn">Reset</button>
     </div>
 
     <table v-if="devices.length">
@@ -75,7 +75,7 @@
               Edit
             </router-link>
 
-            <button @click="deleteDevice(device._id)">Delete</button>
+            <button @click="deleteDevice(device._id)" class="btn">Delete</button>
           </td>
         </tr>
       </tbody>

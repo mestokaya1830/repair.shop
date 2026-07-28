@@ -14,27 +14,27 @@
       {{ error }}
     </p>
     <div class="filters">
-      <input v-model="filters.search" placeholder="Search..." />
-      <button @click="getUsers">Search</button>
+      <input v-model="filters.search" placeholder="Search..." class="inputs" />
+      <button class="btn" @click="getUsers">Search</button>
 
-      <select v-model="filters.role" @change="getUsers">
+      <select v-model="filters.role" class="inputs select" @change="getUsers">
         <option value="">All Roles</option>
         <option value="admin">Admin</option>
         <option value="user">User</option>
       </select>
-      <select v-model="filters.position" @change="getUsers">
+      <select v-model="filters.position" class="inputs select" @change="getUsers">
         <option value="">All Positions</option>
         <option value="Technician">Technician</option>
         <option value="Manager">Manager</option>
       </select>
 
-      <select v-model="filters.isActive" @change="getUsers">
+      <select v-model="filters.isActive" class="inputs select" @change="getUsers">
         <option value="">All Status</option>
         <option value="true">Active</option>
         <option value="false">Inactive</option>
       </select>
 
-      <button @click="resetFilters">Reset</button>
+      <button class="btn" @click="resetFilters">Reset</button>
     </div>
     <table v-if="users?.length">
       <thead>
@@ -90,7 +90,7 @@
             >
               Edit
             </router-link>
-            <button @click="deleteUser(user._id)">Delete</button>
+            <button class="btn" @click="deleteUser(user._id)">Delete</button>
           </td>
         </tr>
       </tbody>

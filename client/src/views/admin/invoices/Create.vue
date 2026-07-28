@@ -239,7 +239,7 @@
       </div>
 
       <div class="btn-container">
-        <button type="submit" class="btn btn-primary">Preview Invoice</button>
+        <button type="submit" class="btn">Preview Invoice</button>
       </div>
     </form>
   </div>

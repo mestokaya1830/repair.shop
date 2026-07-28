@@ -3,12 +3,10 @@
     <h2>Customers</h2>
     <p v-if="loading">Loading...</p>
 
-    
-
     <p v-if="error" class="form-error">
       {{ error }}
     </p>
-    <div class="search-box">
+    <div class="search-box inputs">
       <input
         v-model="search"
         @keyup.enter="getCustomers"
@@ -16,7 +14,7 @@
         placeholder="Search customers..."
       />
 
-      <button v-if="search" @click="clearSearch" type="button">×</button>
+      <button @click="getCustomers" type="button" class="btn">Search</button>
 
       <select v-model="source" @change="getCustomers">
         <option value="">All Sources</option>
@@ -40,6 +38,7 @@
 
         <button @click="getCustomers">Filter</button>
       </div>
+      <button @click="clearSearch" type="button" class="btn">Reset Filter</button>
     </div>
 
     <table v-if="customers.length">
@@ -58,11 +57,9 @@
             {{ customer.firstName }}
             {{ customer.lastName }}
           </td>
-
           <td>
             {{ customer.email || "-" }}
           </td>
-
           <td>
             {{ customer.phone }}
           </td>
@@ -77,7 +74,7 @@
             </router-link>
           </td>
           <td>
-            <button @click="deleteCustomer(customer._id)">Delete</button>
+            <button @click="deleteCustomer(customer._id)" class="btn">Delete</button>
           </td>
         </tr>
       </tbody>
@@ -116,7 +113,7 @@ export default {
         this.loading = true;
         this.error = "";
 
-        const response = await api.get("/customers", {
+        const res = await api.get("/customers", {
           params: {
             search: this.search || undefined,
             source: this.source || undefined,
@@ -126,11 +123,8 @@ export default {
           },
         });
 
-        this.customers = response.data.data;
-        console.log(this.customers)
+        this.customers = res.data.data;
       } catch (error) {
-        console.error("error", error.response);
-
         this.error =
           error.response?.data?.message || "Failed to load customers";
       } finally {
@@ -138,7 +132,11 @@ export default {
       }
     },
     clearSearch() {
-      this.search = ""
+      this.search =  "",
+      this.source =  "",
+      this.dateFrom =  "",
+      this.dateTo =  "",
+      this.isActive =  "",
       this.getCustomers()
     },
     async deleteCustomer(id) {

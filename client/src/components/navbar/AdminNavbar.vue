@@ -36,7 +36,7 @@
         Tenants Profile
       </router-link>
 
-      <button @click="logout" class="logout-btn" type="button">Logout</button>
+      <button @click="logout" class="logout-btn btn" type="button">Logout</button>
     </div>
   </nav>
 </template>
@@ -50,7 +50,7 @@ export default {
       localStorage.removeItem("token");
       localStorage.removeItem("user");
 
-      this.$router.push("/login");
+      this.$router.push("/auth/login");
     },
   },
 };
