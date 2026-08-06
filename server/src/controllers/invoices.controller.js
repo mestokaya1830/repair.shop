@@ -1,7 +1,7 @@
 import AppError from "../utils/app.error.js";
 import catchAsync from "../middleware/catch.async.js";
-import { invoicesModelhema } from '../validations/invoices.schema.js'
-import invoicesModel from "../models/invoices.model.js";
+import { invoicesModelhema } from '../validations/invoice.schema.js'
+import invoicesModel from "../models/invoice.model.js";
 
 // --------------------------------------------------
 // INDEX

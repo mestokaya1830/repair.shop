@@ -236,7 +236,7 @@
 </template>
 
 <script>
-import { repairsModelhema } from "@/validations/repairs.schema.js";
+import { repairSchema } from "@/validations/repair.schema.js";
 import api from "../../api/axios.js";
 import { getImages, saveImage, deleteImage, clearImages } from "@/utils/image.storage";
 
@@ -295,7 +295,7 @@ export default {
     
     async reviewBtn() {
       this.errors = {};
-      const result = repairsModelhema.safeParse(this.form);
+      const result = repairSchema.safeParse(this.form);
 
       if (!result.success) {
         result.error.issues.forEach((error) => {

@@ -1,8 +1,8 @@
 import catchAsync from "../middleware/catch.async.js";
-import customersModel from "../models/customers.model.js";
-import repairsModel from "../models/repairs.model.js";
-import devicesSC from "../models/devices.model.js";
-import communicationsModel from "../models/communications.model.js";
+import customersModel from "../models/customer.model.js";
+import repairModel from "../models/repair.model.js";
+import devicesSC from "../models/device.model.js";
+import communicationsModel from "../models/communication.model.js";
 import logger from "../utils/logger.js";
 import AppError from "../utils/app.error.js";
 
@@ -53,7 +53,7 @@ export const create = catchAsync(async (req, res, next) => {
   });
 
   // 3. REPAIR
-  const repair = await repairsModel.create({
+  const repair = await repairModel.create({
     repairNumber: req.repairNumber,
     customer: customer._id,
     device: device._id,
@@ -79,7 +79,8 @@ export const create = catchAsync(async (req, res, next) => {
 
 //get all
 export const index = catchAsync(async (req, res, next) => {
-  const { search, status, source, createdBy, fromDate, toDate } = req.query;
+  const { search, status, source, createdBy, fromDate, toDate, technician } =
+    req.query;
 
   const filter = {};
   if (status) {
@@ -88,6 +89,11 @@ export const index = catchAsync(async (req, res, next) => {
 
   if (source) {
     filter.source = source;
+  }
+
+  if (technician) {
+    const technicianValue = technician === "null" ? null : technician;
+    filter.assignedTo = technicianValue;
   }
 
   if (createdBy) {
@@ -110,7 +116,7 @@ export const index = catchAsync(async (req, res, next) => {
     }
   }
 
-  const repairs = await repairsModel
+  const repairs = await repairModel
     .find({
       isActive: true,
       ...filter,
@@ -123,6 +129,7 @@ export const index = catchAsync(async (req, res, next) => {
       createdAt: -1,
     })
     .lean();
+
   res.json({
     success: true,
     repairs,
@@ -131,7 +138,7 @@ export const index = catchAsync(async (req, res, next) => {
 
 // details
 export const details = catchAsync(async (req, res, next) => {
-  const repair = await repairsModel
+  const repair = await repairModel
     .findById(req.params.id)
     .populate("customer")
     .populate("device")
@@ -154,7 +161,7 @@ export const details = catchAsync(async (req, res, next) => {
 });
 // edit
 export const edit = catchAsync(async (req, res, next) => {
-  const repair = await repairsModel
+  const repair = await repairModel
     .findById(req.params.id)
     .populate("customer")
     .populate("device")
@@ -185,7 +192,7 @@ export const update = catchAsync(async (req, res, next) => {
     reception: req.body.reception,
   };
 
-  const repair = await repairsModel.findByIdAndUpdate(
+  const repair = await repairModel.findByIdAndUpdate(
     req.params.id,
     { $set: updateData },
     {
@@ -207,7 +214,7 @@ export const update = catchAsync(async (req, res, next) => {
 //update status
 export const updateStatus = catchAsync(async (req, res, next) => {
   const { status, note } = req.body;
-  const repair = await repairsModel.findById(req.params.id);
+  const repair = await repairModel.findById(req.params.id);
 
   if (!repair) {
     return next(new AppError("Repair not found", 404, "REPAIR_NOT_FOUND"));
@@ -258,7 +265,7 @@ export const updateStatus = catchAsync(async (req, res, next) => {
 export const assignRepair = catchAsync(async (req, res, next) => {
   const { assignedTo } = req.body;
 
-  const repair = await repairsModel.findById(req.params.id);
+  const repair = await repairModel.findById(req.params.id);
 
   if (!repair) {
     return next(new AppError("Repair not found", 404, "REPAIR_NOT_FOUND"));
@@ -278,7 +285,7 @@ export const assignRepair = catchAsync(async (req, res, next) => {
 export const addWorkLog = catchAsync(async (req, res, next) => {
   const { message } = req.body;
 
-  const repair = await repairsModel.findById(req.params.id);
+  const repair = await repairModel.findById(req.params.id);
 
   if (!repair) {
     return next(new AppError("Repair not found", 404, "REPAIR_NOT_FOUND"));
@@ -300,7 +307,7 @@ export const addWorkLog = catchAsync(async (req, res, next) => {
 
 //reapoen
 export const reopenRepair = catchAsync(async (req, res, next) => {
-  const repair = await repairsModel.findById(req.params.id);
+  const repair = await repairModel.findById(req.params.id);
 
   if (!repair) {
     return next(new AppError("Repair not found", 404, "REPAIR_NOT_FOUND"));
@@ -334,7 +341,7 @@ export const reopenRepair = catchAsync(async (req, res, next) => {
 
 //delete
 export const deleteRepair = catchAsync(async (req, res, next) => {
-  const repair = await repairsModel.findByIdAndUpdate(
+  const repair = await repairModel.findByIdAndUpdate(
     req.params.id,
     {
       isActive: false,
@@ -357,9 +364,8 @@ export const deleteRepair = catchAsync(async (req, res, next) => {
   });
 });
 
-
 export const addWorkItem = catchAsync(async (req, res, next) => {
-  const repair = await repairsModel.findById(req.params.id);
+  const repair = await repairModel.findById(req.params.id);
 
   if (!repair) {
     return next(new AppError("Repair not found", 404, "REPAIR_NOT_FOUND"));

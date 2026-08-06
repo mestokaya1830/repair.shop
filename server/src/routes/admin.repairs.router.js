@@ -5,13 +5,13 @@ import upload from "../middleware/upload.images.js";
 import createRepairNumber from "../middleware/repair.number.middleware.js";
 
 import {
-  repairsModelhema,
-  repairsUpdateSchema,
+  repairSchema,
+  repairUpdateSchema,
   communicationSchema,
   statusUpdateSchema,
   assignRepairSchema,
   workItemSchema
-} from "../validations/repairs.schema.js";
+} from "../validations/repair.schema.js";
 
 import {
   create,
@@ -39,7 +39,7 @@ router.post(
   auth,
   createRepairNumber,
   upload.array("images", 5),
-  validate(repairsModelhema),
+  validate(repairSchema),
   create,
 );
 
@@ -59,7 +59,7 @@ router.get("/:id/edit", auth, edit);
 
 router.patch("/:id/status", auth, validate(statusUpdateSchema), updateStatus);
 
-router.patch("/:id/update", auth, validate(repairsUpdateSchema), update);
+router.patch("/:id/update", auth, validate(repairUpdateSchema), update);
 
 router.patch("/:id/assign", auth, validate(assignRepairSchema), assignRepair);
 

@@ -106,7 +106,7 @@
 
 <script>
 import api from "@/api/axios.js";
-import { userModelhema } from "@/validations/users.schema.js";
+import { userSchema } from "@/validations/user.schema.js";
 export default {
   name: "AddUser",
   data() {
@@ -140,7 +140,7 @@ export default {
   methods: {
     async submitUser() {
       this.errors = {};
-      const result = userModelhema.safeParse(this.form);
+      const result = userSchema.safeParse(this.form);
 
       if (!result.success) {
         result.error.issues.forEach((error) => {
@@ -153,6 +153,7 @@ export default {
         await api.post("/users/create", result.data);
         this.$router.push("/admin/users");
       } catch (error) {
+        console.error(error.response?.data?.errors);
         this.errors = error.response?.data?.errors || {};
       } finally {
         this.loading = false;

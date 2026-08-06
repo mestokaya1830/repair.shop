@@ -3,8 +3,8 @@ import catchAsync from "../middleware/catch.async.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { env } from "../config/env.js";
-import userModel from "../models/users.model.js";
-import tenantModel from "../models/tenants.model.js";
+import userModel from "../models/user.model.js";
+import tenantModel from "../models/tenant.model.js";
 import logger from "../utils/logger.js";
 
 

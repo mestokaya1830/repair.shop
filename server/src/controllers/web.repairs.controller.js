@@ -1,7 +1,7 @@
 import catchAsync from "../middleware/catch.async.js";
-import customersModel from "../models/customers.model.js";
-import repairsModel from "../models/repairs.model.js";
-import devicesSC from "../models/devices.model.js";
+import customersModel from "../models/customer.model.js";
+import repairModel from "../models/repair.model.js";
+import devicesSC from "../models/device.model.js";
 import logger from "../utils/logger.js";
 import AppError from "../utils/app.error.js";
 
@@ -44,7 +44,7 @@ export const create = catchAsync(async (req, res, next) => {
   });
 
   // 3. REPAIR
-  const repair = await repairsModel.create({
+  const repair = await repairModel.create({
     repairNumber: req.repairNumber,
     customer: customer._id,
     device: device._id,
@@ -69,7 +69,7 @@ export const create = catchAsync(async (req, res, next) => {
 export const repairTrack = catchAsync(async (req, res, next) => {
   const { repairNumber } = req.params;
   
-  const result = await repairsModel.findOne({ repairNumber });
+  const result = await repairModel.findOne({ repairNumber });
   if (!result) {
     return next(
       new AppError("Repairnumber not found", 404, "REPAIR_NUMBER_NOT__FOUND"),

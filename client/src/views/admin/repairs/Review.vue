@@ -165,7 +165,6 @@ export default {
 
   async mounted() {
     const images = await getImages();
-
     this.imageUrls = images.map((image) => URL.createObjectURL(image));
   },
 

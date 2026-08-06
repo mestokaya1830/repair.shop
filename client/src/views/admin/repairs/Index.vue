@@ -54,6 +54,14 @@
           <input type="date" v-model="filters.toDate" />
         </label>
       </div>
+      <select v-model="filters.technician" @change="getRepairs">
+        <option value="">All Technicians</option>
+        <option value="null">Unassigned</option>
+
+        <option v-for="user in technicians" :key="user._id" :value="user._id">
+          {{ user.firstName }} {{ user.lastName }}
+        </option>
+      </select>
       <button @click="resetFilters" class="btn">Reset</button>
     </div>
     <table v-if="repairs.length">
@@ -118,7 +126,9 @@
 
             |
 
-            <button class="btn" @click="deleteRepair(repair._id)">Delete</button>
+            <button class="btn" @click="deleteRepair(repair._id)">
+              Delete
+            </button>
           </td>
         </tr>
       </tbody>
@@ -147,6 +157,7 @@ export default {
         createdBy: "",
         fromDate: "",
         toDate: "",
+        technician: "",
       },
     };
   },
@@ -169,18 +180,19 @@ export default {
           createdBy: this.filters.createdBy,
           fromDate: this.filters.fromDate,
           toDate: this.filters.toDate,
+          technician: this.filters.technician
         };
         const response = await api.get("/repairs", { params });
 
         this.repairs = response.data.repairs;
-        console.log(this.repairs)
+        console.log(this.repairs);
       } catch (error) {
         this.error = error.response?.data?.message || "Failed to load repairs";
       } finally {
         this.loading = false;
       }
     },
-     async getUsers() {
+    async getUsers() {
       try {
         this.loading = true;
         this.error = "";
@@ -218,6 +230,7 @@ export default {
         createdBy: "",
         fromDate: "",
         toDate: "",
+        technician: "",
       };
 
       this.getRepairs();

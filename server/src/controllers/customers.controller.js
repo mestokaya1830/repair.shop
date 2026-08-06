@@ -1,8 +1,8 @@
 import AppError from "../utils/app.error.js";
 import catchAsync from "../middleware/catch.async.js";
-import customersModel from "../models/customers.model.js";
-import devicesSC from "../models/devices.model.js";
-import repairsModel from "../models/repairs.model.js";
+import customersModel from "../models/customer.model.js";
+import devicesSC from "../models/device.model.js";
+import repairModel from "../models/repair.model.js";
 
 
 export const index = catchAsync(async (req, res, next) => {
@@ -138,7 +138,7 @@ export const deviceDetails = catchAsync(async (req, res, next) => {
     return next(new AppError("Device not found", 404, "DEVICE_NOT_FOUND"));
   }
 
-  const repairs = await repairsModel
+  const repairs = await repairModel
     .find({
       device: device._id,
     })
@@ -156,7 +156,7 @@ export const deviceDetails = catchAsync(async (req, res, next) => {
 });
 
 export const repairDetails = catchAsync(async (req, res, next) => {
-  const data = await repairsModel
+  const data = await repairModel
     .findOne({
       _id: req.params.repairId,
       customer: req.params.id,
@@ -173,7 +173,7 @@ export const repairDetails = catchAsync(async (req, res, next) => {
 });
 
 export const customerRepairs = catchAsync(async (req, res, next) => {
-  const data = await repairsModel
+  const data = await repairModel
     .find({
       customer: req.params.id,
     })

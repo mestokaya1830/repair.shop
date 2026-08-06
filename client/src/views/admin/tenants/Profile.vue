@@ -308,7 +308,7 @@
 
 <script>
 import api from '@/api/axios.js'
-import { tenantsSchema } from '@/validations/tenants.schema.js'
+import { tenantSchema } from '@/validations/tenants.schema.js'
 
 export default {
   name: 'Profile',
@@ -373,7 +373,7 @@ export default {
     async submitForm() {
       this.errors = {}
 
-      const result = tenantsSchema.safeParse(this.form)
+      const result = tenantSchema.safeParse(this.form)
 
       if (!result.success) {
         result.error.issues.forEach((error) => {

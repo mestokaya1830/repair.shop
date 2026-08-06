@@ -2,8 +2,8 @@ import AppError from "../utils/app.error.js";
 import catchAsync from "../middleware/catch.async.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import userModel from "../models/users.model.js";
-import repairsModel from "../models/repairs.model.js";
+import userModel from "../models/user.model.js";
+import repairModel from "../models/repair.model.js";
 import logger from "../utils/logger.js";
 
 export const create = catchAsync(async (req, res, next) => {
@@ -21,6 +21,7 @@ export const create = catchAsync(async (req, res, next) => {
       return next(new AppError("You are not allowed to create users", 403));
   }
 
+  console.log(role)
   const newUser = await userModel.create({
     ...req.body,
     password: await bcrypt.hash(req.body.password, 12),
@@ -35,12 +36,13 @@ export const create = catchAsync(async (req, res, next) => {
   });
 });
 
+
 export const index = catchAsync(async (req, res, next) => {
   if (req.user && req.user.role === "user") {
     return next(new AppError("You do not have permission to view users list.", 403));
   }
 
-  const users = await userModel.find().lean();
+  const users = await userModel.find({ isActive: true, role: { $ne: "owner" } }).lean();
 
   res.json({
     success: true,
@@ -56,7 +58,7 @@ export const details = catchAsync(async (req, res, next) => {
     return next(new AppError("User not found", 404, "USER_NOT_FOUND"));
   }
 
-  const repairs = await repairsModel
+  const repairs = await repairModel
     .find({
       assignedTo: req.params.id,
     })

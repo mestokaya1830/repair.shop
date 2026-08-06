@@ -1,6 +1,6 @@
 import AppError from "../utils/app.error.js";
 import catchAsync from "../middleware/catch.async.js";
-import deviceModel from "../models/devices.model.js";
+import deviceModel from "../models/device.model.js";
 
 export const index = catchAsync(async (req, res, next) => {
   const { search, type, brand, customer } = req.query;

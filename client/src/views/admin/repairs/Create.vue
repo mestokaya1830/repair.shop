@@ -229,22 +229,20 @@
     <section class="repair-card">
       <div>
         <label class="label"> Device Photos (optional) </label>
-
-        <input type="file" multiple accept="image/*" @change="handleImages" />
-
+        <input type="file" multiple @change="handleImages" />
         <small> Maximum 5 images </small>
       </div>
       <div v-if="imagePreviews.length" class="image-preview-container">
         <h4>Selected Images</h4>
-
         <div
           v-for="(image, index) in imagePreviews"
           :key="index"
           class="image-preview"
         >
-          <img :src="image.name" :alt="image.name" />
-
-          <button type="button" class="btn" @click="removeImage(index)">X</button>
+          <img :src="image.url" :alt="image.name" />
+          <button type="button" class="btn" @click="removeImage(index)">
+            X
+          </button>
         </div>
       </div>
     </section>
@@ -256,9 +254,14 @@
 </template>
 
 <script>
-import { repairsModelhema } from "@/validations/repairs.schema.js";
+import { repairSchema } from "@/validations/repair.schema.js";
 import api from "@/api/axios.js";
-import { getImages, saveImage, deleteImage, clearImages } from "@/utils/image.storage";
+import {
+  getImages,
+  saveImage,
+  deleteImage,
+  clearImages,
+} from "@/utils/image.storage";
 
 export default {
   name: "RepairView",
@@ -303,6 +306,7 @@ export default {
         });
       }
 
+      console.log("Current images:", this.imagePreviews);
       event.target.value = "";
     },
 
@@ -312,10 +316,10 @@ export default {
       await deleteImage(name);
       this.imagePreviews.splice(index, 1);
     },
-    
+
     async reviewBtn() {
       this.errors = {};
-      const result = repairsModelhema.safeParse(this.form);
+      const result = repairSchema.safeParse(this.form);
 
       if (!result.success) {
         result.error.issues.forEach((error) => {
@@ -327,7 +331,7 @@ export default {
       this.$store.commit("repairs/setRepairs", this.form);
       this.$router.push("/admin/repairs/review");
     },
-    
+
     // test data
     fillDefaults() {
       this.form = {
