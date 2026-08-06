@@ -1,7 +1,7 @@
 import catchAsync from "../middleware/catch.async.js";
-import customersSC from "../models/customers.sc.js";
-import repairsSC from "../models/repairs.sc.js";
-import devicesSC from "../models/devices.sc.js";
+import customersModel from "../models/customers.model.js";
+import repairsModel from "../models/repairs.model.js";
+import devicesSC from "../models/devices.model.js";
 import logger from "../utils/logger.js";
 import AppError from "../utils/app.error.js";
 
@@ -17,12 +17,12 @@ export const create = catchAsync(async (req, res, next) => {
   })) || [];
   // 1. CUSTOMER
 
-  let customer = await customersSC.findOne({
+  let customer = await customersModel.findOne({
     email: data.customer.email,
   });
 
   if (!customer) {
-    customer = await customersSC.create({
+    customer = await customersModel.create({
       firstName: data.customer.firstName,
       lastName: data.customer.lastName,
       phone: data.customer.phone,
@@ -44,7 +44,7 @@ export const create = catchAsync(async (req, res, next) => {
   });
 
   // 3. REPAIR
-  const repair = await repairsSC.create({
+  const repair = await repairsModel.create({
     repairNumber: req.repairNumber,
     customer: customer._id,
     device: device._id,
@@ -69,7 +69,7 @@ export const create = catchAsync(async (req, res, next) => {
 export const repairTrack = catchAsync(async (req, res, next) => {
   const { repairNumber } = req.params;
   
-  const result = await repairsSC.findOne({ repairNumber });
+  const result = await repairsModel.findOne({ repairNumber });
   if (!result) {
     return next(
       new AppError("Repairnumber not found", 404, "REPAIR_NUMBER_NOT__FOUND"),

@@ -247,7 +247,7 @@
 
 <script>
 import api from "@/api/axios.js";
-import { invoicesSchema } from "@/validations/invoices.schema.js";
+import { invoicesModelhema } from "@/validations/invoices.schema.js";
 
 export default {
   name: "InvoiceCreate",
@@ -400,7 +400,7 @@ export default {
         },
       };
 
-      const result = invoicesSchema.safeParse(payload);
+      const result = invoicesModelhema.safeParse(payload);
 
       if (!result.success) {
         this.errors = {};

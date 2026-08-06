@@ -2,8 +2,8 @@ import AppError from "../utils/app.error.js";
 import catchAsync from "../middleware/catch.async.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import usersSC from "../models/users.sc.js";
-import repairsSC from "../models/repairs.sc.js";
+import userModel from "../models/users.model.js";
+import repairsModel from "../models/repairs.model.js";
 import logger from "../utils/logger.js";
 
 export const create = catchAsync(async (req, res, next) => {
@@ -21,7 +21,7 @@ export const create = catchAsync(async (req, res, next) => {
       return next(new AppError("You are not allowed to create users", 403));
   }
 
-  const newUser = await usersSC.create({
+  const newUser = await userModel.create({
     ...req.body,
     password: await bcrypt.hash(req.body.password, 12),
     role,
@@ -40,7 +40,7 @@ export const index = catchAsync(async (req, res, next) => {
     return next(new AppError("You do not have permission to view users list.", 403));
   }
 
-  const users = await usersSC.find().lean();
+  const users = await userModel.find().lean();
 
   res.json({
     success: true,
@@ -50,13 +50,13 @@ export const index = catchAsync(async (req, res, next) => {
 });
 
 export const details = catchAsync(async (req, res, next) => {
-  const user = await usersSC.findById(req.params.id).lean();
+  const user = await userModel.findById(req.params.id).lean();
 
   if (!user) {
     return next(new AppError("User not found", 404, "USER_NOT_FOUND"));
   }
 
-  const repairs = await repairsSC
+  const repairs = await repairsModel
     .find({
       assignedTo: req.params.id,
     })
@@ -72,7 +72,7 @@ export const details = catchAsync(async (req, res, next) => {
 });
 
 export const edit = catchAsync(async (req, res, next) => {
-  const data = await usersSC.findById(req.params.id).lean();
+  const data = await userModel.findById(req.params.id).lean();
   if (!data) {
     return next(new AppError("User not found", 404, "USER_NOT_FOUND"));
   }
@@ -83,7 +83,7 @@ export const edit = catchAsync(async (req, res, next) => {
 });
 
 export const updateUser = catchAsync(async (req, res, next) => {
-  const user = await usersSC.findByIdAndUpdate(
+  const user = await userModel.findByIdAndUpdate(
     req.params.id,
     {
       $set: req.body,
@@ -105,7 +105,7 @@ export const updateUser = catchAsync(async (req, res, next) => {
 });
 
 export const profile = catchAsync(async (req, res, next) => {
-  const user = await usersSC.findById(req.user._id).select("+password");
+  const user = await userModel.findById(req.user._id).select("+password");
   if (!user) {
     return next(new AppError("User not found", 404, "USER_NOT_FOUND"));
   }
@@ -117,7 +117,7 @@ export const profile = catchAsync(async (req, res, next) => {
 });
 
 export const updateProfile = catchAsync(async (req, res, next) => {
-  const user = await usersSC.findById(req.user._id);
+  const user = await userModel.findById(req.user._id);
 
   if (!user) {
     return next(new AppError("User not found", 404, "USER_NOT_FOUND"));
@@ -140,7 +140,7 @@ export const updateProfile = catchAsync(async (req, res, next) => {
 });
 
 export const deleteUser = catchAsync(async (req, res, next) => {
-  const user = await usersSC.findById(req.params.id);
+  const user = await userModel.findById(req.params.id);
 
   if (!user) {
     return next(new AppError("User not found", 404, "USER_NOT_FOUND"));

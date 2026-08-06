@@ -49,7 +49,7 @@ const workItemSchema = new mongoose.Schema({
 }, { _id: true });
 
 // Fatura Ana Şeması
-const invoicesSC = new mongoose.Schema({
+const invoicesModel = new mongoose.Schema({
   // repair: {
   //   type: mongoose.Schema.Types.ObjectId,
   //   ref: 'repairs', // Tamirat modelinizin adı
@@ -94,4 +94,4 @@ const invoicesSC = new mongoose.Schema({
   timestamps: true 
 });
 
-export default  mongoose.model('invoices', invoicesSC);
+export default  mongoose.model('invoices', invoicesModel);

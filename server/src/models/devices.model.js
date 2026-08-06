@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const deviceSC = new mongoose.Schema(
+const deviceModel = new mongoose.Schema(
   {
     customer: {
       type: mongoose.Schema.Types.ObjectId,
@@ -67,4 +67,4 @@ const deviceSC = new mongoose.Schema(
   },
 );
 
-export default mongoose.model("devices", deviceSC);
+export default mongoose.model("devices", deviceModel);

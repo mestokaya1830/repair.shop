@@ -113,7 +113,7 @@
 
 <script>
 import api from "@/api/axios.js";
-import { customersSchema } from "@/validations/customers.schema.js";
+import { customersModelhema } from "@/validations/customers.schema.js";
 
 export default {
   name: "CustomerEdit",
@@ -175,7 +175,7 @@ export default {
         this.errors = {};
         this.serverError = "";
 
-        const result = customersSchema.safeParse(this.form);
+        const result = customersModelhema.safeParse(this.form);
         if (!result.success) {
           result.error.issues.forEach((error) => {
             this.errors[error.path.join(".")] = error.message;

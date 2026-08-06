@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const tenantsC = new mongoose.Schema({
+const tenantModel = new mongoose.Schema({
   company: {type: String, required: true},
   firstName: { type: String, required: true },  
   lastName: { type: String, required: true },  
@@ -32,4 +32,4 @@ const tenantsC = new mongoose.Schema({
   currency: { type: String, default: 'EUR.de-DE' }
 }, { timestamps: true });
 
-export default mongoose.model('tanent', tenantsC)
+export default mongoose.model('tanent', tenantModel)

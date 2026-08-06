@@ -11,12 +11,12 @@ import {
 } from "../controllers/users.controller.js";
 import auth from "../middleware/auth.js";
 import validate from "../middleware/validate.js";
-import { usersSchema, usersUpdateSchema } from "../validations/users.schema.js";
+import { userModelhema, usersUpdateSchema } from "../validations/users.schema.js";
 
 const router = express.Router();
 
 router.get("/", auth, index);
-router.post("/create", auth, validate(usersSchema), create);
+router.post("/create", auth, validate(userModelhema), create);
 router.get("/profile", auth, profile);
 router.patch("/profile/update", auth, updateProfile);
 

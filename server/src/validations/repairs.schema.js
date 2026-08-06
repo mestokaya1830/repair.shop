@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 // create repair
-export const repairsSchema = z.object({
+export const repairsModelhema = z.object({
   customer: z.object({
     firstName: z.string().min(2, "First name is required"),
     lastName: z.string().min(2, "Last name is required"),

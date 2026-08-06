@@ -1,6 +1,6 @@
 import AppError from "../utils/app.error.js";
 import catchAsync from "../middleware/catch.async.js";
-import tenantsSC from "../models/tenants.sc.js";
+import tenantsSC from "../models/tenants.model.js";
 
 export const index = async (req, res) => {
 

@@ -106,7 +106,7 @@
 
 <script>
 import api from "@/api/axios.js";
-import { usersSchema } from "@/validations/users.schema.js";
+import { userModelhema } from "@/validations/users.schema.js";
 export default {
   name: "AddUser",
   data() {
@@ -140,7 +140,7 @@ export default {
   methods: {
     async submitUser() {
       this.errors = {};
-      const result = usersSchema.safeParse(this.form);
+      const result = userModelhema.safeParse(this.form);
 
       if (!result.success) {
         result.error.issues.forEach((error) => {

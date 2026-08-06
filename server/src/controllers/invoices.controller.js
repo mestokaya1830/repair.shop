@@ -1,14 +1,14 @@
 import AppError from "../utils/app.error.js";
 import catchAsync from "../middleware/catch.async.js";
-import { invoicesSchema } from '../validations/invoices.schema.js'
-import invoicesSC from "../models/invoices.sc.js";
+import { invoicesModelhema } from '../validations/invoices.schema.js'
+import invoicesModel from "../models/invoices.model.js";
 
 // --------------------------------------------------
 // INDEX
 // --------------------------------------------------
 
 export const index = catchAsync(async (req, res) => {
-  const invoices = await invoicesSC
+  const invoices = await invoicesModel
     .find()
     // .populate("customer")
     // .populate("repair")
@@ -34,7 +34,7 @@ export const create = catchAsync(async (req, res, next) => {
   console.log(req.body)
   // 1. Aynı tamir (repair) için daha önceden fatura kesilmiş mi kontrolü
   if (repairId) {
-    const exists = await invoicesSC.findOne({ repair: repairId });
+    const exists = await invoicesModel.findOne({ repair: repairId });
 
     if (exists) {
       return next(
@@ -51,7 +51,7 @@ export const create = catchAsync(async (req, res, next) => {
   const dueDate = new Date(invoiceDate);
   dueDate.setDate(dueDate.getDate() + Number(req.body.paymentTerms || 14));
 
-  const invoice = await invoicesSC.create({
+  const invoice = await invoicesModel.create({
     ...req.body,
     repair: repairId,
     createdBy: req.user._id,
@@ -70,7 +70,7 @@ export const create = catchAsync(async (req, res, next) => {
 // --------------------------------------------------
 
 export const updatePaymentStatus = catchAsync(async (req, res, next) => {
-  const invoice = await invoicesSC.findById(req.params.id);
+  const invoice = await invoicesModel.findById(req.params.id);
 
   if (!invoice) {
     return next(
@@ -90,7 +90,7 @@ export const updatePaymentStatus = catchAsync(async (req, res, next) => {
 });
 
 export const details = catchAsync(async (req, res, next) => {
-  const invoice = await invoicesSC
+  const invoice = await invoicesModel
     .findById(req.params.id)
     .lean();
 

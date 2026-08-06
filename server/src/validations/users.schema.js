@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 const positionEnum = z.enum([
+  "Owner",
   "Manager",
   "Technician",
   "Support",
@@ -11,7 +12,7 @@ const positionEnum = z.enum([
 
 const roleEnum = z.enum(["owner", "admin", "user"]);
 
-export const usersSchema = z.object({
+export const userModelhema = z.object({
   email: z.string().email("Invalid email").transform((val) => val.toLowerCase()),
   password: z.string().min(8, "Password must be at least 8 characters"),
   role: roleEnum,

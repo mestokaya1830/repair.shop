@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const usersSC = new mongoose.Schema(
+const userModel = new mongoose.Schema(
   {
     email: {
       type: String,
@@ -66,6 +66,7 @@ const usersSC = new mongoose.Schema(
     position: {
       type: String,
       enum: [
+        "Owner",
         "Manager",
         "Technician",
         "Support",
@@ -87,4 +88,4 @@ const usersSC = new mongoose.Schema(
   },
 );
 
-export default mongoose.model("users", usersSC);
+export default mongoose.model("users", userModel);

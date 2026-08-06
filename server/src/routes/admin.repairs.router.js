@@ -5,7 +5,7 @@ import upload from "../middleware/upload.images.js";
 import createRepairNumber from "../middleware/repair.number.middleware.js";
 
 import {
-  repairsSchema,
+  repairsModelhema,
   repairsUpdateSchema,
   communicationSchema,
   statusUpdateSchema,
@@ -39,7 +39,7 @@ router.post(
   auth,
   createRepairNumber,
   upload.array("images", 5),
-  validate(repairsSchema),
+  validate(repairsModelhema),
   create,
 );
 

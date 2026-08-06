@@ -1,6 +1,6 @@
 import AppError from "../utils/app.error.js";
 import catchAsync from "../middleware/catch.async.js";
-import deviceSC from "../models/devices.sc.js";
+import deviceModel from "../models/devices.model.js";
 
 export const index = catchAsync(async (req, res, next) => {
   const { search, type, brand, customer } = req.query;
@@ -26,7 +26,7 @@ export const index = catchAsync(async (req, res, next) => {
     ];
   }
 
-  const devices = await deviceSC.find(filter).populate("customer").lean();
+  const devices = await deviceModel.find(filter).populate("customer").lean();
 
   res.json({
     success: true,
@@ -35,7 +35,7 @@ export const index = catchAsync(async (req, res, next) => {
 });
 
 export const details = catchAsync(async (req, res, next) => {
-  const device = await deviceSC
+  const device = await deviceModel
     .findById(req.params.id)
     .populate("customer")
     .lean();
@@ -51,7 +51,7 @@ export const details = catchAsync(async (req, res, next) => {
 });
 
 export const edit = catchAsync(async (req, res, next) => {
-  const device = await deviceSC
+  const device = await deviceModel
     .findById(req.params.id)
     .populate("customer")
     .lean();
@@ -67,7 +67,7 @@ export const edit = catchAsync(async (req, res, next) => {
 });
 
 export const update = catchAsync(async (req, res, next) => {
-  const device = await deviceSC.findByIdAndUpdate(
+  const device = await deviceModel.findByIdAndUpdate(
     req.params.id,
 
     {
@@ -91,7 +91,7 @@ export const update = catchAsync(async (req, res, next) => {
 });
 
 export const create = catchAsync(async (req, res, next) => {
-  const device = await deviceSC.create({
+  const device = await deviceModel.create({
     ...data.device,
     customer: customer._id,
     source: "web",
@@ -105,7 +105,7 @@ export const create = catchAsync(async (req, res, next) => {
 });
 
 export const remove = catchAsync(async (req, res, next) => {
-  const device = await deviceSC.findByIdAndUpdate(
+  const device = await deviceModel.findByIdAndUpdate(
     req.params.id,
     { isActive: false },
     { new: true },
@@ -118,7 +118,7 @@ export const remove = catchAsync(async (req, res, next) => {
 });
 
 export const customerDevices = catchAsync(async (req, res, next) => {
-  const devices = await deviceSC
+  const devices = await deviceModel
     .find({
       customer: req.params.customerId,
     })

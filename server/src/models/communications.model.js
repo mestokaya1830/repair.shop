@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const communicationsSC = new mongoose.Schema(
+const communicationsModel = new mongoose.Schema(
   {
     repair: {
       type: mongoose.Schema.Types.ObjectId,
@@ -52,4 +52,4 @@ const communicationsSC = new mongoose.Schema(
   },
 );
 
-export default mongoose.model("communications", communicationsSC);
+export default mongoose.model("communications", communicationsModel);

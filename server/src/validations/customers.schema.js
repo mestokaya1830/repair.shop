@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 // customers
-export const customersSchema = z.object({
+export const customersModelhema = z.object({
   source: z.enum(["web", "office"], {
     required_error: "Source is required",
     invalid_type_error: "Source must be 'web' or 'office'",

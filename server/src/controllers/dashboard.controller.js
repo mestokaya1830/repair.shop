@@ -1,8 +1,8 @@
 import AppError from "../utils/app.error.js";
 import catchAsync from "../middleware/catch.async.js";
-import repairsSC from "../models/repairs.sc.js";
-import customersSC from "../models/customers.sc.js";
-import devicesSC from "../models/devices.sc.js";
+import repairsModel from "../models/repairs.model.js";
+import customersModel from "../models/customers.model.js";
+import devicesSC from "../models/devices.model.js";
 
 // Dashboard
 export const index = catchAsync(async (req, res) => {
@@ -31,24 +31,24 @@ console.log(req.user.role)
     recentRepairs,
   ] = await Promise.all([
     // Repairs - Taban filtre uygulanıyor
-    repairsSC.countDocuments(baseFilter),
+    repairsModel.countDocuments(baseFilter),
 
-    repairsSC.countDocuments({ ...baseFilter, status: "Pending" }),
-    repairsSC.countDocuments({ ...baseFilter, status: "Received" }),
-    repairsSC.countDocuments({ ...baseFilter, status: "Diagnosing" }),
-    repairsSC.countDocuments({ ...baseFilter, status: "WaitingApproval" }),
-    repairsSC.countDocuments({ ...baseFilter, status: "Repairing" }),
-    repairsSC.countDocuments({ ...baseFilter, status: "Testing" }),
-    repairsSC.countDocuments({ ...baseFilter, status: "Ready" }),
-    repairsSC.countDocuments({ ...baseFilter, status: "Delivered" }),
-    repairsSC.countDocuments({ ...baseFilter, status: "Cancelled" }),
+    repairsModel.countDocuments({ ...baseFilter, status: "Pending" }),
+    repairsModel.countDocuments({ ...baseFilter, status: "Received" }),
+    repairsModel.countDocuments({ ...baseFilter, status: "Diagnosing" }),
+    repairsModel.countDocuments({ ...baseFilter, status: "WaitingApproval" }),
+    repairsModel.countDocuments({ ...baseFilter, status: "Repairing" }),
+    repairsModel.countDocuments({ ...baseFilter, status: "Testing" }),
+    repairsModel.countDocuments({ ...baseFilter, status: "Ready" }),
+    repairsModel.countDocuments({ ...baseFilter, status: "Delivered" }),
+    repairsModel.countDocuments({ ...baseFilter, status: "Cancelled" }),
 
     // Customers & Devices (Tüm sistemdeki genel sayılar kalır)
-    customersSC.countDocuments(),
+    customersModel.countDocuments(),
     devicesSC.countDocuments(),
 
     // Recent Repairs - Taban filtre uygulanıyor
-    repairsSC
+    repairsModel
       .find(baseFilter)
       .populate("customer", "firstName lastName")
       .populate("assignedTo", "firstName lastName") // İsteğe bağlı: Atanan kişiyi de doldurabilirsin
@@ -94,7 +94,7 @@ export const details = catchAsync(async (req, res, next) => {
     filter.status = status;
   }
 
-  const repairs = await repairsSC
+  const repairs = await repairsModel
     .find(filter)
     .populate("customer", "firstName lastName email phone")
     .populate("device", "brand model serialNumber")

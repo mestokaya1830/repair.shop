@@ -10,7 +10,7 @@ const invoiceWorkItemSchema = z.object({
   total: z.number().optional(),
 });
 
-export const invoicesSchema = z.object({
+export const invoicesModelhema = z.object({
   repairId: z.string(),
   date: z.string(),
   serviceDate: z.string(),

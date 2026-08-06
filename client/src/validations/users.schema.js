@@ -1,11 +1,19 @@
 import { z } from "zod";
 
-export const usersSchema = z.object({
+export const userModelhema = z.object({
   email: z.string().email("Invalid email address").toLowerCase().trim(),
   password: z.string().min(8, "Password must be at least 8 characters"),
   role: z.enum(["owner", "admin", "user"]).optional(),
   position: z
-    .enum(["manager", "technician", "reception"])
+    .enum([
+      "Owner",
+      "Manager",
+      "Technician",
+      "Support",
+      "Sales",
+      "Accounting",
+      "Warehouse",
+    ])
     .optional()
     .or(z.literal("")),
   firstName: z

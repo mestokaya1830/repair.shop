@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const repairsSC = new mongoose.Schema(
+const repairsModel = new mongoose.Schema(
   {
     // -----------------------------------------------------------------
     // BASIC
@@ -302,4 +302,4 @@ const repairsSC = new mongoose.Schema(
   },
 );
 
-export default mongoose.model("repairs", repairsSC);
+export default mongoose.model("repairs", repairsModel);

@@ -1,8 +1,8 @@
 import AppError from "../utils/app.error.js";
 import catchAsync from "../middleware/catch.async.js";
-import customersSC from "../models/customers.sc.js";
-import devicesSC from "../models/devices.sc.js";
-import repairsSC from "../models/repairs.sc.js";
+import customersModel from "../models/customers.model.js";
+import devicesSC from "../models/devices.model.js";
+import repairsModel from "../models/repairs.model.js";
 
 
 export const index = catchAsync(async (req, res, next) => {
@@ -87,7 +87,7 @@ export const index = catchAsync(async (req, res, next) => {
     }
   }
 
-  const data = await customersSC
+  const data = await customersModel
     .find(filter)
     .sort({
       createdAt: -1,
@@ -101,7 +101,7 @@ export const index = catchAsync(async (req, res, next) => {
 });
 
 export const details = catchAsync(async (req, res, next) => {
-  const data = await customersSC.findById(req.params.id);
+  const data = await customersModel.findById(req.params.id);
   res.json({
     success: true,
     data,
@@ -138,7 +138,7 @@ export const deviceDetails = catchAsync(async (req, res, next) => {
     return next(new AppError("Device not found", 404, "DEVICE_NOT_FOUND"));
   }
 
-  const repairs = await repairsSC
+  const repairs = await repairsModel
     .find({
       device: device._id,
     })
@@ -156,7 +156,7 @@ export const deviceDetails = catchAsync(async (req, res, next) => {
 });
 
 export const repairDetails = catchAsync(async (req, res, next) => {
-  const data = await repairsSC
+  const data = await repairsModel
     .findOne({
       _id: req.params.repairId,
       customer: req.params.id,
@@ -173,7 +173,7 @@ export const repairDetails = catchAsync(async (req, res, next) => {
 });
 
 export const customerRepairs = catchAsync(async (req, res, next) => {
-  const data = await repairsSC
+  const data = await repairsModel
     .find({
       customer: req.params.id,
     })
@@ -191,7 +191,7 @@ export const customerRepairs = catchAsync(async (req, res, next) => {
 });
 
 export const edit = catchAsync(async (req, res, next) => {
-  const data = await customersSC.findById(req.params.id);
+  const data = await customersModel.findById(req.params.id);
   res.json({
     success: true,
     data,
@@ -200,7 +200,7 @@ export const edit = catchAsync(async (req, res, next) => {
 
 export const update = catchAsync(async (req, res, next) => {
   console.log('test')
-  const data = await customersSC.findByIdAndUpdate(
+  const data = await customersModel.findByIdAndUpdate(
     req.params.id,
     {
       $set: req.body,
@@ -217,7 +217,7 @@ export const update = catchAsync(async (req, res, next) => {
 });
 
 export const remove = catchAsync(async (req, res, next) => {
-  const device = await customersSC.findByIdAndUpdate(req.params.id,{isActive: false,},{new: true});
+  const device = await customersModel.findByIdAndUpdate(req.params.id,{isActive: false,},{new: true});
 
   res.json({
     success: true,

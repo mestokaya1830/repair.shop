@@ -3,14 +3,35 @@ import catchAsync from "../middleware/catch.async.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { env } from "../config/env.js";
-import usersSC from "../models/users.sc.js";
-import tenantSC from "../models/tenants.sc.js";
+import userModel from "../models/users.model.js";
+import tenantModel from "../models/tenants.model.js";
 import logger from "../utils/logger.js";
+
+
+//first userModel
+// const createFirstUser = async () => {
+//   await userModel.create({
+//     email: "mesfor100@outlook.com",
+//     password: await bcrypt.hash("12121212", 10),
+//     role: "Owner",
+//     isActive: true,
+//     firstName: "mesto",
+//     lastName: "kaya",
+//     phone: "",
+//     position: "Owner",
+//     street: "",
+//     city: "",
+//     postalCode: "",
+//     country: "Germany"
+//   });
+// };
+
+// createFirstUser()
 
 export const login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
 
-  const user = await usersSC.findOne({ email }).select("+password");
+  const user = await userModel.findOne({ email }).select("+password");
   const isMatch = user && (await bcrypt.compare(password, user.password));
 
   if (!isMatch) {
@@ -35,7 +56,7 @@ export const login = catchAsync(async (req, res, next) => {
     role: user.role,
   });
 
-  const tenant = await tenantSC.findOne().lean();
+  const tenant = await tenantModel.findOne().lean();
   const token = jwt.sign(
     { _id: user._id, email: user.email, role: user.role },
     env.JWT_SECRET,
@@ -58,7 +79,7 @@ export const login = catchAsync(async (req, res, next) => {
 
 export const resetPassword = catchAsync(async (req, res, next) => {
   const { email, token, newPassword } = req.body;
-  const user = await usersSC.findOne({ email });
+  const user = await userModel.findOne({ email });
 
   if (!user) {
     logger.warn({
@@ -76,7 +97,7 @@ export const resetPassword = catchAsync(async (req, res, next) => {
       ),
     );
   }
-  await usersSC.updateOne(
+  await userModel.updateOne(
     { email },
     { $set: { password: await bcrypt.hash(newPassword, 12) } },
   );
@@ -92,22 +113,4 @@ export const resetPassword = catchAsync(async (req, res, next) => {
     message: "Password has been successfully reset",
   });
 });
-// //first usersSC
-// const createFirstUser = async () => {
-//   await usersSC.create({
-//     email: "mesfor100@outlook.com",
-//     password: await bcrypt.hash("12121212", 10),
-//     role: "owner",
-//     isActive: true,
-//     firstName: "mesto",
-//     lastName: "kaya",
-//     phone: "",
-//     position: "owner",
-//     street: "",
-//     city: "",
-//     postalCode: "",
-//     country: "Germany"
-//   });
-// };
 
-// createFirstUser()
