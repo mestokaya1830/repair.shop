@@ -5,7 +5,12 @@
       <form @submit.prevent="login">
         <div class="form-group">
           <label class="label"> Email </label>
-          <input v-model="form.email" type="email" class="inputs" placeholder="Email" />
+          <input
+            v-model="form.email"
+            type="email"
+            class="inputs"
+            placeholder="Email"
+          />
           <p v-if="errors.email" class="form-error">
             {{ errors.email }}
           </p>
@@ -30,7 +35,7 @@
           {{ loading ? "Logging in..." : "Login" }}
         </button>
       </form>
-     <router-link to="/auth/reset-password" class="forgot-password-link">
+      <router-link to="/auth/reset-password" class="forgot-password-link">
         Forgot Password?
       </router-link>
     </div>
@@ -51,7 +56,7 @@ export default {
       },
       loading: false,
       errors: {},
-      credentials: ""
+      credentials: "",
     };
   },
 
@@ -60,7 +65,7 @@ export default {
       try {
         this.errors = {};
         this.credentials = "";
-        
+
         const result = loginSchema.safeParse(this.form);
         if (!result.success) {
           result.error.issues.forEach((error) => {
@@ -71,7 +76,7 @@ export default {
         const res = await api.post("/auth/login", this.form);
         const { token, user } = res.data;
         localStorage.setItem("token", token);
-        this.$store.commit('setAuth', user)
+        this.$store.commit("setAuth", user);
         this.$router.push("/admin");
       } catch (error) {
         this.credentials = error.response?.data?.message || "Login failed";

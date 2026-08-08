@@ -1,97 +1,214 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
-const partInfoSchema = new mongoose.Schema({
-  partNumber: { type: String, default: '' }, // Parça No / Kod
-  name: { type: String, default: '' },       // Parça Adı
-  brand: { type: String, default: '' },      // Marka
-  unit: { type: String, default: 'pcs' },    // Adet, Saat vb.
-  costPrice: { type: Number, default: 0 }    // Alış fiyatı (opsiyonel)
-}, { _id: false });
+// --------------------------------------------------
+// PART INFO
+// --------------------------------------------------
 
-const workItemSchema = new mongoose.Schema({
-  workflowItemId: { 
-    type: mongoose.Schema.Types.ObjectId, // veya String
-    default: null 
+const partInfoSchema = new mongoose.Schema(
+  {
+    partNumber: {
+      type: String,
+      default: "",
+    },
+
+    name: {
+      type: String,
+      default: "",
+    },
+
+    brand: {
+      type: String,
+      default: "",
+    },
+
+    model: {
+      type: String,
+      default: "",
+    },
+
+    unit: {
+      type: String,
+      default: "pcs",
+    },
+
+    costPrice: {
+      type: Number,
+      default: 0,
+    },
   },
-  title: { 
-    type: String, 
-    required: true 
+  { _id: false },
+);
+
+// --------------------------------------------------
+// INVOICE WORK ITEM
+// --------------------------------------------------
+
+const workItemSchema = new mongoose.Schema(
+  {
+    repairWorkItemId: {
+      type: mongoose.Schema.Types.ObjectId,
+      default: null,
+    },
+
+    type: {
+      type: String,
+      enum: ["service", "part"],
+      required: true,
+    },
+
+    title: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+
+    description: {
+      type: String,
+      default: "",
+      trim: true,
+    },
+
+    quantity: {
+      type: Number,
+      required: true,
+      default: 1,
+      min: 1,
+    },
+
+    price: {
+      type: Number,
+      required: true,
+      default: 0,
+      min: 0,
+    },
+
+    vat: {
+      type: Number,
+      default: 0,
+      min: 0,
+    },
+
+    total: {
+      type: Number,
+      default: 0,
+      min: 0,
+    },
+
+    partInfo: partInfoSchema,
   },
-  description: { 
-    type: String, 
-    default: '' 
+  { _id: true },
+);
+
+// --------------------------------------------------
+// INVOICE
+// --------------------------------------------------
+
+const invoiceModel = new mongoose.Schema(
+  {
+    // --------------------------------------------------
+    // RELATIONS
+    // --------------------------------------------------
+
+    repair: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "repairs",
+      required: true,
+      index: true,
+    },
+
+    customer: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "customers",
+      required: true,
+      index: true,
+    },
+
+    tenantId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "tenants",
+      required: true,
+      index: true,
+    },
+
+    // --------------------------------------------------
+    // PAYMENT STATUS
+    // --------------------------------------------------
+
+    status: {
+      type: String,
+      enum: ["unpaid", "paid"],
+      default: "unpaid",
+      index: true,
+    },
+
+    // --------------------------------------------------
+    // DATES
+    // --------------------------------------------------
+
+    serviceDate: {
+      type: Date,
+      default: null,
+    },
+
+    date: {
+      type: Date,
+      default: Date.now,
+    },
+
+    paymentTerms: {
+      type: Number,
+      default: 14,
+    },
+
+    // --------------------------------------------------
+    // VAT / CURRENCY
+    // --------------------------------------------------
+
+    vatType: {
+      type: String,
+      enum: [
+        "standard",
+        "reverse_charge",
+        "small_business",
+      ],
+      default: "standard",
+    },
+
+    currency: {
+      type: String,
+      default: "EUR",
+    },
+
+    // --------------------------------------------------
+    // INVOICE ITEMS
+    // --------------------------------------------------
+
+    workItems: [workItemSchema],
+
+    // --------------------------------------------------
+    // TOTALS
+    // --------------------------------------------------
+
+    totals: {
+      net: {
+        type: Number,
+        default: 0,
+      },
+
+      vat: {
+        type: Number,
+        default: 0,
+      },
+
+      total: {
+        type: Number,
+        default: 0,
+      },
+    },
   },
-  quantity: { 
-    type: Number, 
-    required: true, 
-    default: 1 
+  {
+    timestamps: true,
   },
-  price: { 
-    type: Number, 
-    required: true, 
-    default: 0 
-  },
-  vat: { 
-    type: Number, 
-    default: 0 
-  },
-  total: { 
-    type: Number, 
-    default: 0 
-  },
+);
 
-  partInfo: partInfoSchema,
-
-  workflowItem: {
-    type: mongoose.Schema.Types.Mixed,
-    default: null
-  }
-}, { _id: true });
-
-// Fatura Ana Şeması
-const invoicesModel = new mongoose.Schema({
-  // repair: {
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: 'repairs', // Tamirat modelinizin adı
-  //   default: null
-  // },
-  
-  // customer: {
-  //   firstName: { type: String, default: '' },
-  //   lastName: { type: String, default: '' },
-  //   company: { type: String, default: '' },
-  //   address: { type: String, default: '' },
-  //   postalCode: { type: String, default: '' },
-  //   city: { type: String, default: '' }
-  // },
-
-  tenantId: { 
-    type: mongoose.Schema.Types.ObjectId, 
-    ref: 'tenants',
-    required: true 
-  },
-
-  serviceDate: { type: Date, default: null },
-  date: { type: Date, default: Date.now },
-  paymentTerms: { type: Number, default: 14 },
-
-  vatType: { 
-    type: String, 
-    enum: ['standard', 'reverse_charge', 'small_business'], 
-    default: 'standard' 
-  },
-
-  currency: { type: String, default: 'EUR' },
-
-  workItems: [workItemSchema],
-
-  totals: {
-    net: { type: Number, default: 0 },
-    vat: { type: Number, default: 0 },
-    total: { type: Number, default: 0 }
-  }
-}, { 
-  timestamps: true 
-});
-
-export default  mongoose.model('invoices', invoicesModel);
+export default mongoose.model("invoices", invoiceModel);

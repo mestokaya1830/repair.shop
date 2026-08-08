@@ -247,7 +247,7 @@
 
 <script>
 import api from "@/api/axios.js";
-import { invoicesModelhema } from "@/validations/invoices.schema.js";
+import { invoiceSchema } from "@/validations/invoice.schema.js";
 
 export default {
   name: "InvoiceCreate",
@@ -400,7 +400,7 @@ export default {
         },
       };
 
-      const result = invoicesModelhema.safeParse(payload);
+      const result = invoiceSchema.safeParse(payload);
 
       if (!result.success) {
         this.errors = {};
@@ -410,8 +410,7 @@ export default {
         console.error("Zod Validation Error:", this.errors);
         return;
       }
-
-      console.log(payload)
+      
       this.$store.commit(
         "invoice/setInvoice",
         JSON.parse(JSON.stringify(payload))

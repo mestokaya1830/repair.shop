@@ -57,10 +57,6 @@
       <select v-model="filters.technician" @change="getRepairs">
         <option value="">All Technicians</option>
         <option value="null">Unassigned</option>
-
-        <option v-for="user in technicians" :key="user._id" :value="user._id">
-          {{ user.firstName }} {{ user.lastName }}
-        </option>
       </select>
       <button @click="resetFilters" class="btn">Reset</button>
     </div>
@@ -109,8 +105,6 @@
               {{ repair.createdBy.firstName }}
               {{ repair.createdBy.lastName }}
             </span>
-
-            <span v-else> Web </span>
           </td>
 
           <td>
@@ -185,7 +179,7 @@ export default {
         const response = await api.get("/repairs", { params });
 
         this.repairs = response.data.repairs;
-        console.log(this.repairs);
+        console.log(response);
       } catch (error) {
         this.error = error.response?.data?.message || "Failed to load repairs";
       } finally {

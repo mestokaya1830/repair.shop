@@ -35,7 +35,7 @@ export const customerSchema = z.object({
 });
 
 // 4. Ana Fatura (Invoice) Zod Şeması
-export const invoicesModelhema = z.object({
+export const invoiceSchema = z.object({
   repairId: z.string().nullable().optional(),
   
   // Müşteri

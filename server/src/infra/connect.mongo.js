@@ -4,11 +4,11 @@ import logger from '../utils/logger.js';
 
 const connectMongo = async () => {
   try {
-    await mongoose.connect(env.MONGO, {
+    await mongoose.connect(env.MONGO_URL, {
       serverSelectionTimeoutMS: 5000,
     })
-    console.log('Mongo Connected') //fur developer
-    logger.info('Mongo Connected')
+    console.log('Connected to MongoDB') //fur developer
+    logger.info('Connected to MongoDB')
   } catch (error) {
     console.error(error) //fur developer
     logger.error(error.message)

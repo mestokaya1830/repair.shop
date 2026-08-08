@@ -264,23 +264,35 @@ export default {
     printDoc() {
       window.print();
     },
-    async saveInvoice() {
-      if (!this.invoicePreview) return;
-      try {
-        this.loading = true;
-        this.invoicePreview.tenantId = this.$store.state.auth.tenant._id
-        console.log(this.invoicePreview0)
-        const response = await api.post("/invoices/create", this.invoicePreview);
+   async saveInvoice() {
+  if (!this.invoicePreview) return;
 
-        if (response.status === 200 || response.status === 201) {
-          this.$router.push("/admin/invoices");
-        }
-      } catch (error) {
-        console.error("Invoice save error:", error);
-      } finally {
-        this.loading = false;
-      }
-    },
+  try {
+    this.loading = true;
+
+    const tenant = this.$store.state.auth.tenant;
+
+    if (!tenant?._id) {
+      console.error("Tenant not found.");
+      return;
+    }
+
+    this.invoicePreview.tenantId = tenant._id;
+
+    const response = await api.post(
+      "/invoices/create",
+      this.invoicePreview,
+    );
+
+    if (response.status === 200 || response.status === 201) {
+      this.$router.push("/admin/invoices");
+    }
+  } catch (error) {
+    console.error("Invoice save error:", error);
+  } finally {
+    this.loading = false;
+  }
+}
   },
 };
 </script>

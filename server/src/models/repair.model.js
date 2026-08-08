@@ -250,13 +250,9 @@ const repairModel = new mongoose.Schema(
 
         partInfo: {
           name: String,
-
           brand: String,
-
           model: String,
-
           serialNumber: String,
-
           partNumber: String,
         },
 

@@ -5,8 +5,8 @@ dotenv.config()
 
 const envSchema = z.object({
   PORT: z.coerce.number().default(4000),
-  MONGO: z.string().startsWith("mongodb://"),
-  REDIS: z.string().startsWith("redis://"),
+  MONGO_URL: z.string().startsWith("mongodb://"),
+  REDIS_URL: z.string().startsWith("redis://"),
   JWT_SECRET: z.string().min(10, "JWT secret too weak"),
   NODE_ENV: z.enum(["development", "production", "test"]).default("development"),
 })

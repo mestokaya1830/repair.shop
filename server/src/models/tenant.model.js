@@ -32,4 +32,4 @@ const tenantModel = new mongoose.Schema({
   currency: { type: String, default: 'EUR.de-DE' }
 }, { timestamps: true });
 
-export default mongoose.model('tanent', tenantModel)
+export default mongoose.model('tenants', tenantModel)

@@ -5,28 +5,20 @@ const vuexLocalStorage = new VuexPersist({
   key: "vuex",
   storage: window.localStorage,
 
-  // Reducer: Tüm modülleri dahil ediyoruz (sadece device.images hariç)
   reducer: (state) => ({
-    // 1. Auth kalıcı
     auth: state.auth,
-
-    // 2. Tenant kalıcı
     tenant: {
       data: state.tenant.data,
     },
-
-    // 3. Invoice kalıcı
     invoice: {
       data: state.invoice.data,
     },
-
-    // 4. Repairs kalıcı (images hariç tutularak)
     repairs: {
       form: {
         ...state.repairs.form,
         device: {
           ...state.repairs.form.device,
-          images: undefined, // Resimleri storage kotasını doldurmaması için hariç tutuyoruz
+          images: undefined,
         },
       },
       success: state.repairs.success,
@@ -117,15 +109,24 @@ const invoiceModule = {
       date: "",
       serviceDate: "",
       paymentTerms: 14,
+
       currency: "EUR",
       vatType: "standard",
-      paymentStatus: "unpaid",
+
+      status: "unpaid",
+
       repair: null,
       customer: null,
-      items: [],
-      netTotal: 0,
-      vatTotal: 0,
-      total: 0,
+
+      workItems: [],
+
+      totals: {
+        net: 0,
+        vat: 0,
+        total: 0,
+      },
+
+      tenantId: null,
     },
   }),
 
@@ -140,47 +141,39 @@ const invoiceModule = {
         date: "",
         serviceDate: "",
         paymentTerms: 14,
+
         currency: "EUR",
         vatType: "standard",
-        paymentStatus: "unpaid",
+
+        status: "unpaid",
+
         repair: null,
         customer: null,
-        items: [],
-        netTotal: 0,
-        vatTotal: 0,
-        total: 0,
+
+        workItems: [],
+
+        totals: {
+          net: 0,
+          vat: 0,
+          total: 0,
+        },
+
+        tenantId: null,
       };
     },
   },
 };
 
-const tenantModule = {
-  namespaced: true,
-
-  state: () => ({
-    data: null,
-  }),
-
-  mutations: {
-    setTenant(state, payload) {
-      state.data = payload;
-    },
-
-    resetTenant(state) {
-      state.data = null;
-    },
-  },
-};
 
 export default createStore({
   state: {
-    auth: null,
+    auth: null
   },
 
   mutations: {
     setAuth(state, payload) {
       state.auth = payload;
-    },
+    }
   },
 
   actions: {},
@@ -188,7 +181,6 @@ export default createStore({
   modules: {
     repairs: repairsModule,
     invoice: invoiceModule,
-    tenant: tenantModule,
   },
 
   plugins: [vuexLocalStorage.plugin],

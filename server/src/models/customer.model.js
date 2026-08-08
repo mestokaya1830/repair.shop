@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const customersModel = new mongoose.Schema(
+const customerModel = new mongoose.Schema(
   {
     source: {
       type: String,
@@ -81,4 +81,4 @@ const customersModel = new mongoose.Schema(
   }
 );
 
-export default mongoose.model("customers", customersModel);
+export default mongoose.model("customers", customerModel);

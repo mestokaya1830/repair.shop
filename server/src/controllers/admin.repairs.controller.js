@@ -1,10 +1,304 @@
 import catchAsync from "../middleware/catch.async.js";
-import customersModel from "../models/customer.model.js";
+import customerModel from "../models/customer.model.js";
 import repairModel from "../models/repair.model.js";
-import devicesSC from "../models/device.model.js";
+import deviceModel from "../models/device.model.js";
 import communicationsModel from "../models/communication.model.js";
 import logger from "../utils/logger.js";
 import AppError from "../utils/app.error.js";
+
+
+// const seedRepairs = async () => {
+//   try {
+//     const customers = [];
+//     const devices = [];
+//     const repairs = [];
+
+//     const customerData = [
+//       ["Max", "Müller", "max.mueller@example.com", "01761234501", "web"],
+//       ["Anna", "Schmidt", "anna.schmidt@example.com", "01761234502", "web"],
+//       ["Peter", "Weber", "peter.weber@example.com", "01761234503", "web"],
+//       ["Laura", "Fischer", "laura.fischer@example.com", "01761234504", "web"],
+//       ["Thomas", "Wagner", "thomas.wagner@example.com", "01761234505", "web"],
+
+//       [
+//         "Michael",
+//         "Becker",
+//         "michael.becker@example.com",
+//         "01761234506",
+//         "office",
+//       ],
+//       [
+//         "Julia",
+//         "Hoffmann",
+//         "julia.hoffmann@example.com",
+//         "01761234507",
+//         "office",
+//       ],
+//       [
+//         "Daniel",
+//         "Schäfer",
+//         "daniel.schaefer@example.com",
+//         "01761234508",
+//         "office",
+//       ],
+//       ["Sarah", "Koch", "sarah.koch@example.com", "01761234509", "office"],
+//       [
+//         "Andreas",
+//         "Bauer",
+//         "andreas.bauer@example.com",
+//         "01761234510",
+//         "office",
+//       ],
+//       [
+//         "Sophie",
+//         "Richter",
+//         "sophie.richter@example.com",
+//         "01761234511",
+//         "office",
+//       ],
+//       ["Markus", "Klein", "markus.klein@example.com", "01761234512", "office"],
+//       ["Lisa", "Wolf", "lisa.wolf@example.com", "01761234513", "office"],
+//       [
+//         "Christian",
+//         "Schröder",
+//         "christian.schroeder@example.com",
+//         "01761234514",
+//         "office",
+//       ],
+//       ["Nina", "Neumann", "nina.neumann@example.com", "01761234515", "office"],
+//       [
+//         "Stefan",
+//         "Schwarz",
+//         "stefan.schwarz@example.com",
+//         "01761234516",
+//         "office",
+//       ],
+//       [
+//         "Maria",
+//         "Zimmermann",
+//         "maria.zimmermann@example.com",
+//         "01761234517",
+//         "office",
+//       ],
+//       ["Frank", "Braun", "frank.braun@example.com", "01761234518", "office"],
+//       [
+//         "Katharina",
+//         "Krüger",
+//         "katharina.krueger@example.com",
+//         "01761234519",
+//         "office",
+//       ],
+//       [
+//         "Martin",
+//         "Hartmann",
+//         "martin.hartmann@example.com",
+//         "01761234520",
+//         "office",
+//       ],
+//     ];
+
+//     const deviceData = [
+//       ["Laptop", "Dell", "Latitude 5520", "DL5520-001"],
+//       ["Laptop", "Lenovo", "ThinkPad T14", "LN-T14-002"],
+//       ["Desktop", "HP", "ProDesk 600 G6", "HP600-003"],
+//       ["Laptop", "Apple", "MacBook Pro 14", "MBP14-004"],
+//       ["Laptop", "Acer", "Aspire 5", "AC-A5-005"],
+//       ["Laptop", "Dell", "Inspiron 15", "DI15-006"],
+//       ["Laptop", "Lenovo", "IdeaPad 5", "IP5-007"],
+//       ["Desktop", "HP", "EliteDesk 800", "HE800-008"],
+//       ["Laptop", "ASUS", "VivoBook 15", "ASV15-009"],
+//       ["Laptop", "Acer", "Swift 3", "AS3-010"],
+//       ["Laptop", "Dell", "XPS 13", "DX13-011"],
+//       ["Laptop", "Lenovo", "ThinkBook 15", "LTB15-012"],
+//       ["Desktop", "Dell", "OptiPlex 7090", "DO7090-013"],
+//       ["Laptop", "HP", "Pavilion 15", "HPP15-014"],
+//       ["Laptop", "Apple", "MacBook Air M2", "MBA2-015"],
+//       ["Laptop", "ASUS", "ZenBook 14", "AZ14-016"],
+//       ["Desktop", "HP", "ProDesk 400", "HP400-017"],
+//       ["Laptop", "Lenovo", "Yoga Slim 7", "LYS7-018"],
+//       ["Laptop", "Dell", "Latitude 7420", "DL7420-019"],
+//       ["Laptop", "Acer", "TravelMate P2", "ATP2-020"],
+//     ];
+
+//     const statuses = [
+//       "Pending",
+//       "Received",
+//       "Diagnosing",
+//       "WaitingApproval",
+//       "Repairing",
+//       "Testing",
+//       "Ready",
+//       "Delivered",
+//       "Cancelled",
+//       "Pending",
+//       "Received",
+//       "Diagnosing",
+//       "Repairing",
+//       "Testing",
+//       "Ready",
+//       "Delivered",
+//       "Pending",
+//       "Repairing",
+//       "WaitingApproval",
+//       "Received",
+//     ];
+
+//     for (let i = 0; i < 20; i++) {
+//       // --------------------------------------------------
+//       // CUSTOMER
+//       // --------------------------------------------------
+
+//       const [firstName, lastName, email, phone, source] = customerData[i];
+
+//       const customer = await customerModel.create({
+//         firstName,
+//         lastName,
+//         email,
+//         phone,
+//         source,
+//         street: `Teststraße ${i + 1}`,
+//         postalCode: `6031${i}`,
+//         city: "Frankfurt",
+//         country: "Germany",
+//       });
+
+//       customers.push(customer);
+
+//       // --------------------------------------------------
+//       // DEVICE
+//       // --------------------------------------------------
+
+//       const [type, brand, model, serialNumber] = deviceData[i];
+
+//       const device = await deviceModel.create({
+//         customer: customer._id,
+//         type,
+//         brand,
+//         model,
+//         serialNumber,
+//         purchaseDate: new Date(2023, i % 12, 10),
+//         accessories: ["Power Adapter"],
+//       });
+
+//       devices.push(device);
+
+//       // --------------------------------------------------
+//       // REPAIR
+//       // --------------------------------------------------
+
+//       const status = statuses[i];
+
+//       const repair = await repairModel.create({
+//         isActive: true,
+
+//         repairNumber: `RE-2026-${String(i + 1).padStart(4, "0")}`,
+
+//         source,
+
+//         customer: customer._id,
+
+//         device: device._id,
+
+//         status,
+
+//         assignedTo: null,
+
+//         problem: {
+//           category: i % 2 === 0 ? "Hardware" : "Software",
+
+//           description:
+//             i % 2 === 0
+//               ? "Device does not start correctly."
+//               : "Operating system has stability problems.",
+
+//           deviceWorking: i % 2 === 0 ? "No" : "Yes",
+
+//           notes: "Test repair created by seed.",
+//         },
+
+//         reception: {
+//           method: source === "web" ? "courier" : "walk-in",
+
+//           location: "Frankfurt",
+
+//           receivedAt: new Date(),
+//         },
+
+//         approval: {
+//           status:
+//             status === "WaitingApproval"
+//               ? "pending"
+//               : status === "Cancelled"
+//                 ? "rejected"
+//                 : "approved",
+
+//           approvedAt: status === "WaitingApproval" ? undefined : new Date(),
+//         },
+
+//         // --------------------------------------------------
+//         // WORK ITEMS
+//         // --------------------------------------------------
+
+//         workItems: [
+//           {
+//             type: "service",
+//             title: "Diagnostic",
+//             description: "Hardware and software diagnostic",
+//             quantity: 1,
+//           },
+
+//           ...(i % 3 === 0
+//             ? [
+//                 {
+//                   type: "service",
+//                   title: "Repair Service",
+//                   description: "Device repair and testing",
+//                   quantity: 1,
+//                 },
+//               ]
+//             : []),
+
+//           ...(i % 2 === 0
+//             ? [
+//                 {
+//                   type: "part",
+//                   title: "SSD 1TB",
+//                   description: "Replacement SSD",
+//                   quantity: 1,
+
+//                   partInfo: {
+//                     name: "SSD 1TB",
+//                     brand: "Samsung",
+//                     model: "870 EVO",
+//                     partNumber: "MZ-77E1T0",
+//                   },
+//                 },
+//               ]
+//             : []),
+//         ],
+
+//         statusHistory: [
+//           {
+//             status: "Pending",
+//             createdAt: new Date(),
+//           },
+//         ],
+//       });
+
+//       repairs.push(repair);
+//     }
+
+//     console.log("Customers created:", customers.length);
+//     console.log("Devices created:", devices.length);
+//     console.log("Repairs created:", repairs.length);
+
+//     console.log("Repair seed completed successfully.");
+//   } catch (error) {
+//     console.error("Seed error:", error);
+//   }
+// };
+
+// seedRepairs();
 
 export const create = catchAsync(async (req, res, next) => {
   const data = req.body;
@@ -24,7 +318,7 @@ export const create = catchAsync(async (req, res, next) => {
 
   // 1. CUSTOMER
 
-  let customer = await customersModel.findOne({
+  let customer = await customerModel.findOne({
     email: data.customer.email,
   });
 
@@ -41,7 +335,7 @@ export const create = catchAsync(async (req, res, next) => {
   }
 
   // 2. DEVICE
-  const device = await devicesSC.create({
+  const device = await deviceSC.create({
     type: data.device.type,
     brand: data.device.brand,
     model: data.device.model,
